@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Academy.Presentation.Pages.Authorization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Academy.Presentation.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1600" Background="#101014" FontSize="110" FontFamily="Gabriola Bold">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="163*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="533*"/>
+            <ColumnDefinition Width="667*"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#fcf5e5" Width="220" Height="220" Grid.RowSpan="2" Grid.Column="1" Margin="157,0,0,0"/>
+
+        <Label Content="Login" HorizontalAlignment="Right" Foreground="#fcf5e5"  Grid.Row="1" Margin="0 30 0 0" Width="212"/>
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="100" Height="140" 
+                 VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_LoginChanged" Name="TBLogin" Foreground="#fcf5e5" BorderBrush="Red" materialDesign:HintAssist.HelperText="Field is required"
+                 materialDesign:HintAssist.HelperTextFontSize="40"/>
+
+        <Label Content="Password" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 80 0 0" Width="339"/>
+        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="100" Height="140" 
+                 VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_PasswordChanged" Name="TBPassword" Foreground="#fcf5e5" BorderBrush="Red" materialDesign:HintAssist.HelperText="Field is required"
+                 materialDesign:HintAssist.HelperTextFontSize="40">
+        </TextBox>
+        <Button Grid.Column="1" Grid.Row="3" Content="Log In" Background="#fcf5e5" Foreground="Black" FontSize="56" Click="Button_Click" Height="100" Margin="70 0 20 0"/>
+    </Grid>
+</UserControl>
