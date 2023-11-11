@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Academy.Domain.Entities
 {
-    class Admin : User, IAdmin
+    public class Admin : User, IAdmin
     {
         public Admin(string login,string password) 
         {

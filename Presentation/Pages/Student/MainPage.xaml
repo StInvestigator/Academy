@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Academy.Presentation.Pages.Student"
              mc:Ignorable="d" 
-             d:DesignHeight="900" d:DesignWidth="1600" Background="#fcf5e5" FontSize="110" FontFamily="Gabriola Bold">
+             d:DesignHeight="900" d:DesignWidth="1600" Background="#101014" FontSize="110" FontFamily="Gabriola Bold">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80*"/>
@@ -14,15 +14,42 @@
             <RowDefinition Height="61*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="357*"/>
-            <ColumnDefinition Width="1243*"/>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="653*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="2" Background="Black"/>
-        <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#fcf5e5" Width="150" Height="150" HorizontalAlignment="Center"/>
-        <Label HorizontalAlignment="Left" Content="Student Name" Foreground="#fcf5e5" Margin="241,0,0,0" Grid.Column="1" Width="514"/>
-        <Button Width="130" Height="130" HorizontalAlignment="Right" Background="#fcf5e5" Click="ExitClick" Grid.Column="1" Margin="0 0 30 0">
+        <StackPanel Grid.ColumnSpan="2" Background="#fcf5e5"/>
+        <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#101014" Width="150" Height="150" HorizontalAlignment="Center"/>
+        <Label HorizontalAlignment="Center" Content="Student Name" Foreground="#101014"  Grid.Column="1"/>
+        <Label HorizontalAlignment="Right" Content="Group" Foreground="#101014"  Grid.Column="1" Margin="0 0 20 0"/>
+        <!--<Button Width="130" Height="130" HorizontalAlignment="Right" Background="#101014" Click="ExitClick" Grid.Column="1" Margin=" 0 0 20 0">
             <materialDesign:PackIcon Kind="ExitRun" Foreground="Red" Width="110" Height="110" HorizontalAlignment="Center"/>
+        </Button>-->
+        <StackPanel Grid.Row="1" Grid.RowSpan="2"  Background="#fcf5e5">
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Schedule</TextBlock>
+                    <materialDesign:PackIcon Kind="Calendar" Width="70" Height="70" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Grades</TextBlock>
+                    <materialDesign:PackIcon Kind="FormatListBulleted" Width="70" Height="70" VerticalAlignment="Center" Margin="50 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Tasks</TextBlock>
+                    <materialDesign:PackIcon Kind="FileTree" Width="70" Height="70" VerticalAlignment="Center" Margin="85 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Grid.Row="2" VerticalAlignment="Bottom" Click="ExitClick">
+            <StackPanel Orientation="Horizontal" Width="280">
+                <TextBlock>Exit</TextBlock>
+                <materialDesign:PackIcon Kind="ExitRun" Width="70" Height="70" VerticalAlignment="Center" Margin="110 0 0 0" Foreground="Red"/>
+            </StackPanel>
         </Button>
-        <Frame Grid.Row="1" Name="MainFrame" Grid.Column="1"/>
+        <Frame Grid.Row="1" Name="MainFrame" Grid.Column="1" Grid.ColumnSpan="2" Width="1305" Height="740"/>
     </Grid>
 </UserControl>

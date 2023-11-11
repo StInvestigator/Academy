@@ -5,32 +5,78 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Academy.Presentation.Pages.Student"
              mc:Ignorable="d" 
-             d:DesignHeight="309" d:DesignWidth="800" FontSize="40" FontFamily="Gabriola Bold">
+             d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel> <!--Grades-->
+        <StackPanel>
+            <!--Grades-->
             <Label Content="Recent Grades" HorizontalAlignment="Center" Foreground="#fcf5e5"/>
-            <ListView>
-                
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Type" Foreground="#fcf5e5" FontSize="50" Height="72" Width="145" HorizontalContentAlignment="Center"/>
+                <Label Content="Grade" Foreground="#fcf5e5" FontSize="50" Height="72" Width="145" HorizontalContentAlignment="Center"/>
+                <Label Content="Date" Foreground="#fcf5e5" FontSize="50" Height="72" Width="145" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+            <ListView Name="LVGrades">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Height="72" Width="134" Content="{Binding WorkType}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="72" Width="145" Content="{Binding GradeNumber}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="72" Width="135" Content="{Binding Date}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="38" VerticalContentAlignment="Center" Margin="5 30 0 0"/>
+                            </StackPanel>
+                            <Line X1='0' X2='419' Grid.ColumnSpan="3"
+                                 Y1='0'  Y2='0'
+                                 Stroke="#fcf5e5"
+                                  StrokeThickness='2' />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
 
-        <StackPanel  Grid.Column="1"> <!--Schedule-->
-            <Label Content="Tomorrow Schedule" HorizontalAlignment="Center" Foreground="#fcf5e5" FontSize="40"/>
+        <StackPanel  Grid.Column="1">
+            <!--Schedule-->
+            <Label Content="Tomorrow Schedule" HorizontalAlignment="Center" Foreground="#fcf5e5"/>
             <ListView>
 
             </ListView>
         </StackPanel>
 
-        <StackPanel  Grid.Column="2"> <!--Tasks-->
-            <Label Content="Recent Grades" HorizontalAlignment="Center" Foreground="#fcf5e5"/>
+        <StackPanel  Grid.Column="2" Name="SP3">
+            <!--Tasks-->
+            <Label Content="Recent Tasks" HorizontalAlignment="Center" Foreground="#fcf5e5"/>
             <ListView>
 
             </ListView>
         </StackPanel>
+        <Line X1='0' X2='1305' Grid.ColumnSpan="3"
+            Y1='120'  Y2='120'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        <Line X1='0' X2='1305' Grid.ColumnSpan="3"
+            Y1='190'  Y2='190'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        <Line X1='145' X2='145' Grid.ColumnSpan="3"
+            Y1='120'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        <Line X1='290' X2='290' Grid.ColumnSpan="3"
+            Y1='120'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        <Line X1='0' X2='0' Grid.Column="1"
+            Y1='0'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        <Line X1='0' X2='0' Grid.Column="2"
+            Y1='0'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
     </Grid>
 </UserControl>

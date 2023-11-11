@@ -24,7 +24,7 @@ namespace Academy.Presentation.Pages.Student
         public MainPage()
         {
             InitializeComponent();
-            MainFrame.Content = new MainInfo();
+            MainFrame.Content = new MainInfo(new Domain.Entities.Student("log","pas"));
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)

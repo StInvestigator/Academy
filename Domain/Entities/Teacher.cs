@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace Academy.Domain.Entities
 {
-    class Teacher : User, ITeacher
+    public class Teacher : Human, ITeacher
     {
-        public Teacher(string login, string password) 
-        {
-            Login = login;
-            Password = password;
-        }
+        public Teacher(string login, string password) : base("First", "Student", 19, login, password)
+        { }
         public void markTheStudent(Student student)
         {
             throw new NotImplementedException();

@@ -4,19 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Academy.Domain.Entities
 {
-    class Student : User, IStudent
+    public class Student : Human, IStudent
     {
-        List<Grade> grades;
+        public List<Grade> grades;
+        string groupName;
 
-        public Student(string login,string password) 
+        public Student(string login,string password) : base("First","Student",19,login,password)
         {
-            Login = login;
-            Password = password;
             grades = new List<Grade>();
+            groupName = "Group1";
         }
+        public string GroupName
+        {
+            get { return groupName; }
+            set { groupName = value; } 
+        }
+
         public void PassTheExam(Grade grade)
         {
             grades.Add(grade);

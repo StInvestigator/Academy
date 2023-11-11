@@ -1,4 +1,5 @@
-﻿using Academy.Domain.Navigation;
+﻿using Academy.Domain.Entities;
+using Academy.Domain.Navigation;
 using Academy.Presentation.Pages;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,9 @@ namespace Academy
         {
             InitializeComponent();
             NavigatorObject.pageSwitcher = this;
-            NavigatorObject.Switch(new Authorization());
+            //NavigatorObject.Switch(new Authorization());
+
+            NavigatorObject.Switch(new Presentation.Pages.Student.MainPage());
         }
 
         public Action? CloseAction { get; set; }
