@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 namespace Academy.Domain.UseCases
 {
-    internal class TaskUseCase
+    public class TaskUseCase
     {
-        List<Task> tasks ;
+        public List<Task> tasks ;
         public TaskUseCase ()
         { 
             tasks = new List<Task>(); 

@@ -27,19 +27,39 @@ namespace Academy.Presentation.Pages.Student
         public MainInfo(Domain.Entities.Student student)
         {
             this.student = student;
-            student.grades.Add(new Grade(new DateTime(2020, 12, 30), "HT", 10));
-            student.grades.Add(new Grade(new DateTime(2021, 01, 1), "HT", 10));
-            student.grades.Add(new Grade(new DateTime(2021, 01, 2), "LB", 11));
-            student.grades.Add(new Grade(new DateTime(2021, 01, 3), "CT", 11));
-            student.grades.Add(new Grade(new DateTime(2021, 01, 4), "EX", 12));
-            student.grades.Add(new Grade(new DateTime(2021, 01, 1), "CT", 9));
             InitializeComponent();
-            LVGrades.ItemsSource = student.grades.OrderByDescending(x => x.Date).ToList().GetRange(0, student.grades.Count > 4 ? 4 : student.grades.Count);
+
+            GradeRepository gradeRepository = new GradeRepository();
+            GradeUseCase gradeUseCase = new GradeUseCase();
+            gradeUseCase.GetAllGradesFromModel(gradeRepository);
+            if (gradeUseCase.grades.Count > 0)
+            {
+                gradeUseCase.grades = gradeUseCase.grades.FindAll(x => x.StudentLogin == student.Login).OrderByDescending(x => x.Date).ToList()
+                    .GetRange(0, gradeUseCase.grades.Count > 4 ? 4 : gradeUseCase.grades.Count);
+                LVGrades.ItemsSource = gradeUseCase.grades;
+            }
+
             ScheduleRepository scheduleRepository = new ScheduleRepository();
             ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
             scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
-            scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.DateOnly == DateOnly.FromDateTime(DateTime.Now.AddDays(1))).OrderBy(x => x.TimeOnly).ToList();
+            if (scheduleUseCase.schedules.Count > 0)
+            {
+            scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.DateOnly == DateOnly.FromDateTime(DateTime.Now.AddDays(1)))
+                    .OrderBy(x => x.TimeOnly).ToList()
+                    .GetRange(0, scheduleUseCase.schedules.Count > 4 ? 4 : scheduleUseCase.schedules.Count);
             LVSchedule.ItemsSource = scheduleUseCase.schedules;
+            }
+
+            TaskRepository taskRepository = new TaskRepository();
+            TaskUseCase taskUseCase = new TaskUseCase();
+            taskUseCase.GetAllTsksFromModels(taskRepository);
+            if(taskUseCase.tasks.Count > 0)
+            {
+                taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login)
+                    .OrderBy(x => x.termin).ToList()
+                    .GetRange(0, taskUseCase.tasks.Count > 4 ? 4 : taskUseCase.tasks.Count);
+                LVTasks.ItemsSource = taskUseCase.tasks;
+            }
         }
     }
 }

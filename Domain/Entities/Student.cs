@@ -10,14 +10,10 @@ namespace Academy.Domain.Entities
 {
     public class Student : Human, IStudent
     {
-        public List<Grade> grades;
-        public List<Task> tasks;
         string groupName;
 
         public Student(string login,string password, string name, string surname, int age, string groupName) : base(name,surname,age,login,password)
         {
-            grades = new List<Grade>();
-            tasks = new List<Task>();
             this.groupName = groupName;
         }
         public string GroupName
@@ -26,9 +22,9 @@ namespace Academy.Domain.Entities
             set { groupName = value; } 
         }
 
-        public void PassTheWork(Grade grade)
+        public void PassTheWork()
         {
-            grades.Add(grade);
+            throw new NotImplementedException();
         }
 
         public void ShowGrades()

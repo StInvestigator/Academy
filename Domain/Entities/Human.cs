@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Academy.Domain.Entities
 {
-    public abstract class Human : IUser
+    public abstract class Human
     {
         string name;
         string surname;

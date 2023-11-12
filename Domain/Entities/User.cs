@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Academy.Domain.Entities
 {
-    public class User : IUser
+    public class User
     {
         string login;
         string password;

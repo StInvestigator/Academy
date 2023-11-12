@@ -16,18 +16,18 @@
             <!--Grades-->
             <Label Content="Recent Grades" HorizontalAlignment="Center" Foreground="#fcf5e5"/>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Type" Foreground="#fcf5e5" FontSize="50" Height="72" Width="145" HorizontalContentAlignment="Center"/>
-                <Label Content="Grade" Foreground="#fcf5e5" FontSize="50" Height="72" Width="145" HorizontalContentAlignment="Center"/>
-                <Label Content="Date" Foreground="#fcf5e5" FontSize="50" Height="72" Width="145" HorizontalContentAlignment="Center"/>
+                <Label Content="Lesson" Foreground="#fcf5e5" FontSize="50" Height="72" Width="165" HorizontalContentAlignment="Center"/>
+                <Label Content="Grade" Foreground="#fcf5e5" FontSize="50" Height="72" Width="140" HorizontalContentAlignment="Center"/>
+                <Label Content="Date" Foreground="#fcf5e5" FontSize="50" Height="72" Width="125" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <ListView Name="LVGrades">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Label Height="72" Width="134" Content="{Binding WorkType}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
-                                <Label Height="72" Width="145" Content="{Binding GradeNumber}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
-                                <Label Height="72" Width="135" Content="{Binding Date}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="38" VerticalContentAlignment="Center" Margin="5 30 0 0"/>
+                                <Label Height="72" Width="154" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="72" Width="140" Content="{Binding GradeNumber}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="72" Width="120" Content="{Binding Date}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="38" VerticalContentAlignment="Center" Margin="5 30 0 0"/>
                             </StackPanel>
                             <Line X1='0' X2='419' Grid.ColumnSpan="3"
                                  Y1='0'  Y2='0'
@@ -74,8 +74,22 @@
                 <Label Content="Type" Foreground="#fcf5e5" FontSize="50" Height="72" Width="100" HorizontalContentAlignment="Center"/>
                 <Label Content="Date" Foreground="#fcf5e5" FontSize="50" Height="72" Width="135" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView>
-
+            <ListView Name="LVTasks">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Height="72" Width="189" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="72" Width="100" Content="{Binding Type}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="72" Width="125" Content="{Binding Termin}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="38" VerticalContentAlignment="Center" Margin="5 30 0 0"/>
+                            </StackPanel>
+                            <Line X1='0' X2='419' Grid.ColumnSpan="3"
+                                 Y1='0'  Y2='0'
+                                 Stroke="#fcf5e5"
+                                  StrokeThickness='2' />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
         <Line X1='0' X2='1305' Grid.ColumnSpan="3"
@@ -86,11 +100,11 @@
             Y1='190'  Y2='190'
             Stroke="#fcf5e5"
             StrokeThickness='2' />
-        <Line X1='145' X2='145' Grid.ColumnSpan="3"
+        <Line X1='165' X2='165' Grid.ColumnSpan="3"
             Y1='120'  Y2='740'
             Stroke="#fcf5e5"
             StrokeThickness='2' />
-        <Line X1='290' X2='290' Grid.ColumnSpan="3"
+        <Line X1='305' X2='305' Grid.ColumnSpan="3"
             Y1='120'  Y2='740'
             Stroke="#fcf5e5"
             StrokeThickness='2' />

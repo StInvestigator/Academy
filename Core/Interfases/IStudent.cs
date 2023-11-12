@@ -11,7 +11,7 @@ namespace Academy.Core.Interfases
     {
         void ShowSchedule();
         void ShowTasks();
-        void PassTheWork(Grade grade);
+        void PassTheWork();
         void ShowGrades();
     }
 }
