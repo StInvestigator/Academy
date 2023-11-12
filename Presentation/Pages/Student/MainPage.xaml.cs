@@ -1,4 +1,6 @@
-﻿using Academy.Domain.Navigation;
+﻿using Academy.Domain.Entities;
+using Academy.Domain.Navigation;
+using Academy.Domain.UseCases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +23,12 @@ namespace Academy.Presentation.Pages.Student
     /// </summary>
     public partial class MainPage : UserControl
     {
-        public MainPage()
+        public MainPage(Domain.Entities.Student student)
         {
             InitializeComponent();
-            MainFrame.Content = new MainInfo(new Domain.Entities.Student("log","pas"));
+            MainFrame.Content = new MainInfo(student);
+            LGroup.Content = student.GroupName;
+            LStudentName.Content = student.Surname + " " + student.Name;
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)

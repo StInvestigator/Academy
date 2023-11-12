@@ -29,7 +29,7 @@ namespace Academy
             NavigatorObject.pageSwitcher = this;
             //NavigatorObject.Switch(new Authorization());
 
-            NavigatorObject.Switch(new Presentation.Pages.Student.MainPage());
+            NavigatorObject.Switch(new Presentation.Pages.Authorization());
         }
 
         public Action? CloseAction { get; set; }

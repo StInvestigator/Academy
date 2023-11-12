@@ -15,6 +15,8 @@ namespace Academy.Data.Repositories
         public ScheduleRepository()
         {
             _schedules = new List<ScheduleModel>();
+            // HardCode data 
+            _schedules.Add(new ScheduleModel(DateOnly.FromDateTime(DateTime.Now.AddDays(1)),new TimeOnly(15,0),"Mark","Peterson","B204","A3","Math"));
         }
         public List<Schedule> GetAll()
         {

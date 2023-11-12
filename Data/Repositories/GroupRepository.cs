@@ -15,6 +15,8 @@ namespace Academy.Data.Repositories
         public GroupRepository()
         {
             _groups = new List<GroupModel>();
+            // HardCode data 
+            _groups.Add(new GroupModel("B204", 2));
         }
         public List<Group> GetAll()
         {

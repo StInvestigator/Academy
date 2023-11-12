@@ -19,8 +19,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2" Background="#fcf5e5"/>
         <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#101014" Width="150" Height="150" HorizontalAlignment="Center"/>
-        <Label HorizontalAlignment="Center" Content="Student Name" Foreground="#101014"  Grid.Column="1"/>
-        <Label HorizontalAlignment="Right" Content="Group" Foreground="#101014"  Grid.Column="1" Margin="0 0 20 0"/>
+        <Label HorizontalAlignment="Center" Name="LStudentName" Foreground="#101014"  Grid.Column="1"/>
+        <Label HorizontalAlignment="Right" Name="LGroup" Foreground="#101014"  Grid.Column="1" Margin="0 0 20 0"/>
         <!--<Button Width="130" Height="130" HorizontalAlignment="Right" Background="#101014" Click="ExitClick" Grid.Column="1" Margin=" 0 0 20 0">
             <materialDesign:PackIcon Kind="ExitRun" Foreground="Red" Width="110" Height="110" HorizontalAlignment="Center"/>
         </Button>-->
@@ -50,6 +50,6 @@
                 <materialDesign:PackIcon Kind="ExitRun" Width="70" Height="70" VerticalAlignment="Center" Margin="110 0 0 0" Foreground="Red"/>
             </StackPanel>
         </Button>
-        <Frame Grid.Row="1" Name="MainFrame" Grid.Column="1" Grid.ColumnSpan="2" Width="1305" Height="740"/>
+        <Frame Grid.Row="1" Name="MainFrame" Grid.Column="1" Grid.RowSpan="2" Width="1305" Height="740"/>
     </Grid>
 </UserControl>

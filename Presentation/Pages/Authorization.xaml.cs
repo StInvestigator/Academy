@@ -67,7 +67,10 @@ namespace Academy.Presentation.Pages
         {
             if(user.Login == Constants.StudentLogin && user.Password == Constants.StudentPassword)
             {
-                NavigatorObject.Switch(new Student.MainPage());
+                Domain.UseCases.StudentUseCase studentUseCase = new Domain.UseCases.StudentUseCase();
+                Data.Repositories.StudentRepository studentRepository = new Data.Repositories.StudentRepository();
+                studentUseCase.GetAllStudentsFromModel(studentRepository);
+                if(studentUseCase.students.Contains(studentUseCase.students.Find(x => x.Login == user.Login && x.Password == user.Password))) NavigatorObject.Switch(new Student.MainPage(studentUseCase.students.Find(x=>x.Login == user.Login && x.Password == user.Password)));
             }
             else if (user.Login == Constants.TeacherLogin && user.Password == Constants.TeacherPassword)
             {

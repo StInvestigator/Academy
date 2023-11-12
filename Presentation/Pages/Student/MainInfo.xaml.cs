@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Academy.Data.Repositories;
+using Academy.Domain.UseCases;
 
 namespace Academy.Presentation.Pages.Student
 {
@@ -26,9 +28,18 @@ namespace Academy.Presentation.Pages.Student
         {
             this.student = student;
             student.grades.Add(new Grade(new DateTime(2020, 12, 30), "HT", 10));
+            student.grades.Add(new Grade(new DateTime(2021, 01, 1), "HT", 10));
+            student.grades.Add(new Grade(new DateTime(2021, 01, 2), "LB", 11));
+            student.grades.Add(new Grade(new DateTime(2021, 01, 3), "CT", 11));
+            student.grades.Add(new Grade(new DateTime(2021, 01, 4), "EX", 12));
+            student.grades.Add(new Grade(new DateTime(2021, 01, 1), "CT", 9));
             InitializeComponent();
-            LVGrades.ItemsSource = student.grades.GetRange(0, student.grades.Count >= 5 ? 5 : student.grades.Count);
-
+            LVGrades.ItemsSource = student.grades.OrderByDescending(x => x.Date).ToList().GetRange(0, student.grades.Count > 4 ? 4 : student.grades.Count);
+            ScheduleRepository scheduleRepository = new ScheduleRepository();
+            ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
+            scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
+            scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.DateOnly == DateOnly.FromDateTime(DateTime.Now.AddDays(1))).OrderBy(x => x.TimeOnly).ToList();
+            LVSchedule.ItemsSource = scheduleUseCase.schedules;
         }
     }
 }
