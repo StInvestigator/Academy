@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\UseCases\" />
     <Folder Include="Presentation\Pages\Admin\CRUD Lecture\" />
   </ItemGroup>
 
