@@ -9,7 +9,7 @@ namespace Academy.Domain.Entities
 {
     public class Teacher : Human, ITeacher
     {
-        public Teacher(string login, string password) : base("First", "Student", 19, login, password)
+        public Teacher(string login, string password, string name, string surname, int age) : base(name, surname, age, login, password)
         { }
         public void markTheStudent(Student student)
         {

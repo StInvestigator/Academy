@@ -42,6 +42,11 @@
         <StackPanel  Grid.Column="1">
             <!--Schedule-->
             <Label Content="Tomorrow Schedule" HorizontalAlignment="Center" Foreground="#fcf5e5"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Lesson" Foreground="#fcf5e5" FontSize="50" Height="72" Width="200" HorizontalContentAlignment="Center"/>
+                <Label Content="Class" Foreground="#fcf5e5" FontSize="50" Height="72" Width="100" HorizontalContentAlignment="Center"/>
+                <Label Content="Time" Foreground="#fcf5e5" FontSize="50" Height="72" Width="135" HorizontalContentAlignment="Center"/>
+            </StackPanel>
             <ListView>
 
             </ListView>
@@ -67,6 +72,14 @@
             Stroke="#fcf5e5"
             StrokeThickness='2' />
         <Line X1='290' X2='290' Grid.ColumnSpan="3"
+            Y1='120'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        <Line X1='635' X2='635' Grid.ColumnSpan="3"
+            Y1='120'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        <Line X1='735' X2='735' Grid.ColumnSpan="3"
             Y1='120'  Y2='740'
             Stroke="#fcf5e5"
             StrokeThickness='2' />

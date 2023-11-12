@@ -13,20 +13,15 @@ namespace Academy.Domain.Entities
         public List<Grade> grades;
         string groupName;
 
-        public Student(string login,string password) : base("First","Student",19,login,password)
+        public Student(string login,string password, string name, string surname, int age, string groupName) : base(name,surname,age,login,password)
         {
             grades = new List<Grade>();
-            groupName = "Group1";
+            this.groupName = groupName;
         }
         public string GroupName
         {
             get { return groupName; }
             set { groupName = value; } 
-        }
-
-        public void PassTheExam(Grade grade)
-        {
-            grades.Add(grade);
         }
 
         public void PassTheWork(Grade grade)
