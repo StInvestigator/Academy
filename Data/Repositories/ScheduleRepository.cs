@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    class ScheduleRepository : IScheduleRepository
+    public class ScheduleRepository : IScheduleRepository
     {
         List<ScheduleModel> _schedules;
         public ScheduleRepository()

@@ -15,7 +15,7 @@ namespace Academy.Domain.UseCases
         {
             schedules = new List<Schedule>();
         }
-        public void GetAllGroupsFromModel(IScheduleRepository scheduleRepository)
+        public void GetAllSchedulesFromModel(IScheduleRepository scheduleRepository)
         {
             schedules = scheduleRepository.GetAll();
         }

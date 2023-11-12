@@ -15,7 +15,7 @@ namespace Academy.Domain.UseCases
         {
             students = new List<Student>();
         }
-        public void GetAllGroupsFromModel(IStudentRepository studentRepository)
+        public void GetAllStudentsFromModel(IStudentRepository studentRepository)
         {
             students = studentRepository.GetAll();
         }

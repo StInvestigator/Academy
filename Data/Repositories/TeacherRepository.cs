@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    class TeacherRepository : ITeacherRepository
+    public class TeacherRepository : ITeacherRepository
     {
         List<TeacherModel> _teachers;
         public TeacherRepository()
