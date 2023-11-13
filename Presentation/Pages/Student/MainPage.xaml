@@ -21,9 +21,6 @@
         <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#101014" Width="150" Height="150" HorizontalAlignment="Center"/>
         <Label HorizontalAlignment="Center" Name="LStudentName" Foreground="#101014"  Grid.Column="1"/>
         <Label HorizontalAlignment="Right" Name="LGroup" Foreground="#101014"  Grid.Column="1" Margin="0 0 20 0"/>
-        <!--<Button Width="130" Height="130" HorizontalAlignment="Right" Background="#101014" Click="ExitClick" Grid.Column="1" Margin=" 0 0 20 0">
-            <materialDesign:PackIcon Kind="ExitRun" Foreground="Red" Width="110" Height="110" HorizontalAlignment="Center"/>
-        </Button>-->
         <StackPanel Grid.Row="1" Grid.RowSpan="2"  Background="#fcf5e5">
             <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BHomeClick">
                 <StackPanel Orientation="Horizontal" Width="280">

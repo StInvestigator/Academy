@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Academy.Data.Repositories;
+using Academy.Domain.UseCases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,11 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
         public StudentsList()
         {
             InitializeComponent();
+
+            StudentUseCase studentUseCase = new StudentUseCase();
+            StudentRepository studentRepository = new StudentRepository();
+            studentUseCase.GetAllStudentsFromModel(studentRepository);
+            LVStudents.ItemsSource = studentUseCase.students.OrderBy(x => x.GroupName).ToList();
         }
     }
 }

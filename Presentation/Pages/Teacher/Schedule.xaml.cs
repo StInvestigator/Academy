@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Academy.Data.Repositories;
+using Academy.Domain.Entities;
+using Academy.Domain.UseCases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,21 @@ namespace Academy.Presentation.Pages.Teacher
     /// </summary>
     public partial class Schedule : UserControl
     {
-        public Schedule()
+        Domain.Entities.Teacher teacher;
+        public Schedule(Domain.Entities.Teacher teacher)
         {
+            this.teacher = teacher;
             InitializeComponent();
+
+            ScheduleRepository scheduleRepository = new ScheduleRepository();
+            ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
+            scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
+            if (scheduleUseCase.schedules.Count > 0)
+            {
+                scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.TeacherName+x.TeacherSurname == teacher.Name+teacher.Surname && x.DateOnly >= DateOnly.FromDateTime(DateTime.Now))
+                    .OrderBy(x => x.TimeOnly).ToList().OrderBy(x => x.DateOnly).ToList();
+                LVSchedule.ItemsSource = scheduleUseCase.schedules;
+            }
         }
     }
 }

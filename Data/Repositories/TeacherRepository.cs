@@ -1,4 +1,5 @@
-﻿using Academy.Data.Models;
+﻿using Academy.Core.Interfases;
+using Academy.Data.Models;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
@@ -15,6 +16,8 @@ namespace Academy.Data.Repositories
         public TeacherRepository()
         {
             _teachers = new List<TeacherModel>();
+            // HardCode data 
+            _teachers.Add(new TeacherModel("Mark", "Peterson", 20, Core.Constants.Constants.TeacherLogin, Core.Constants.Constants.TeacherPassword));
         }
         public List<Teacher> GetAll()
         {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Academy.Data.Repositories;
+using Academy.Domain.UseCases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,10 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
         public TeachersList()
         {
             InitializeComponent();
+            TeacherUseCase teacherUseCase = new TeacherUseCase();
+            TeacherRepository teacherRepository = new TeacherRepository();
+            teacherUseCase.GetAllTeachersFromModel(teacherRepository);
+            LVTeachers.ItemsSource = teacherUseCase.teachers.OrderBy(x => x.Age).ToList();
         }
     }
 }

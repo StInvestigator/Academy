@@ -34,8 +34,8 @@ namespace Academy.Presentation.Pages.Student
             gradeUseCase.GetAllGradesFromModel(gradeRepository);
             if (gradeUseCase.grades.Count > 0)
             {
-                gradeUseCase.grades = gradeUseCase.grades.FindAll(x => x.StudentLogin == student.Login).OrderByDescending(x => x.Date).ToList()
-                    .GetRange(0, gradeUseCase.grades.Count > 4 ? 4 : gradeUseCase.grades.Count);
+                gradeUseCase.grades = gradeUseCase.grades.FindAll(x => x.StudentLogin == student.Login).OrderByDescending(x => x.Date).ToList();
+                gradeUseCase.grades = gradeUseCase.grades.GetRange(0, gradeUseCase.grades.Count > 4 ? 4 : gradeUseCase.grades.Count);
                 LVGrades.ItemsSource = gradeUseCase.grades;
             }
 
@@ -44,10 +44,10 @@ namespace Academy.Presentation.Pages.Student
             scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
             if (scheduleUseCase.schedules.Count > 0)
             {
-            scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.DateOnly == DateOnly.FromDateTime(DateTime.Now.AddDays(1)))
-                    .OrderBy(x => x.TimeOnly).ToList()
-                    .GetRange(0, scheduleUseCase.schedules.Count > 4 ? 4 : scheduleUseCase.schedules.Count);
-            LVSchedule.ItemsSource = scheduleUseCase.schedules;
+                scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.DateOnly == DateOnly.FromDateTime(DateTime.Now.AddDays(1)))
+                        .OrderBy(x => x.TimeOnly).ToList();
+                scheduleUseCase.schedules = scheduleUseCase.schedules.GetRange(0, scheduleUseCase.schedules.Count > 4 ? 4 : scheduleUseCase.schedules.Count);
+                LVSchedule.ItemsSource = scheduleUseCase.schedules;
             }
 
             TaskRepository taskRepository = new TaskRepository();
@@ -56,8 +56,8 @@ namespace Academy.Presentation.Pages.Student
             if(taskUseCase.tasks.Count > 0)
             {
                 taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login)
-                    .OrderBy(x => x.termin).ToList()
-                    .GetRange(0, taskUseCase.tasks.Count > 4 ? 4 : taskUseCase.tasks.Count);
+                    .OrderBy(x => x.termin).ToList();
+                taskUseCase.tasks = taskUseCase.tasks.GetRange(0, taskUseCase.tasks.Count > 4 ? 4 : taskUseCase.tasks.Count);
                 LVTasks.ItemsSource = taskUseCase.tasks;
             }
         }

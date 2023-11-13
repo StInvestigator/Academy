@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Academy.Domain.Entities;
+using Academy.Domain.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,27 @@ namespace Academy.Presentation.Pages.Teacher
     /// </summary>
     public partial class MainPage : UserControl
     {
-        public MainPage()
+        Domain.Entities.Teacher teacher;
+        public MainPage(Domain.Entities.Teacher teacher)
         {
+            this.teacher = teacher;
             InitializeComponent();
+            LTeacherName.Content = teacher.Name + " " + teacher.Surname;
+                
+            MainFrame.Content = new Schedule(teacher);
+        }
+
+        private void BHomeClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(Schedule))
+            {
+                MainFrame.Content = new Schedule(teacher);
+            }
+        }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            NavigatorObject.Switch(new Authorization());
         }
     }
 }

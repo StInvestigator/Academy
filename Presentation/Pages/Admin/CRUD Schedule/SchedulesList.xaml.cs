@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Academy.Data.Repositories;
+using Academy.Domain.UseCases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,15 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         public SchedulesList()
         {
             InitializeComponent();
+
+            ScheduleRepository scheduleRepository = new ScheduleRepository();
+            ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
+            scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
+            if (scheduleUseCase.schedules.Count > 0)
+            {
+                scheduleUseCase.schedules = scheduleUseCase.schedules.OrderBy(x => x.TimeOnly).ToList().OrderBy(x => x.DateOnly).ToList();
+                LVSchedule.ItemsSource = scheduleUseCase.schedules;
+            }
         }
     }
 }

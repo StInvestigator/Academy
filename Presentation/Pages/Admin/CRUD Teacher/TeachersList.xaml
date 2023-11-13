@@ -5,8 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Academy.Presentation.Pages.Admin.CRUD_Teacher"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+              d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014">
     <Grid>
-            
+        <StackPanel>
+            <Label Content="Teachers list" HorizontalAlignment="Center" Foreground="#fcf5e5"/>
+            <Line X1='0' X2='1305'
+            Y1='0'  Y2='0'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Name" Foreground="#fcf5e5" FontSize="50" Height="72" Width="435" HorizontalContentAlignment="Center"/>
+                <Label Content="Surname" Foreground="#fcf5e5" FontSize="50" Height="72" Width="435" HorizontalContentAlignment="Center"/>
+                <Label Content="Age" Foreground="#fcf5e5" FontSize="50" Height="72" Width="435" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+            <Line X1='0' X2='1305'
+            Y1='0'  Y2='0'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+            <ListView Name="LVTeachers" Width="1305">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Height="100" Width="425" Content="{Binding Name}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="435" Content="{Binding Surname}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="424" Content="{Binding Age}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                            <Line X1='0' X2='1284'
+                                 Y1='0'  Y2='0'
+                                 Stroke="#fcf5e5"
+                                  StrokeThickness='2' />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Line X1='435' X2='435'
+            Y1='120'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+            <Line X1='435' X2='435'
+            Y1='120'  Y2='740'
+            Stroke="#fcf5e5"
+            StrokeThickness='2' />
+        </StackPanel>
     </Grid>
 </UserControl>

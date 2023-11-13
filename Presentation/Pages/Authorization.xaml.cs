@@ -1,6 +1,8 @@
 ﻿using Academy.Core.Constants;
+using Academy.Data.Repositories;
 using Academy.Domain.Entities;
 using Academy.Domain.Navigation;
+using Academy.Domain.UseCases;
 using Academy.Presentation.Pages.Student;
 using System;
 using System.Collections.Generic;
@@ -67,14 +69,20 @@ namespace Academy.Presentation.Pages
         {
             if(user.Login == Constants.StudentLogin && user.Password == Constants.StudentPassword)
             {
-                Domain.UseCases.StudentUseCase studentUseCase = new Domain.UseCases.StudentUseCase();
-                Data.Repositories.StudentRepository studentRepository = new Data.Repositories.StudentRepository();
+                StudentUseCase studentUseCase = new StudentUseCase();
+                StudentRepository studentRepository = new StudentRepository();
                 studentUseCase.GetAllStudentsFromModel(studentRepository);
-                if(studentUseCase.students.Contains(studentUseCase.students.Find(x => x.Login == user.Login && x.Password == user.Password))) NavigatorObject.Switch(new Student.MainPage(studentUseCase.students.Find(x=>x.Login == user.Login && x.Password == user.Password)));
+                if(studentUseCase.students.Contains(studentUseCase.students.Find(x => x.Login == user.Login && x.Password == user.Password))) 
+                    NavigatorObject.Switch(new Student.MainPage(studentUseCase.students.Find(x=>x.Login == user.Login && x.Password == user.Password)));
             }
             else if (user.Login == Constants.TeacherLogin && user.Password == Constants.TeacherPassword)
             {
-                NavigatorObject.Switch(new Teacher.MainPage());
+                TeacherUseCase teacherUseCase = new TeacherUseCase();
+                TeacherRepository teacherRepository = new TeacherRepository();
+                teacherUseCase.GetAllTeachersFromModel(teacherRepository);
+
+                if(teacherUseCase.teachers.Contains(teacherUseCase.teachers.Find(x => x.Login == user.Login && x.Password == user.Password))) 
+                    NavigatorObject.Switch(new Teacher.MainPage(teacherUseCase.teachers.Find(x => x.Login == user.Login && x.Password == user.Password)));
             }
             else if (user.Login == Constants.AdminLogin && user.Password == Constants.AdminPassword)
             {

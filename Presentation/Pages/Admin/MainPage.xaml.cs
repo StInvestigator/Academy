@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Academy.Domain.Entities;
+using Academy.Domain.Navigation;
+using Academy.Presentation.Pages.Admin.CRUD_Schedule;
+using Academy.Presentation.Pages.Admin.CRUD_Student;
+using Academy.Presentation.Pages.Admin.CRUD_Teacher;
+using Academy.Presentation.Pages.Student;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +29,36 @@ namespace Academy.Presentation.Pages.Admin
         public MainPage()
         {
             InitializeComponent();
+            MainFrame.Content = new StarterPage();
+        }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            NavigatorObject.Switch(new Authorization());
+        }
+
+        private void BStudentClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(StudentsList))
+            {
+                MainFrame.Content = new StudentsList();
+            }
+        }
+
+        private void BTeachersClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(TeachersList))
+            {
+                MainFrame.Content = new TeachersList();
+            }
+        }
+
+        private void BScheduleClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(SchedulesList))
+            {
+                MainFrame.Content = new SchedulesList();
+            }
         }
     }
 }

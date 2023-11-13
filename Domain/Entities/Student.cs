@@ -1,6 +1,7 @@
 ﻿using Academy.Core.Interfases;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,9 @@ namespace Academy.Domain.Entities
         public string GroupName
         {
             get { return groupName; }
-            set { groupName = value; } 
+            set { groupName = value; NotifyPropertyChanged("GroupName"); } 
         }
+
 
         public void PassTheWork()
         {

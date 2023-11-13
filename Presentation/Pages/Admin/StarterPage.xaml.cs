@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Academy.Presentation.Pages.Teacher
+namespace Academy.Presentation.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for MainInfo.xaml
+    /// Interaction logic for StarterPage.xaml
     /// </summary>
-    public partial class MainInfo : UserControl
+    public partial class StarterPage : UserControl
     {
-        public MainInfo()
+        public StarterPage()
         {
             InitializeComponent();
         }
