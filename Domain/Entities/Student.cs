@@ -1,4 +1,4 @@
-﻿using Academy.Core.Interfases;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Academy.Domain.Entities
 {
-    public class Student : Human, IStudent
+    public class Student : Human
     {
         string groupName;
 
@@ -21,27 +21,6 @@ namespace Academy.Domain.Entities
         {
             get { return groupName; }
             set { groupName = value; NotifyPropertyChanged("GroupName"); } 
-        }
-
-
-        public void PassTheWork()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowGrades()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowSchedule()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowTasks()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -11,5 +11,7 @@ namespace Academy.Core.Constants
 
         public const string StudentLogin = "student";
         public const string StudentPassword = "tneduts";
+
+        public const string GetStudents = @"select g.Name as GroupName,s.Name,s.Surname,s.Age,s.Login,s.Password from Students s join Groups g on s.GroupId = g.Id";
     }
 }

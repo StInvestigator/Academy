@@ -1,4 +1,4 @@
-﻿using Academy.Core.Interfases;
+﻿
 using Academy.Data.Models;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;

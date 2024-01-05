@@ -1,4 +1,5 @@
 ﻿using Academy.Data.Models;
+using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
@@ -16,7 +17,12 @@ namespace Academy.Data.Repositories
         {
             _students = new List<StudentModel>();
             // HardCode data 
-            _students.Add(new StudentModel("B204", "Vladislav", "Murashko", 16, Core.Constants.Constants.StudentLogin, Core.Constants.Constants.StudentPassword));
+            //_students.Add(new StudentModel("B204", "Vladislav", "Murashko", 16, Core.Constants.Constants.StudentLogin, Core.Constants.Constants.StudentPassword));
+
+            foreach (var student in AcademyDB.GetStudents())
+            {
+                _students.Add(student);
+            }
         }
         public List<Student> GetAll()
         {
@@ -24,12 +30,12 @@ namespace Academy.Data.Repositories
             foreach (var item in _students)
             {
                 students.Add(new Student(
-                    item.login ?? "login1",
-                    item.password ?? "password1",
-                    item.name ?? "StudentName",
-                    item.surname ?? "StudentSurname",
-                    item.age ?? 18,
-                    item.groupName ?? "Group1"
+                    item.Login ?? "login1",
+                    item.Password ?? "password1",
+                    item.Name ?? "StudentName",
+                    item.Surname ?? "StudentSurname",
+                    item.Age ?? 18,
+                    item.GroupName ?? "Group1"
                     ));
             }
             return students;

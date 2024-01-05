@@ -1,4 +1,4 @@
-﻿using Academy.Core.Interfases;
+﻿
 using Academy.Domain.Entities;
 using Academy.Domain.Navigation;
 using Academy.Domain.UseCases;

@@ -1,4 +1,4 @@
-﻿using Academy.Core.Interfases;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -8,60 +8,62 @@ using System.Threading.Tasks;
 
 namespace Academy.Domain.Entities
 {
-    public class Admin : User, IAdmin
+    static class Admin
     {
-        public Admin(string login,string password) 
-        {
-            Login = login;
-            Password = password;
-        }
-
-        public void AddStudent(Student student)
+        static void AddStudent(Student student)
         {
             throw new NotImplementedException();
         }
 
-        public void AddSubject(string subject)
+        static void AddSubject(string subject)
         {
             throw new NotImplementedException();
         }
 
-        public void AddTeacher(Teacher teacher)
+        static void AddTeacher(Teacher teacher)
         {
             throw new NotImplementedException();
         }
 
-        public void CreateSchebule()
+        static void EditStudent(Student student)
         {
             throw new NotImplementedException();
         }
 
-        public void EditStudent(Student student)
+        static void EditSubject(string subject)
         {
             throw new NotImplementedException();
         }
 
-        public void EditSubject(string subject)
+        static void EditTeacher(Teacher teacher)
         {
             throw new NotImplementedException();
         }
 
-        public void EditTeacher(Teacher teacher)
+        static void RemoveStudent(Student student)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveStudent(Student student)
+        static void RemoveSubject(string subject)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveSubject(string subject)
+        static void RemoveTeacher(Teacher teacher)
+        {
+            throw new NotImplementedException();
+        }
+        static void RemoveSchebule(Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
+        static void EditSchebule(Schedule schedule)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveTeacher(Teacher teacher)
+        static void CreateSchebule(Schedule schedule)
         {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@ namespace Academy.Data.Repositories
         {
             _tasks = new List<TaskModel>();
             // HardCode data 
-            _tasks.Add(new TaskModel("Writee a 10 sentences in English","HT","English", DateTime.Now.AddDays(2),"student"));
+            _tasks.Add(new TaskModel("Writee a 10 sentences in English","HT","English", DateOnly.FromDateTime(DateTime.Now.AddDays(2)),"student",false));
         }
 
         public List<Task> GetAll()
@@ -28,8 +28,9 @@ namespace Academy.Data.Repositories
                     item.Description ?? "Description",
                     item.Type ?? "Type",
                     item.Lesson ?? "Lesson",
-                    item.Termin ?? DateTime.Now.AddDays(1),
-                    item.StudentLogin ?? "SLogin"
+                    item.Termin ?? DateOnly.FromDateTime(DateTime.Now.AddDays(1)),
+                    item.StudentLogin ?? "SLogin",
+                    item.isDone ?? false
                     ));
             }
             return tasks;

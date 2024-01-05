@@ -12,15 +12,17 @@ namespace Academy.Data.Models
         public string? Description { get; set; }
         public string? Type { get; set; }
         public string? Lesson { get; set; }
-        public DateTime? Termin { get; set; }
-        public string StudentLogin { get; set; }
-        public TaskModel(string? desctiption, string? type, string? lesson, DateTime? termin, string studentLogin)
+        public DateOnly? Termin { get; set; }
+        public string? StudentLogin { get; set; }
+        public bool? isDone { get; set; }
+        public TaskModel(string? desctiption, string? type, string? lesson, DateOnly? termin, string? studentLogin, bool? isDone)
         {
             Description = desctiption;
             Type = type;
             Lesson = lesson;
             Termin = termin;
             StudentLogin = studentLogin;
+            this.isDone = isDone;
         }
         public TaskModel(Task t)
         {

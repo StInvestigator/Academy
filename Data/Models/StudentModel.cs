@@ -8,30 +8,30 @@ namespace Academy.Data.Models
 {
     public class StudentModel
     {
-        public string? groupName;
-        public string? name;
-        public string? surname;
-        public int? age;
-        public string? login;
-        public string? password;
+        public string? GroupName {  get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public int? Age { get; set; }
+        public string? Login { get; set; }
+        public string? Password { get; set; }
 
         public StudentModel( string? groupName, string? name, string? surname, int? age, string? login, string? password)
         {
-            this.groupName = groupName;
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-            this.login = login;
-            this.password = password;
+            this.GroupName = groupName;
+            this.Name = name;
+            this.Surname = surname;
+            this.Age = age;
+            this.Login = login;
+            this.Password = password;
         }
         public StudentModel(Student st)
         {
-            groupName = st.GroupName;
-            name = st.Name;
-            surname = st.Surname;
-            age = st.Age;
-            login = st.Login;
-            password = st.Password;
+            GroupName = st.GroupName;
+            Name = st.Name;
+            Surname = st.Surname;
+            Age = st.Age;
+            Login = st.Login;
+            Password = st.Password;
         }
     }
 }

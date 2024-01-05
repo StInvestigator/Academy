@@ -1,4 +1,5 @@
 ﻿using Academy.Data.Models;
+using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    internal class GradeRepository : IGradeRepository
+    public class GradeRepository : IGradeRepository
     {
         List<GradeModel> _grades;
         public GradeRepository()
@@ -23,6 +24,11 @@ namespace Academy.Data.Repositories
             _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "CT",12,"student","Math"));
             _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "EX",12, "student", "Math"));
             _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "CT",1,"somewho", "Biology"));
+
+            //foreach (var item in AcademyDB.GetGrades())
+            //{
+            //    _grades.Add(item);
+            //}
         }
         public List<Grade> GetAll()
         {
