@@ -35,38 +35,33 @@ namespace Academy.Presentation.Pages
 
         private void TextBox_LoginChanged(object sender, TextChangedEventArgs e)
         {
-            user.Login = TBLogin.Text.Trim();
-            if (user.Login.Length == 0)
-            {
-                TBLogin.Text = string.Empty;
-                TBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBLogin, "Field is required");
-            }
-            else
-            {
-                TBLogin.BorderBrush = new SolidColorBrush(Colors.White);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBLogin, "");
-            }
+            Validation(TBLogin);
         }
 
         private void TextBox_PasswordChanged(object sender, TextChangedEventArgs e)
         {
-            user.Password = TBPassword.Text.Trim();
-            if (user.Password.Length == 0)
+            Validation(TBPassword);
+        }
+
+        void Validation(TextBox TB)
+        {
+            if (TB.Text.Length == 0 || TB.Text.Trim() == "")
             {
-                TBPassword.Text = string.Empty;
-                TBPassword.BorderBrush = new SolidColorBrush(Colors.Red);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBPassword, "Field is required");
+                TB.Text = string.Empty;
+                TB.BorderBrush = new SolidColorBrush(Colors.Red);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TB, "Field is required");
             }
             else
             {
-                TBPassword.BorderBrush = new SolidColorBrush(Colors.White);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBPassword, "");
+                TB.BorderBrush = new SolidColorBrush(Colors.White);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TB, "");
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            user.Login = TBLogin.Text.Trim();
+            user.Password = TBPassword.Text.Trim();
             if (user.Login == Constants.AdminLogin && user.Password == Constants.AdminPassword)
             {
                 NavigatorObject.Switch(new Admin.MainPage());

@@ -9,18 +9,19 @@ namespace Academy.Data.Models
 {
     public class GradeModel
     {
-        public DateOnly? date;
-        public string? workType;
-        public int? gradeNumber;
-        public string? studentLogin;
-        public string? lesson;
-        public GradeModel(DateOnly? date, string? workType, int? GradeNumber, string? studentLogin, string? lesson)
+        public DateOnly? date {  get; set; }
+        public string? workType { get; set; }
+        public int? gradeNumber { get; set; }
+        public string? studentLogin { get; set; }
+        public string? lesson {  get; set; }
+
+        public GradeModel(DateTime? Date, string? WorkType, int? Grade, string? Login, string? Lesson)
         {
-            this.date = date;
-            this.workType = workType;
-            this.gradeNumber = GradeNumber;
-            this.studentLogin = studentLogin;
-            this.lesson = lesson;
+            this.date = DateOnly.FromDateTime(Date??DateTime.Now);
+            this.workType = WorkType;
+            this.gradeNumber = Grade;
+            this.studentLogin = Login;
+            this.lesson = Lesson;
         }
         public GradeModel(Grade g)
         {

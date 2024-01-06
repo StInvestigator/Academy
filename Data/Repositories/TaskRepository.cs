@@ -1,7 +1,9 @@
 ﻿using Academy.Data.Models;
+using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using Academy.Presentation.Pages.Student;
+using Academy.Presentation.Pages.Teacher;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -15,8 +17,11 @@ namespace Academy.Data.Repositories
         public TaskRepository()
         {
             _tasks = new List<TaskModel>();
-            // HardCode data 
-            _tasks.Add(new TaskModel("Writee a 10 sentences in English","HT","English", DateOnly.FromDateTime(DateTime.Now.AddDays(2)),"student",false));
+
+            foreach (var item in AcademyDB.GetTasks())
+            {
+                _tasks.Add(item);
+            }
         }
 
         public List<Task> GetAll()

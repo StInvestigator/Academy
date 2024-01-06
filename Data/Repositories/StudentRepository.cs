@@ -16,8 +16,6 @@ namespace Academy.Data.Repositories
         public StudentRepository()
         {
             _students = new List<StudentModel>();
-            // HardCode data 
-            //_students.Add(new StudentModel("B204", "Vladislav", "Murashko", 16, Core.Constants.Constants.StudentLogin, Core.Constants.Constants.StudentPassword));
 
             foreach (var student in AcademyDB.GetStudents())
             {

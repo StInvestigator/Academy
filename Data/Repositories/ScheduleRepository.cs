@@ -1,10 +1,12 @@
 ﻿using Academy.Data.Models;
+using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
@@ -15,11 +17,11 @@ namespace Academy.Data.Repositories
         public ScheduleRepository()
         {
             _schedules = new List<ScheduleModel>();
-            // HardCode data 
-            _schedules.Add(new ScheduleModel(DateOnly.FromDateTime(DateTime.Now.AddDays(1)),new TimeOnly(15,0),"Mark","Peterson","B204","A3","Math"));
-            _schedules.Add(new ScheduleModel(DateOnly.FromDateTime(DateTime.Now.AddDays(1)),new TimeOnly(12,0),"Mark","Peterson","B204","A3","Math"));
-            _schedules.Add(new ScheduleModel(DateOnly.FromDateTime(DateTime.Now.AddDays(2)),new TimeOnly(11,0),"Mark","Peterson","B204","A3","Math"));
-            _schedules.Add(new ScheduleModel(DateOnly.FromDateTime(DateTime.Now.AddDays(2)),new TimeOnly(10,0),"Mark","Peterson","B204","A3","Math"));
+
+            foreach (var item in AcademyDB.GetSchedules())
+            {
+                _schedules.Add(item);
+            }
         }
         public List<Schedule> GetAll()
         {
@@ -27,8 +29,8 @@ namespace Academy.Data.Repositories
             foreach (var item in _schedules)
             {
                 schedules.Add(new Schedule(
-                    item.DateOnly ?? DateOnly.FromDateTime(DateTime.Now),
-                    item.TimeOnly ?? TimeOnly.FromDateTime(DateTime.Now),
+                    item.dateOnly ?? DateOnly.FromDateTime(DateTime.Now),
+                    item.timeOnly ?? TimeOnly.FromDateTime(DateTime.Now),
                     item.TeacherName ?? "TeacherName",
                     item.TeacherSurname ?? "TeacherSurname",
                     item.GroupName ?? "Group1",

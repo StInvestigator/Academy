@@ -11,10 +11,10 @@ namespace Academy.Data.Models
     {
         public string? name;
         public int? year;
-        public GroupModel(string? name, int? year)
+        public GroupModel(string? Name, int? Year)
         {
-            this.name = name;
-            this.year = year;
+            this.name = Name;
+            this.year = Year;
         }
         public GroupModel(Group gr)
         {

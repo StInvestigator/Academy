@@ -16,19 +16,11 @@ namespace Academy.Data.Repositories
         public GradeRepository()
         {
             _grades = new List<GradeModel>();
-            // HardCode data 
-            _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "HT",12,"student","Biology"));
-            _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "HT",9,"student","Biology"));
-            _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "CT",10,"student","Biology"));
-            _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "HT",12,"student","Biology"));
-            _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "CT",12,"student","Math"));
-            _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "EX",12, "student", "Math"));
-            _grades.Add(new GradeModel(DateOnly.FromDateTime(DateTime.Now), "CT",1,"somewho", "Biology"));
 
-            //foreach (var item in AcademyDB.GetGrades())
-            //{
-            //    _grades.Add(item);
-            //}
+            foreach (var item in AcademyDB.GetGrades())
+            {
+                _grades.Add(item);
+            }
         }
         public List<Grade> GetAll()
         {

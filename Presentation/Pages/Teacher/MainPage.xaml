@@ -21,18 +21,24 @@
         <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#101014" Width="150" Height="150" HorizontalAlignment="Center"/>
         <Label HorizontalAlignment="Center" Name="LTeacherName" Foreground="#101014"  Grid.Column="1"/>
         <StackPanel Grid.Row="1" Grid.RowSpan="2"  Background="#fcf5e5">
-            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BHomeClick">
-                <StackPanel Orientation="Horizontal" Width="280">
-                    <TextBlock>Home</TextBlock>
-                    <materialDesign:PackIcon Kind="Home" Width="70" Height="70" VerticalAlignment="Center" Margin="70 0 0 0" Foreground="#101014"/>
-                </StackPanel>
-            </Button>
-            <!--<Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BScheduleClick">
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BScheduleClick">
                 <StackPanel Orientation="Horizontal" Width="280">
                     <TextBlock>Schedule</TextBlock>
                     <materialDesign:PackIcon Kind="Calendar" Width="70" Height="70" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="#101014"/>
                 </StackPanel>
-            </Button>-->
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BAddGradeClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Evaluate</TextBlock>
+                    <materialDesign:PackIcon Kind="ReceiptTextPlus" Width="70" Height="70" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BAddTaskClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Add Task</TextBlock>
+                    <materialDesign:PackIcon Kind="CheckboxMarkedCirclePlusOutline" Width="70" Height="70" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
         <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Grid.Row="2" VerticalAlignment="Bottom" Click="ExitClick">
             <StackPanel Orientation="Horizontal" Width="280">

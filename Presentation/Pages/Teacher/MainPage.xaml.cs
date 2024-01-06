@@ -32,7 +32,7 @@ namespace Academy.Presentation.Pages.Teacher
             MainFrame.Content = new Schedule(teacher);
         }
 
-        private void BHomeClick(object sender, RoutedEventArgs e)
+        private void BScheduleClick(object sender, RoutedEventArgs e)
         {
             if (MainFrame.Content.GetType() != typeof(Schedule))
             {
@@ -43,6 +43,22 @@ namespace Academy.Presentation.Pages.Teacher
         private void ExitClick(object sender, RoutedEventArgs e)
         {
             NavigatorObject.Switch(new Authorization());
+        }
+
+        private void BAddGradeClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(AddGrade))
+            {
+                MainFrame.Content = new AddGrade();
+            }
+        }
+
+        private void BAddTaskClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(AddTask))
+            {
+                MainFrame.Content = new AddTask();
+            }
         }
     }
 }

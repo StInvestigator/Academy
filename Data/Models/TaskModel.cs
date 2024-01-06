@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media.Animation;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Academy.Data.Models
 {
@@ -15,12 +16,12 @@ namespace Academy.Data.Models
         public DateOnly? Termin { get; set; }
         public string? StudentLogin { get; set; }
         public bool? isDone { get; set; }
-        public TaskModel(string? desctiption, string? type, string? lesson, DateOnly? termin, string? studentLogin, bool? isDone)
+        public TaskModel(string? desctiption, string? type, string? lesson, DateTime? termin, string? studentLogin, bool? isDone)
         {
             Description = desctiption;
             Type = type;
             Lesson = lesson;
-            Termin = termin;
+            Termin = DateOnly.FromDateTime(termin ?? DateTime.Now);
             StudentLogin = studentLogin;
             this.isDone = isDone;
         }

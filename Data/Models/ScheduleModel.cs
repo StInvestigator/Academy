@@ -9,17 +9,17 @@ namespace Academy.Data.Models
 {
     public class ScheduleModel
     {
-        public DateOnly? DateOnly { get; set; }
-        public TimeOnly? TimeOnly { get; set; }
+        public DateOnly? dateOnly { get; set; }
+        public TimeOnly? timeOnly { get; set; }
         public string? TeacherName { get; set; }
         public string? TeacherSurname { get; set; }
         public string? GroupName { get; set; }
         public string? Class { set; get; }
         public string? Lesson { set; get; }
-        public ScheduleModel(DateOnly? dateOnly, TimeOnly? timeOnly, string? teacherName,string? teacherSurname, string? groupName, string? @class, string? lesson)
+        public ScheduleModel(DateTime? date, string? teacherName,string? teacherSurname, string? groupName, string? @class, string? lesson)
         {
-            DateOnly = dateOnly;
-            TimeOnly = timeOnly;
+            dateOnly = DateOnly.FromDateTime(date??DateTime.Now);
+            timeOnly = TimeOnly.FromDateTime(date??DateTime.Now);
             TeacherName = teacherName;
             TeacherSurname = teacherSurname;
             GroupName = groupName;
@@ -28,8 +28,8 @@ namespace Academy.Data.Models
         }
         public ScheduleModel(Schedule sch)
         {
-            DateOnly = sch.DateOnly;
-            TimeOnly = sch.TimeOnly;
+            dateOnly = sch.DateOnly;
+            timeOnly = sch.TimeOnly;
             TeacherName = sch.TeacherName;
             TeacherSurname = sch.TeacherSurname;
             GroupName = sch.GroupName;

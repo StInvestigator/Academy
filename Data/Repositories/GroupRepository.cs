@@ -1,4 +1,5 @@
 ﻿using Academy.Data.Models;
+using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
@@ -15,8 +16,11 @@ namespace Academy.Data.Repositories
         public GroupRepository()
         {
             _groups = new List<GroupModel>();
-            // HardCode data 
-            _groups.Add(new GroupModel("B204", 2));
+
+            foreach (var item in AcademyDB.GetGroups())
+            {
+                _groups.Add(item);
+            }
         }
         public List<Group> GetAll()
         {
