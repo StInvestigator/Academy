@@ -1,4 +1,5 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.Data.Repositories.DataBase;
+using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,13 @@ namespace Academy.Domain.UseCases
         { 
             tasks = new List<Task>(); 
         }
-        public void GetAllTsksFromModels(ITaskRepository taskRepository)
+        public void GetAllTasksFromModel(ITaskRepository taskRepository)
         {
             tasks = taskRepository.GetAll();
+        }
+        public void AddTask(string desctiption, string workType, string lesson, string studentLogin, DateTime termin)
+        {
+            AcademyDB.insertTask(desctiption,workType,lesson,studentLogin,termin);
         }
     }
 }

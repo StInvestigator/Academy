@@ -27,10 +27,10 @@
                  materialDesign:HintAssist.HelperTextFontSize="40"/>
 
         <Label Content="Password" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 80 0 0" Width="339"/>
-        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="100" Height="140" 
-                 VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_PasswordChanged" Name="TBPassword" Foreground="#fcf5e5" BorderBrush="Red" materialDesign:HintAssist.HelperText="Field is required"
+        <PasswordBox  Grid.Row="2" Grid.Column="1" FontSize="75" Height="110" 
+                 VerticalAlignment="Bottom" Margin="50 0 0 0" PasswordChanged="TextBox_PasswordChanged" Name="TBPassword" Foreground="#fcf5e5" BorderBrush="Red" materialDesign:HintAssist.HelperText="Field is required"
                  materialDesign:HintAssist.HelperTextFontSize="40">
-        </TextBox>
+        </PasswordBox>
         <Button Grid.Column="1" Grid.Row="3" Content="Log In" Background="#fcf5e5" Foreground="Black" FontSize="56" Click="Button_Click" Height="100" Margin="70 0 20 0"/>
     </Grid>
 </UserControl>

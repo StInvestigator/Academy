@@ -38,11 +38,6 @@ namespace Academy.Presentation.Pages
             Validation(TBLogin);
         }
 
-        private void TextBox_PasswordChanged(object sender, TextChangedEventArgs e)
-        {
-            Validation(TBPassword);
-        }
-
         void Validation(TextBox TB)
         {
             if (TB.Text.Length == 0 || TB.Text.Trim() == "")
@@ -61,7 +56,7 @@ namespace Academy.Presentation.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             user.Login = TBLogin.Text.Trim();
-            user.Password = TBPassword.Text.Trim();
+            user.Password = TBPassword.Password.Trim();
             if (user.Login == Constants.AdminLogin && user.Password == Constants.AdminPassword)
             {
                 NavigatorObject.Switch(new Admin.MainPage());
@@ -84,6 +79,21 @@ namespace Academy.Presentation.Pages
             if (teacherUseCase.teachers.Contains(teacherUseCase.teachers.Find(x => x.Login == user.Login && x.Password == user.Password)))
             {
                 NavigatorObject.Switch(new Teacher.MainPage(teacherUseCase.teachers.Find(x => x.Login == user.Login && x.Password == user.Password)));
+            }
+        }
+
+        private void TextBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (TBPassword.Password.Length == 0 || TBPassword.Password.Trim() == "")
+            {
+                TBPassword.Password = string.Empty;
+                TBPassword.BorderBrush = new SolidColorBrush(Colors.Red);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBPassword, "Field is required");
+            }
+            else
+            {
+                TBPassword.BorderBrush = new SolidColorBrush(Colors.White);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBPassword, "");
             }
         }
     }

@@ -3,10 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Academy.Presentation.Pages.Teacher"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+                        d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="163*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="533*"/>
+            <ColumnDefinition Width="667*"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#fcf5e5" Width="211" Height="146" Grid.RowSpan="2" Grid.Column="1" Margin="157,0,0,0"/>
+
+        <Label Content="Termin" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="0" Grid.Column="2" Margin="0 10 0 0"/>
+        <DatePicker Name="DPdate" Grid.Row="1" Grid.Column="2" Margin="63,50,63,0" FontSize="35" Height="90" BorderBrush="Red" SelectedDateChanged="DatePicker_SelectedDateChanged" Foreground="#fcf5e5" FontFamily="Times new Roman"
+    Width="200" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+        <ToggleButton Name="TBGroupStudent" Style="{StaticResource MaterialDesignSwitchToggleButton}" Grid.Row="1" HorizontalAlignment="Left" Margin="60 70 0 0" Width="50" Height="50" Checked="TBGroupStudent_Checked" Unchecked="TBGroupStudent_Checked">
+            <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                <SolidColorBrush
+                  Color="Red" />
+            </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+        </ToggleButton>
+        <Label Name="LGL" Content="Group Name" HorizontalAlignment="Right" Foreground="#fcf5e5"  Grid.Row="1" Margin="0 50 0 0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="65" Height="90" 
+           VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_LoginChanged" Name="TBLogin" Foreground="#fcf5e5" BorderBrush="Red"/>
+
+        <Label Content="Lesson" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 50 0 0"/>
+        <ComboBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="CBLesson" Margin="50,50,326,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" Grid.ColumnSpan="2" BorderBrush="Red" SelectionChanged="CBLesson_SelectionChanged"/>
+        <Label Content="Work Type" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="2" Grid.Column="2" Margin="0 50 0 0"/>
+        <ComboBox  Grid.Row="3" Grid.Column="2" FontSize="65" Name="CBWorkType" Foreground="#fcf5e5" BorderBrush="Red" SelectionChanged="CBWorkType_SelectionChanged"
+            Width="200" Margin="63,50,63,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="94">
+            <ComboBoxItem
+              Content="HM" />
+            <ComboBoxItem
+              Content="CL" />
+            <ComboBoxItem
+              Content="LB" />
+            <ComboBoxItem
+              Content="EX" />
+            <ComboBoxItem
+              Content="FI" />
+        </ComboBox>
+
+        <Label Content="Description" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="3" Margin="0 50 0 0"/>
+        <TextBox Grid.Row="3" Grid.Column="1" FontSize="65" Height="90" 
+   VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_DescChanged" Name="TBDesc" Foreground="#fcf5e5" BorderBrush="Red"/>
+
+        <Button Grid.Column="1" Grid.Row="4" Content="Give a task" Background="#fcf5e5" Foreground="Black" FontSize="56" Click="Button_Click" Height="80" Margin="50 0 70 30"/>
     </Grid>
 </UserControl>

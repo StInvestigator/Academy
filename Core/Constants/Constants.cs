@@ -15,9 +15,10 @@ namespace Academy.Core.Constants
         public const string GetSchedule = @"select Date date, t.Name teacherName,t.Surname teacherSurname,g.Name groupName,Class class,l.Name as lesson from Schedules s join Teachers t on s.TeacherId=t.Id join Groups g on g.Id=s.GroupId join Lessons l on l.Id=s.LessonId";
         public const string GetTasks = @"select t.Desctiption desctiption, t.WorkType type, l.Name lesson, t.Date termin, s.Login studentLogin,t.IsDone isDone from Tasks t join Lessons l on t.LessonId=l.Id join Students s on t.StudentId=s.Id";
         public const string GetTeachers = @"select Name name, Surname surname, Age age, Login login, Password password from Teachers";
+        public const string GetLessons = @"select name from Lessons";
 
         public const string InsertGrade = @"insert into Grades(Date,WorkType,Grade,LessonId,StudentId) values(@Date,@WorkType,@Grade,(select Id from Lessons where Name = @Lesson),(select Id from Students where Login = @Student))";
-
+        public const string InsertTask = @"insert into Tasks(Desctiption,WorkType,LessonId,StudentId,Date,IsDone) values(@Desctiption,@WorkType,(select Id from Lessons where Name = @Lesson),(select Id from Students where Login = @Student),@Termin,0)";
 
     }
 }

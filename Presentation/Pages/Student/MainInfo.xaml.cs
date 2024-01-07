@@ -52,7 +52,7 @@ namespace Academy.Presentation.Pages.Student
 
             TaskRepository taskRepository = new TaskRepository();
             TaskUseCase taskUseCase = new TaskUseCase();
-            taskUseCase.GetAllTsksFromModels(taskRepository);
+            taskUseCase.GetAllTasksFromModel(taskRepository);
             if(taskUseCase.tasks.Count > 0)
             {
                 taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login)

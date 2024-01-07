@@ -25,6 +25,15 @@ namespace Academy.Presentation.Pages.Teacher
         public AddGrade()
         {
             InitializeComponent();
+
+            LessonRepository lessonRepository = new LessonRepository();
+            LessonUseCase lessonUseCase = new LessonUseCase();
+            lessonUseCase.GetAllLessonsFromModel(lessonRepository);
+
+            foreach (var item in lessonUseCase.lessons)
+            {
+                CBLesson.Items.Add(item.name);  
+            }
         }
 
         private void TextBox_LoginChanged(object sender, TextChangedEventArgs e)
@@ -32,10 +41,6 @@ namespace Academy.Presentation.Pages.Teacher
             Validation(TBLogin);
         }
 
-        private void TextBox_LessonChanged(object sender, TextChangedEventArgs e)
-        {
-            Validation(TBLesson);
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -43,23 +48,25 @@ namespace Academy.Presentation.Pages.Teacher
             GradeUseCase gradeUseCase = new GradeUseCase();
             gradeUseCase.GetAllGradesFromModel(gradeRepository);
 
-            if(CBGrade.Text != "" && TBLesson.Text.Trim() != "" && TBLogin.Text.Trim() != "" && CBWorkType.Text != "")
+            if (CBGrade.Text != "" && CBLesson.Text != "" && TBLogin.Text.Trim() != "" && CBWorkType.Text != "")
             {
                 try
                 {
-                    gradeUseCase.AddGrade(DateTime.Now, CBWorkType.Text, Convert.ToInt32(CBGrade.Text), TBLesson.Text, TBLogin.Text);
+                    gradeUseCase.AddGrade(DateTime.Now, CBWorkType.Text, Convert.ToInt32(CBGrade.Text), CBLesson.Text, TBLogin.Text);
                     MessageBox.Show("Success!", "Evaluation done", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("Wrong data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    CBGrade.Text = ""; TBLesson.Text = ""; TBLogin.Text = ""; CBWorkType.Text = "";
                 }
-
+                CBGrade.Text = ""; CBLesson.Text = ""; TBLogin.Text = ""; CBWorkType.Text = "";
+                CBWorkType.BorderBrush = new SolidColorBrush(Colors.Red);
+                CBGrade.BorderBrush = new SolidColorBrush(Colors.Red);
+                CBLesson.BorderBrush = new SolidColorBrush(Colors.Red);
             }
             else
             {
-                MessageBox.Show("Not all fields are fillen!","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Not all fields are fillen!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         void Validation(TextBox TB)
@@ -68,13 +75,26 @@ namespace Academy.Presentation.Pages.Teacher
             {
                 TB.Text = string.Empty;
                 TB.BorderBrush = new SolidColorBrush(Colors.Red);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TB, "Field is required");
             }
             else
             {
                 TB.BorderBrush = new SolidColorBrush(Colors.White);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TB, "");
             }
+        }
+
+        private void CBWorkType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CBWorkType.BorderBrush = new SolidColorBrush(Colors.White);
+        }
+
+        private void CBGrade_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CBGrade.BorderBrush = new SolidColorBrush(Colors.White);
+        }
+
+        private void CBLesson_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CBLesson.BorderBrush = new SolidColorBrush(Colors.White);
         }
     }
 }

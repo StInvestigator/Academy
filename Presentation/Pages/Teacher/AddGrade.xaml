@@ -24,17 +24,12 @@
 
         <Label Content="Student Login" HorizontalAlignment="Right" Foreground="#fcf5e5"  Grid.Row="1" Margin="0 50 0 0"/>
         <TextBox Grid.Row="1" Grid.Column="1" FontSize="65" Height="90" 
-             VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_LoginChanged" Name="TBLogin" Foreground="#fcf5e5" BorderBrush="Red" materialDesign:HintAssist.HelperText="Field is required"
-             materialDesign:HintAssist.HelperTextFontSize="32"/>
+             VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_LoginChanged" Name="TBLogin" Foreground="#fcf5e5" BorderBrush="Red"/>
 
         <Label Content="Lesson" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 50 0 0"/>
-        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="65" Height="90" 
-             VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_LessonChanged" Name="TBLesson" Foreground="#fcf5e5" BorderBrush="Red" materialDesign:HintAssist.HelperText="Field is required"
-             materialDesign:HintAssist.HelperTextFontSize="32">
-        </TextBox>
-
+        <ComboBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="CBLesson" Margin="50,50,326,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" Grid.ColumnSpan="2" BorderBrush="Red" SelectionChanged="CBLesson_SelectionChanged"/>
         <Label Content="Work Type" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="2" Grid.Column="2" Margin="0 50 0 0"/>
-        <ComboBox  Grid.Row="3" Grid.Column="2" FontSize="65" Name="CBWorkType" Foreground="#fcf5e5"
+        <ComboBox  Grid.Row="3" Grid.Column="2" FontSize="65" Name="CBWorkType" Foreground="#fcf5e5" BorderBrush="Red" SelectionChanged="CBWorkType_SelectionChanged"
               Width="200" Margin="63,50,63,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="94">
             <ComboBoxItem
                 Content="HM" />
@@ -49,7 +44,7 @@
         </ComboBox>
 
         <Label Content="Grade" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="3" Margin="0 50 0 0"/>
-        <ComboBox  Grid.Row="3" Grid.Column="1" FontSize="65" Name="CBGrade" Margin="50,50,327,0" VerticalAlignment="Top" Height="94" Grid.RowSpan="2" Foreground="#fcf5e5">
+        <ComboBox  Grid.Row="3" Grid.Column="1" FontSize="65" Name="CBGrade" Margin="50,50,327,0" VerticalAlignment="Top" Height="94" Grid.RowSpan="2" Foreground="#fcf5e5" BorderBrush="Red" SelectionChanged="CBGrade_SelectionChanged">
             <ComboBoxItem
   Content="1" />
             <ComboBoxItem

@@ -107,12 +107,35 @@ namespace Academy.Data.Repositories.DataBase
                 return new List<TaskModel>();
             }
         }
+        public static List<LessonModel> GetLessons()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    return connection.Query<LessonModel>(Constants.GetLessons).ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                return new List<LessonModel>();
+            }
+        }
         public static void insertGrade(DateTime date, string workType, int grade, string lesson, string studentLogin)
         {
             object[] parameters = { new { Date = date, WorkType = workType, Grade = grade, Lesson = lesson, Student = studentLogin } };
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Execute(Constants.InsertGrade, parameters);
+            }
+        }
+        public static void insertTask(string desctiption, string workType, string lesson, string studentLogin, DateTime termin)
+        {
+            object[] parameters = { new { Desctiption = desctiption, WorkType = workType, Lesson = lesson, Student = studentLogin, Termin = termin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.InsertTask, parameters);
             }
         }
     }
