@@ -138,5 +138,53 @@ namespace Academy.Data.Repositories.DataBase
                 connection.Execute(Constants.InsertTask, parameters);
             }
         }
+        public static void insertStudent(string name, string surname, int age, string login, string password, string groupName)
+        {
+            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password, Group = groupName } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.InsertStudent, parameters);
+            }
+        }
+        public static void updateStudent(string name, string surname, int age, string login, string password, string groupName, string srcLogin)
+        {
+            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password, Group = groupName, Src = srcLogin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.UpdateStudent, parameters);
+            }
+        }
+        public static void deleteStudent(string srcLogin)
+        {
+            object[] parameters = { new {Src = srcLogin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.DeleteStudent, parameters);
+            }
+        }
+        public static void insertTeacher(string name, string surname, int age, string login, string password)
+        {
+            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.InsertTeacher, parameters);
+            }
+        }
+        public static void updateTeacher(string name, string surname, int age, string login, string password, string srcLogin)
+        {
+            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password, Src = srcLogin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.UpdateTeacher, parameters);
+            }
+        }
+        public static void deleteTeacher(string srcLogin)
+        {
+            object[] parameters = { new { Src = srcLogin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.DeleteTeacher, parameters);
+            }
+        }
     }
 }

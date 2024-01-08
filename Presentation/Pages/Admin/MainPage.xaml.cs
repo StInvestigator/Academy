@@ -41,7 +41,7 @@ namespace Academy.Presentation.Pages.Admin
         {
             if (MainFrame.Content.GetType() != typeof(StudentsList))
             {
-                MainFrame.Content = new StudentsList();
+                MainFrame.Content = new StudentsList(MainFrame);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Academy.Presentation.Pages.Admin
         {
             if (MainFrame.Content.GetType() != typeof(TeachersList))
             {
-                MainFrame.Content = new TeachersList();
+                MainFrame.Content = new TeachersList(MainFrame);
             }
         }
 

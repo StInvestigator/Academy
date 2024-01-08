@@ -72,6 +72,7 @@ namespace Academy.Presentation.Pages.Teacher
             }
             else
             {
+                TB.Text = TB.Text.Trim();
                 TB.BorderBrush = new SolidColorBrush(Colors.White);
             }
         }
@@ -125,7 +126,7 @@ namespace Academy.Presentation.Pages.Teacher
                             taskUseCase.AddTask(TBDesc.Text, CBWorkType.Text, CBLesson.Text, item.Login, DPdate.SelectedDate ?? DateTime.Now);
                         }
                     }
-                    MessageBox.Show("Success!", "Evaluation done", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Success!", "Task was added", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch
                 {

@@ -30,6 +30,7 @@
         <PasswordBox  Grid.Row="2" Grid.Column="1" FontSize="75" Height="110" 
                  VerticalAlignment="Bottom" Margin="50 0 0 0" PasswordChanged="TextBox_PasswordChanged" Name="TBPassword" Foreground="#fcf5e5" BorderBrush="Red" materialDesign:HintAssist.HelperText="Field is required"
                  materialDesign:HintAssist.HelperTextFontSize="40">
+            <!--Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"-->
         </PasswordBox>
         <Button Grid.Column="1" Grid.Row="3" Content="Log In" Background="#fcf5e5" Foreground="Black" FontSize="56" Click="Button_Click" Height="100" Margin="70 0 20 0"/>
     </Grid>

@@ -1,5 +1,8 @@
 ﻿using Academy.Data.Repositories;
+using Academy.Data.Repositories.DataBase;
+using Academy.Domain.Entities;
 using Academy.Domain.UseCases;
+using Academy.Presentation.Pages.Teacher;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +25,39 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
     /// </summary>
     public partial class StudentsList : UserControl
     {
-        public StudentsList()
+        Frame MainFrame;
+        public StudentsList(Frame MainFrame)
         {
+            this.MainFrame = MainFrame;
             InitializeComponent();
 
             StudentUseCase studentUseCase = new StudentUseCase();
             StudentRepository studentRepository = new StudentRepository();
             studentUseCase.GetAllStudentsFromModel(studentRepository);
             LVStudents.ItemsSource = studentUseCase.students.OrderBy(x => x.GroupName).ToList();
+        }
+
+        private void BAddClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new EditStudent(MainFrame);
+        }
+
+        private void BEditClick(object sender, RoutedEventArgs e)
+        {
+            if(LVStudents.SelectedIndex != -1) 
+            {
+                MainFrame.Content = new EditStudent(MainFrame,LVStudents.SelectedItem as Domain.Entities.Student);
+            }
+        }
+
+        private void BDeleteClick(object sender, RoutedEventArgs e)
+        {
+            if (LVStudents.SelectedIndex != -1)
+            {
+                StudentUseCase studentUseCase = new StudentUseCase();
+                studentUseCase.DeleteStudent((LVStudents.SelectedItem as Domain.Entities.Student).Login);
+                MainFrame.Content = new StudentsList(MainFrame);
+            }
         }
     }
 }
