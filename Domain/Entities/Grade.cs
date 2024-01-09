@@ -28,7 +28,7 @@ namespace Academy.Domain.Entities
         public DateOnly Date { get => date; set { date = value; NotifyPropertyChanged("Date"); } }
         public string WorkType { get => workType; set { workType = value; NotifyPropertyChanged("WorkType"); } }
         public int GradeNumber { get => gradeNumber; set { gradeNumber = value; NotifyPropertyChanged("GradeNumber"); } }
-        public string StudentLogin { get => studentLogin; set { studentLogin = value; NotifyPropertyChanged("StudentName"); } }
+        public string StudentLogin { get => studentLogin; set { studentLogin = value; NotifyPropertyChanged("StudentLogin"); } }
         public string Lesson { get => lesson; set { lesson = value; NotifyPropertyChanged("Lesson"); } }
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -15,18 +15,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Academy.Presentation.Pages.Student
+namespace Academy.Presentation.Pages.Admin
 {
     /// <summary>
     /// Interaction logic for TasksList.xaml
     /// </summary>
     public partial class TasksList : UserControl
     {
-        Domain.Entities.Student student;
         Frame MainFrame;
-        public TasksList(Domain.Entities.Student student, Frame MainFrame)
+        public TasksList(Frame MainFrame)
         {
-            this.student = student;
             InitializeComponent();
             this.MainFrame = MainFrame;
 
@@ -36,26 +34,19 @@ namespace Academy.Presentation.Pages.Student
 
             if (taskUseCase.tasks.Count > 0)
             {
-                taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == false)
-                    .OrderBy(x => x.termin).ToList();
-                LVTasks.ItemsSource = taskUseCase.tasks;
+                LVTasks.ItemsSource = taskUseCase.tasks.OrderBy(x => x.termin).ToList();
             }
         }
 
-        private void BDoneClick(object sender, RoutedEventArgs e)
+        private void BDeleteClick(object sender, RoutedEventArgs e)
         {
             if (LVTasks.SelectedIndex != -1)
             {
                 TaskUseCase taskUseCase = new TaskUseCase();
-                taskUseCase.MarkAsDone(LVTasks.SelectedItem as Domain.Entities.Task);
-                MainFrame.Content = new TasksList(student,MainFrame);
+                taskUseCase.DeleteTask(LVTasks.SelectedItem as Domain.Entities.Task);
+
+                MainFrame.Content = new TasksList(MainFrame);
             }
-
-        }
-
-        private void BSwapClick(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new DoneTasksList(student,MainFrame);
         }
     }
 }

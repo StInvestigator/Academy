@@ -24,5 +24,9 @@ namespace Academy.Domain.UseCases
         {
             AcademyDB.insertGrade(date, workType, grade, lesson, studentLogin);
         }
+        public void DeleteGrade(Grade grade)
+        {
+            AcademyDB.deleteGrade(grade);
+        }
     }
 }

@@ -169,6 +169,14 @@ namespace Academy.Data.Repositories.DataBase
                 connection.Execute(Constants.MarkTaskUndone, parameters);
             }
         }
+        public static void deleteTask(string desctiption, DateTime termin, string studentLogin)
+        {
+            object[] parameters = { new { Desc = desctiption, Login = studentLogin, Date = termin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.DeleteTask, parameters);
+            }
+        }
         public static void insertStudent(string name, string surname, int age, string login, string password, string groupName)
         {
             object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password, Group = groupName } };
@@ -239,6 +247,14 @@ namespace Academy.Data.Repositories.DataBase
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Execute(Constants.DeleteSchedule, parameters);
+            }
+        }
+        public static void deleteGrade(Grade gr)
+        {
+            object[] parameters = { new { Date = gr.Date.ToDateTime(TimeOnly.MinValue), Type = gr.WorkType, Grade = gr.GradeNumber, Lesson = gr.Lesson,Login = gr.StudentLogin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.DeleteGrade, parameters);
             }
         }
     }

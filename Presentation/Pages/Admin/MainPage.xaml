@@ -24,7 +24,7 @@
             <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BScheduleClick">
                 <StackPanel Orientation="Horizontal" Width="280">
                     <TextBlock>Schedule</TextBlock>
-                    <materialDesign:PackIcon Kind="Calendar" Width="70" Height="70" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="#101014"/>
+                    <materialDesign:PackIcon Kind="Calendar" Width="70" Height="70" VerticalAlignment="Center" Margin="15 0 0 0" Foreground="#101014"/>
                 </StackPanel>
             </Button>
             <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BTeachersClick">
@@ -39,8 +39,26 @@
                     <materialDesign:PackIcon Kind="AccountSchool" Width="70" Height="70" VerticalAlignment="Center" Margin="15 0 0 0" Foreground="#101014"/>
                 </StackPanel>
             </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BTasksClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Tasks</TextBlock>
+                    <materialDesign:PackIcon Kind="FileTree" Width="70" Height="70" VerticalAlignment="Center" Margin="85 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BGradesClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Grades</TextBlock>
+                    <materialDesign:PackIcon Kind="FormatListBulleted" Width="70" Height="70" VerticalAlignment="Center" Margin="50 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BLessonsClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Lessons</TextBlock>
+                    <materialDesign:PackIcon Kind="Bookshelf" Width="70" Height="70" VerticalAlignment="Center" Margin="35 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
-        <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Grid.Row="2" VerticalAlignment="Bottom" Click="ExitClick">
+        <Button Height="110" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Grid.Row="2" VerticalAlignment="Bottom" Click="ExitClick">
             <StackPanel Orientation="Horizontal" Width="280">
                 <TextBlock>Exit</TextBlock>
                 <materialDesign:PackIcon Kind="ExitRun" Width="70" Height="70" VerticalAlignment="Center" Margin="110 0 0 0" Foreground="Red"/>

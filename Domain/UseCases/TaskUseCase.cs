@@ -22,13 +22,17 @@ namespace Academy.Domain.UseCases
         {
             AcademyDB.insertTask(desctiption,workType,lesson,studentLogin,termin);
         }
-        public void MarkAsDone(Task task, string studentLogin)
+        public void MarkAsDone(Task task)
         {
-            AcademyDB.markTask(task.description, task.termin.ToDateTime(TimeOnly.MinValue), studentLogin);
+            AcademyDB.markTask(task.description, task.termin.ToDateTime(TimeOnly.MinValue), task.studentLogin);
         }
-        public void MarkAsUndone(Task task, string studentLogin)
+        public void MarkAsUndone(Task task)
         {
-            AcademyDB.unmarkTask(task.description, task.termin.ToDateTime(TimeOnly.MinValue), studentLogin);
+            AcademyDB.unmarkTask(task.description, task.termin.ToDateTime(TimeOnly.MinValue), task.studentLogin);
+        }
+        public void DeleteTask(Task task)
+        {
+            AcademyDB.deleteTask(task.description, task.termin.ToDateTime(TimeOnly.MinValue), task.studentLogin);
         }
     }
 }

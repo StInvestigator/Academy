@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Academy.Presentation.Pages.Admin.GradesList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Academy.Presentation.Pages.Admin"
+             mc:Ignorable="d" 
+                      d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Grades list" Margin="560 0 0 0" Foreground="#fcf5e5"/>
+                <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BDeleteClick" Margin="400 0 0 0">
+                    <materialDesign:PackIcon Kind="Delete" Width="40" Height="40" Foreground="#fcf5e5"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Student" Foreground="#fcf5e5" FontSize="70" Height="100" Width="335" HorizontalContentAlignment="Center"/>
+                <Label Content="Lesson" Foreground="#fcf5e5" FontSize="70" Height="100" Width="360" HorizontalContentAlignment="Center"/>
+                <Label Content="Grade" Foreground="#fcf5e5" FontSize="70" Height="100" Width="335" HorizontalContentAlignment="Center"/>
+                <Label Content="Work Type" Foreground="#fcf5e5" FontSize="70" Height="100" Width="275" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+            <ListView Name="LVGrades" Height="522">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Height="110" Width="300" Content="{Binding StudentLogin}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
+                                <Label Height="110" Width="360" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
+                                <Label Height="110" Width="335" Content="{Binding GradeNumber}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
+                                <Label Height="110" Width="275" Content="{Binding WorkType}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                            <Line X1='0' X2='1305'
+                             Y1='0'  Y2='0'
+                             Stroke="#fcf5e5"
+                              StrokeThickness='2' />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <Line X1='0' X2='1305' Grid.ColumnSpan="3"
+        Y1='110'  Y2='110'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+        <Line X1='0' X2='1305' Grid.ColumnSpan="3"
+        Y1='220'  Y2='220'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+        <Line X1='335' X2='335' Grid.ColumnSpan="3"
+        Y1='110'  Y2='740'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+        <Line X1='695' X2='695' Grid.ColumnSpan="3"
+        Y1='110'  Y2='740'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+        <Line X1='1030' X2='1030' Grid.ColumnSpan="3"
+        Y1='110'  Y2='740'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+    </Grid>
+</UserControl>

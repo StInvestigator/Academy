@@ -13,11 +13,12 @@ namespace Academy.Domain.Entities
         public string type;
         public string lesson;
         public DateOnly termin;
+        public string studentLogin;
         public string Description { get => description; set { description = value; NotifyPropertyChanged("Description"); } }
         public string Type { get => type; set { type = value; NotifyPropertyChanged("Type"); } }
         public string Lesson { get => lesson; set { lesson = value; NotifyPropertyChanged("Lesson"); } }
         public DateOnly Termin { get => termin; set { termin = value; NotifyPropertyChanged("Termin"); } }
-        public string StudentLogin { get; set; }
+        public string StudentLogin { get => studentLogin; set { studentLogin = value; NotifyPropertyChanged("StudentLogin"); } }
         public bool isDone { get; set; }
         public Task(string description, string type, string lesson, DateOnly termin,string studentLogin, bool isDone)
         {

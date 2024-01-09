@@ -32,5 +32,7 @@ namespace Academy.Core.Constants
         public const string DeleteStudent = @"delete from Students where Login=@Src";
         public const string DeleteTeacher = @"delete from Teachers where Login=@Src";
         public const string DeleteSchedule = @"delete from Schedules where Id = @Id";
+        public const string DeleteTask = @"delete from Tasks where Desctiption=@Desc and StudentId=(select Id from Students where Login=@Login) and Date = @Date";
+        public const string DeleteGrade = @"delete from Grades where Date = @Date and WorkType = @Type and Grade = @Grade and LessonId = (select Id from Lessons where Name = @Lesson) and StudentId = (select Id from Students where Login = @Login)";
     }
 }

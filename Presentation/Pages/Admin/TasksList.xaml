@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Academy.Presentation.Pages.Admin.TasksList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Academy.Presentation.Pages.Admin"
+             mc:Ignorable="d" 
+                      d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Tasks list" Margin="560 0 0 0" Foreground="#fcf5e5"/>
+                <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BDeleteClick" Margin="440 0 0 0">
+                    <materialDesign:PackIcon Kind="Delete" Width="40" Height="40" Foreground="#fcf5e5"/>
+                </Button>
+            </StackPanel>
+            <Line X1='0' X2='1305'
+        Y1='0'  Y2='0'  
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Student" Foreground="#fcf5e5" FontSize="50" Height="72" Width="267" HorizontalContentAlignment="Center"/>
+                <Label Content="Lesson" Foreground="#fcf5e5" FontSize="50" Height="72" Width="217" HorizontalContentAlignment="Center"/>
+                <Label Content="Description of the task" Foreground="#fcf5e5" FontSize="50" Height="72" Width="552" HorizontalContentAlignment="Center"/>
+                <Label Content="Task`s Type" Foreground="#fcf5e5" FontSize="50" Height="72" Width="267" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+            <Line X1='0' X2='1305'
+        Y1='0'  Y2='0'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+            <ListView Name="LVTasks" Width="1305">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Height="100" Width="257" Content="{Binding StudentLogin}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="220" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <TextBox Height="100" Width="542" Text="{Binding Description}" Foreground="#fcf5e5" FontSize="50" Margin="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
+                                <Label Height="100" Width="256" Content="{Binding Type}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                            <Line X1='0' X2='1284'
+                             Y1='0'  Y2='0'
+                             Stroke="#fcf5e5"
+                              StrokeThickness='2' />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Line X1='267' X2='267'
+        Y1='120'  Y2='740'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+            <Line X1='217' X2='217'
+        Y1='120'  Y2='740'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+            <Line X1='552' X2='552'
+        Y1='120'  Y2='740'
+        Stroke="#fcf5e5"
+        StrokeThickness='2' />
+        </StackPanel>
+    </Grid>
+</UserControl>

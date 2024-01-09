@@ -60,5 +60,26 @@ namespace Academy.Presentation.Pages.Admin
                 MainFrame.Content = new SchedulesList(MainFrame);
             }
         }
+
+        private void BTasksClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(TasksList))
+            {
+                MainFrame.Content = new TasksList(MainFrame);
+            }
+        }
+
+        private void BGradesClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(GradesList))
+            {
+                MainFrame.Content = new GradesList(MainFrame);
+            }
+        }
+
+        private void BLessonsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

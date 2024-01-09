@@ -47,7 +47,7 @@ namespace Academy.Presentation.Pages.Student
             if (LVTasks.SelectedIndex != -1)
             {
                 TaskUseCase taskUseCase = new TaskUseCase();
-                taskUseCase.MarkAsUndone(LVTasks.SelectedItem as Domain.Entities.Task, student.Login);
+                taskUseCase.MarkAsUndone(LVTasks.SelectedItem as Domain.Entities.Task);
                 MainFrame.Content = new DoneTasksList(student, MainFrame);
             }
 

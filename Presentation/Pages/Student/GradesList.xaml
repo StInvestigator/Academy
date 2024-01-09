@@ -24,7 +24,7 @@
                                 <Label Height="110" Width="275" Content="{Binding WorkType}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
                                 <Label Height="110" Width="360" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
                                 <Label Height="110" Width="335" Content="{Binding GradeNumber}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
-                                <Label Height="110" Width="335" Content="{Binding Date}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center" Margin="5 30 0 0"/>
+                                <Label Height="110" Width="335" Content="{Binding Date}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center" />
                             </StackPanel>
                             <Line X1='0' X2='1305'
                                  Y1='0'  Y2='0'
