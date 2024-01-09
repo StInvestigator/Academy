@@ -14,18 +14,23 @@ namespace Academy.Core.Constants
         public const string GetTeachers = @"select Name name, Surname surname, Age age, Login login, Password password from Teachers";
         public const string GetLessons = @"select name from Lessons";
 
+        public const string GetScheduleId = @"select Id from Schedules";
+
         public const string InsertGrade = @"insert into Grades(Date,WorkType,Grade,LessonId,StudentId) values(@Date,@WorkType,@Grade,(select Id from Lessons where Name = @Lesson),(select Id from Students where Login = @Student))";
         public const string InsertTask = @"insert into Tasks(Desctiption,WorkType,LessonId,StudentId,Date,IsDone) values(@Desctiption,@WorkType,(select Id from Lessons where Name = @Lesson),(select Id from Students where Login = @Student),@Termin,0)";
         public const string InsertStudent = @"insert into Students(Name,Surname,Age,Login,Password,GroupId) values(@Name,@Surname,@Age,@Login,@Password,(select Id from Groups where Name = @Group))";
         public const string InsertTeacher = @"insert into Teachers(Name,Surname,Age,Login,Password) values(@Name,@Surname,@Age,@Login,@Password)";
-        public const string InsertSchedule = @"";
+        public const string InsertSchedule = @"insert into Schedules(Date,Class,TeacherId,GroupId,LessonId) values(@Date,@Class,(select Id from Teachers where Login = @Teacher),(select Id from Groups where Name = @Group),(select Id from Lessons where Name = @Lesson))";
 
         public const string UpdateStudent = @"update Students set Name=@Name, Surname=@Surname, Age=@Age, Login=@Login, Password=@Password, GroupId=(select Id from Groups where Name = @Group) where Login=@Src";
         public const string UpdateTeacher = @"update Teachers set Name=@Name, Surname=@Surname, Age=@Age, Login=@Login, Password=@Password where Login=@Src";
-        public const string UpdateSchedule = @"";
+        public const string UpdateSchedule = @"update Schedules set Date = @Date, Class = @Class, TeacherId = (select Id from Teachers where Login = @Teacher), GroupId = (select Id from Groups where Name = @Group), LessonId = (select Id from Lessons where Name = @Lesson) where Id = @Id";
+
+        public const string MarkTaskDone = @"update Tasks set IsDone=1 where Desctiption=@Desc and StudentId=(select Id from Students where Login=@Login) and Date = @Date";
+        public const string MarkTaskUndone = @"update Tasks set IsDone=0 where Desctiption=@Desc and StudentId=(select Id from Students where Login=@Login) and Date = @Date";
 
         public const string DeleteStudent = @"delete from Students where Login=@Src";
         public const string DeleteTeacher = @"delete from Teachers where Login=@Src";
-        public const string DeleteSchedule = @"";
+        public const string DeleteSchedule = @"delete from Schedules where Id = @Id";
     }
 }

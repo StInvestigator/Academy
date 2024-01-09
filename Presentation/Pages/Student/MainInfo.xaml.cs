@@ -55,7 +55,7 @@ namespace Academy.Presentation.Pages.Student
             taskUseCase.GetAllTasksFromModel(taskRepository);
             if(taskUseCase.tasks.Count > 0)
             {
-                taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login)
+                taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == false)
                     .OrderBy(x => x.termin).ToList();
                 taskUseCase.tasks = taskUseCase.tasks.GetRange(0, taskUseCase.tasks.Count > 4 ? 4 : taskUseCase.tasks.Count);
                 LVTasks.ItemsSource = taskUseCase.tasks;

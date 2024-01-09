@@ -14,4 +14,10 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Presentation\Pages\Student\DoneTasksList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

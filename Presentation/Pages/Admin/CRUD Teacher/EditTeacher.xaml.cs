@@ -108,6 +108,8 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                TBName.Text = ""; TBSurname.Text = ""; TBLogin.Text = ""; TBPassword.Text = ""; CBAge.Text = "";
+                CBAge.BorderBrush = new SolidColorBrush(Colors.Red);
             }
             else
             {

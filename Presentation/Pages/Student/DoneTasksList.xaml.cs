@@ -20,11 +20,11 @@ namespace Academy.Presentation.Pages.Student
     /// <summary>
     /// Interaction logic for TasksList.xaml
     /// </summary>
-    public partial class TasksList : UserControl
+    public partial class DoneTasksList : UserControl
     {
         Domain.Entities.Student student;
         Frame MainFrame;
-        public TasksList(Domain.Entities.Student student, Frame MainFrame)
+        public DoneTasksList(Domain.Entities.Student student, Frame MainFrame)
         {
             this.student = student;
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace Academy.Presentation.Pages.Student
 
             if (taskUseCase.tasks.Count > 0)
             {
-                taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == false)
+                taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == true)
                     .OrderBy(x => x.termin).ToList();
                 LVTasks.ItemsSource = taskUseCase.tasks;
             }
@@ -47,15 +47,15 @@ namespace Academy.Presentation.Pages.Student
             if (LVTasks.SelectedIndex != -1)
             {
                 TaskUseCase taskUseCase = new TaskUseCase();
-                taskUseCase.MarkAsDone(LVTasks.SelectedItem as Domain.Entities.Task, student.Login);
-                MainFrame.Content = new TasksList(student,MainFrame);
+                taskUseCase.MarkAsUndone(LVTasks.SelectedItem as Domain.Entities.Task, student.Login);
+                MainFrame.Content = new DoneTasksList(student, MainFrame);
             }
 
         }
 
         private void BSwapClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new DoneTasksList(student,MainFrame);
+            MainFrame.Content = new TasksList(student, MainFrame);
         }
     }
 }

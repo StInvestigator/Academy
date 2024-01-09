@@ -57,7 +57,7 @@ namespace Academy.Presentation.Pages.Admin
         {
             if (MainFrame.Content.GetType() != typeof(SchedulesList))
             {
-                MainFrame.Content = new SchedulesList();
+                MainFrame.Content = new SchedulesList(MainFrame);
             }
         }
     }

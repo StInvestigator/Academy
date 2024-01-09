@@ -1,5 +1,6 @@
 ﻿using Academy.Data.Repositories;
 using Academy.Domain.UseCases;
+using Academy.Presentation.Pages.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,8 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
     /// </summary>
     public partial class SchedulesList : UserControl
     {
-        public SchedulesList()
+        Frame MainFrame;
+        public SchedulesList(Frame MainFrame)
         {
             InitializeComponent();
 
@@ -33,6 +35,30 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
             {
                 scheduleUseCase.schedules = scheduleUseCase.schedules.OrderBy(x => x.TimeOnly).ToList().OrderBy(x => x.DateOnly).ToList();
                 LVSchedule.ItemsSource = scheduleUseCase.schedules;
+            }
+            this.MainFrame = MainFrame;
+        }
+
+        private void BAddClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new EditSchedule(MainFrame);
+        }
+
+        private void BEditClick(object sender, RoutedEventArgs e)
+        {
+            if (LVSchedule.SelectedIndex != -1)
+            {
+                MainFrame.Content = new EditSchedule(MainFrame,LVSchedule.SelectedItem as Domain.Entities.Schedule, LVSchedule.SelectedIndex);
+            }
+        }
+
+        private void BDeleteClick(object sender, RoutedEventArgs e)
+        {
+            if (LVSchedule.SelectedIndex != -1)
+            {
+                ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
+                scheduleUseCase.DeleteSchedule(LVSchedule.SelectedIndex);
+                MainFrame.Content = new SchedulesList(MainFrame);
             }
         }
     }

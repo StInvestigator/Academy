@@ -59,7 +59,7 @@ namespace Academy.Presentation.Pages.Student
         {
             if (MainFrame.Content.GetType() != typeof(TasksList))
             {
-                MainFrame.Content = new TasksList(student);
+                MainFrame.Content = new TasksList(student, MainFrame);
             }
         }
 

@@ -122,6 +122,21 @@ namespace Academy.Data.Repositories.DataBase
                 return new List<LessonModel>();
             }
         }
+        public static int GetShceduleIdByNum(int num)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    return connection.Query<int>(Constants.GetScheduleId).ElementAt(num);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                return -1;
+            }
+        }
         public static void insertGrade(DateTime date, string workType, int grade, string lesson, string studentLogin)
         {
             object[] parameters = { new { Date = date, WorkType = workType, Grade = grade, Lesson = lesson, Student = studentLogin } };
@@ -136,6 +151,22 @@ namespace Academy.Data.Repositories.DataBase
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Execute(Constants.InsertTask, parameters);
+            }
+        }
+        public static void markTask(string desctiption, DateTime termin, string studentLogin)
+        {
+            object[] parameters = { new { Desc = desctiption, Login = studentLogin, Date = termin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.MarkTaskDone, parameters);
+            }
+        }
+        public static void unmarkTask(string desctiption, DateTime termin, string studentLogin)
+        {
+            object[] parameters = { new { Desc = desctiption, Login = studentLogin, Date = termin } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.MarkTaskUndone, parameters);
             }
         }
         public static void insertStudent(string name, string surname, int age, string login, string password, string groupName)
@@ -184,6 +215,30 @@ namespace Academy.Data.Repositories.DataBase
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Execute(Constants.DeleteTeacher, parameters);
+            }
+        }
+        public static void insertSchedule(DateTime date, string @class, string teacherLogin, string groupName, string lesson)
+        {
+            object[] parameters = { new { Date = date, Class = @class, Teacher = teacherLogin, Group = groupName, Lesson = lesson } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.InsertSchedule, parameters);
+            }
+        }
+        public static void updateSchedule(DateTime date, string @class, string teacherLogin, string groupName, string lesson, int id)
+        {
+            object[] parameters = { new { Date = date, Class = @class, Teacher = teacherLogin, Group = groupName, Lesson = lesson, Id = id } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.UpdateSchedule, parameters);
+            }
+        }
+        public static void deleteSchedule(int id)
+        {
+            object[] parameters = { new { Id = id } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.DeleteSchedule, parameters);
             }
         }
     }

@@ -19,7 +19,7 @@
                     <materialDesign:PackIcon Kind="AccountEdit" Width="40" Height="40" Foreground="#fcf5e5"/>
                 </Button>
                 <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BDeleteClick" Margin="10 0 0 0">
-                    <materialDesign:PackIcon Kind="Delete" Width="40" Height="40" Foreground="#fcf5e5"/>
+                    <materialDesign:PackIcon Kind="AccountMinus" Width="40" Height="40" Foreground="#fcf5e5"/>
                 </Button>
             </StackPanel>
             <Line X1='0' X2='1305'
