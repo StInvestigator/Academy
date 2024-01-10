@@ -10,8 +10,7 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-
-                    <Label Content="Teachers list" Margin="500 0 0 0" Foreground="#fcf5e5"/>
+                <Label Content="Teachers list" Margin="500 0 0 0" Foreground="#fcf5e5"/>
                     <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BAddClick" Margin="285 0 0 0">
                         <materialDesign:PackIcon Kind="AccountPlus" Width="40" Height="40" Foreground="#fcf5e5"/>
                     </Button>

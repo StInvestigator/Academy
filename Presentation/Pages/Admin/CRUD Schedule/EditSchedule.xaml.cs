@@ -79,7 +79,6 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
             }
             else
             {
-                TB.Text = TB.Text.Trim();
                 TB.BorderBrush = new SolidColorBrush(Colors.White);
             }
         }

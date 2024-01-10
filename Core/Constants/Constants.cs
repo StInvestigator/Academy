@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Concurrent;
+
 namespace Academy.Core.Constants
 {
     public static class Constants
@@ -21,10 +23,12 @@ namespace Academy.Core.Constants
         public const string InsertStudent = @"insert into Students(Name,Surname,Age,Login,Password,GroupId) values(@Name,@Surname,@Age,@Login,@Password,(select Id from Groups where Name = @Group))";
         public const string InsertTeacher = @"insert into Teachers(Name,Surname,Age,Login,Password) values(@Name,@Surname,@Age,@Login,@Password)";
         public const string InsertSchedule = @"insert into Schedules(Date,Class,TeacherId,GroupId,LessonId) values(@Date,@Class,(select Id from Teachers where Login = @Teacher),(select Id from Groups where Name = @Group),(select Id from Lessons where Name = @Lesson))";
+        public const string InsertLesson = @"insert into Lessons(Name) values(@Lesson)";
 
         public const string UpdateStudent = @"update Students set Name=@Name, Surname=@Surname, Age=@Age, Login=@Login, Password=@Password, GroupId=(select Id from Groups where Name = @Group) where Login=@Src";
         public const string UpdateTeacher = @"update Teachers set Name=@Name, Surname=@Surname, Age=@Age, Login=@Login, Password=@Password where Login=@Src";
         public const string UpdateSchedule = @"update Schedules set Date = @Date, Class = @Class, TeacherId = (select Id from Teachers where Login = @Teacher), GroupId = (select Id from Groups where Name = @Group), LessonId = (select Id from Lessons where Name = @Lesson) where Id = @Id";
+        public const string UpdateLesson = @"update Lessons set Name = @Lesson where Name = @Name";
 
         public const string MarkTaskDone = @"update Tasks set IsDone=1 where Desctiption=@Desc and StudentId=(select Id from Students where Login=@Login) and Date = @Date";
         public const string MarkTaskUndone = @"update Tasks set IsDone=0 where Desctiption=@Desc and StudentId=(select Id from Students where Login=@Login) and Date = @Date";
@@ -34,5 +38,7 @@ namespace Academy.Core.Constants
         public const string DeleteSchedule = @"delete from Schedules where Id = @Id";
         public const string DeleteTask = @"delete from Tasks where Desctiption=@Desc and StudentId=(select Id from Students where Login=@Login) and Date = @Date";
         public const string DeleteGrade = @"delete from Grades where Date = @Date and WorkType = @Type and Grade = @Grade and LessonId = (select Id from Lessons where Name = @Lesson) and StudentId = (select Id from Students where Login = @Login)";
+        public const string DeleteLesson = @"delete from Lessons where Name = @Lesson";
+
     }
 }

@@ -48,7 +48,6 @@ namespace Academy.Presentation.Pages
             }
             else
             {
-                TB.Text = TB.Text.Trim();
                 TB.BorderBrush = new SolidColorBrush(Colors.White);
                 MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TB, "");
             }

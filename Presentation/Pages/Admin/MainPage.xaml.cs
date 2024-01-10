@@ -79,7 +79,10 @@ namespace Academy.Presentation.Pages.Admin
 
         private void BLessonsClick(object sender, RoutedEventArgs e)
         {
-
+            if (MainFrame.Content.GetType() != typeof(LessonsList))
+            {
+                MainFrame.Content = new LessonsList(MainFrame);
+            }
         }
     }
 }

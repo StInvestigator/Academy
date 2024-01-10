@@ -257,5 +257,29 @@ namespace Academy.Data.Repositories.DataBase
                 connection.Execute(Constants.DeleteGrade, parameters);
             }
         }
+        public static void insertLesson(string lesson)
+        {
+            object[] parameters = { new { Lesson = lesson } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.InsertLesson, parameters);
+            }
+        }
+        public static void updateLesson(string lesson,string oldName)
+        {
+            object[] parameters = { new { Lesson = lesson, Name = oldName } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.UpdateLesson, parameters);
+            }
+        }
+        public static void deleteLesson(string lesson)
+        {
+            object[] parameters = { new { Lesson = lesson } };
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(Constants.DeleteLesson, parameters);
+            }
+        }
     }
 }

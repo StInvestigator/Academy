@@ -78,7 +78,6 @@ namespace Academy.Presentation.Pages.Teacher
             }
             else
             {
-                TB.Text = TB.Text.Trim();
                 TB.BorderBrush = new SolidColorBrush(Colors.White);
             }
         }

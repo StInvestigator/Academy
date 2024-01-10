@@ -37,7 +37,7 @@ namespace Academy.Presentation.Pages.Student
             if (taskUseCase.tasks.Count > 0)
             {
                 taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == true)
-                    .OrderBy(x => x.termin).ToList();
+                    .OrderByDescending(x => x.termin).ToList();
                 LVTasks.ItemsSource = taskUseCase.tasks;
             }
         }

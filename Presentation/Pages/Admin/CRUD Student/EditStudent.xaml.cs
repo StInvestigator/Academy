@@ -68,7 +68,6 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
             }
             else
             {
-                TB.Text = TB.Text.Trim();
                 TB.BorderBrush = new SolidColorBrush(Colors.White);
             }
         }

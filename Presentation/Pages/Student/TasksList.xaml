@@ -10,8 +10,8 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Tasks list" Margin="560 0 0 0" Foreground="#fcf5e5"/>
-                <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BDoneClick" Margin="365 0 0 0">
+                <Label Content="Tasks To Do" Margin="560 0 0 0" Foreground="#fcf5e5"/>
+                <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BDoneClick" Margin="315 0 0 0">
                     <materialDesign:PackIcon Kind="PlaylistCheck" Width="40" Height="40" Foreground="#fcf5e5"/>
                 </Button>
                 <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BSwapClick" Margin="10 0 0 0">
