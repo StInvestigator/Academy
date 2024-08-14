@@ -3,15 +3,11 @@ using Academy.Data.Models;
 using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    public class TeacherRepository : ITeacherRepository
+    public class TeacherRepository : IRepository<Teacher>
     {
         List<TeacherModel> _teachers;
         public TeacherRepository()

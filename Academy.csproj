@@ -15,6 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Presentation\Pages\Admin\CRUD Group\EditGroup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Presentation\Pages\Admin\CRUD Group\GroupsList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Presentation\Pages\Student\DoneTasksList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

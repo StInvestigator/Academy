@@ -1,5 +1,6 @@
 ﻿using Academy.Domain.Entities;
 using Academy.Domain.Navigation;
+using Academy.Presentation.Pages.Admin.CRUD_Group;
 using Academy.Presentation.Pages.Admin.CRUD_Schedule;
 using Academy.Presentation.Pages.Admin.CRUD_Student;
 using Academy.Presentation.Pages.Admin.CRUD_Teacher;
@@ -82,6 +83,14 @@ namespace Academy.Presentation.Pages.Admin
             if (MainFrame.Content.GetType() != typeof(LessonsList))
             {
                 MainFrame.Content = new LessonsList(MainFrame);
+            }
+        }
+
+        private void BGroupClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content.GetType() != typeof(GroupsList))
+            {
+                MainFrame.Content = new GroupsList(MainFrame);
             }
         }
     }

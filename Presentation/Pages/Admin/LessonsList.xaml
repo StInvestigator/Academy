@@ -25,14 +25,7 @@
     Y1='0'  Y2='0'  
     Stroke="#fcf5e5"
     StrokeThickness='2' />
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Lesson" Foreground="#fcf5e5" FontSize="70" Height="100" Width="1305" HorizontalContentAlignment="Center"/>
-            </StackPanel>
-            <Line X1='0' X2='1305'
-    Y1='0'  Y2='0'
-    Stroke="#fcf5e5"
-    StrokeThickness='2' />
-            <ListView Name="LVLessons" Width="1305">
+            <ListView Name="LVLessons" Width="1305"  Height="610">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">

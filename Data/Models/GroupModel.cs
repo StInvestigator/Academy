@@ -11,15 +11,18 @@ namespace Academy.Data.Models
     {
         public string? name;
         public int? year;
-        public GroupModel(string? Name, int? Year)
+        public int? studentsCount;
+        public GroupModel(string? Name, int? Year, int? StudentsCount)
         {
-            this.name = Name;
-            this.year = Year;
+            name = Name;
+            year = Year;
+            studentsCount = StudentsCount;
         }
         public GroupModel(Group gr)
         {
             name = gr.Name;
             year = gr.Year;
+            studentsCount = gr.StudentsCount;
         }
     }
 }

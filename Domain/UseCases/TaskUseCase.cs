@@ -3,8 +3,6 @@ using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 namespace Academy.Domain.UseCases
 {
     public class TaskUseCase
@@ -14,7 +12,7 @@ namespace Academy.Domain.UseCases
         { 
             tasks = new List<Task>(); 
         }
-        public void GetAllTasksFromModel(ITaskRepository taskRepository)
+        public void GetAllTasksFromModel(IRepository<Task> taskRepository)
         {
             tasks = taskRepository.GetAll();
         }

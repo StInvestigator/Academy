@@ -20,7 +20,7 @@
                 <Label Content="Grade" Foreground="#fcf5e5" FontSize="50" Height="72" Width="140" HorizontalContentAlignment="Center"/>
                 <Label Content="Date" Foreground="#fcf5e5" FontSize="50" Height="72" Width="125" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView Name="LVGrades">
+            <ListView Name="LVGrades" Height="550">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -47,7 +47,7 @@
                 <Label Content="Class" Foreground="#fcf5e5" FontSize="50" Height="72" Width="100" HorizontalContentAlignment="Center"/>
                 <Label Content="Time" Foreground="#fcf5e5" FontSize="50" Height="72" Width="135" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView Name="LVSchedule">
+            <ListView Name="LVSchedule" Height="550">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -74,7 +74,7 @@
                 <Label Content="Type" Foreground="#fcf5e5" FontSize="50" Height="72" Width="100" HorizontalContentAlignment="Center"/>
                 <Label Content="Date" Foreground="#fcf5e5" FontSize="50" Height="72" Width="135" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView Name="LVTasks">
+            <ListView Name="LVTasks" Height="550">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">

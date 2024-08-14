@@ -16,12 +16,12 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Student" Foreground="#fcf5e5" FontSize="65" Height="100" Width="335" HorizontalContentAlignment="Center"/>
-                <Label Content="Lesson" Foreground="#fcf5e5" FontSize="65" Height="100" Width="360" HorizontalContentAlignment="Center"/>
-                <Label Content="Grade" Foreground="#fcf5e5" FontSize="65" Height="100" Width="335" HorizontalContentAlignment="Center"/>
-                <Label Content="Work Type" Foreground="#fcf5e5" FontSize="65" Height="100" Width="275" HorizontalContentAlignment="Center"/>
+                <Label Content="Student" Foreground="#fcf5e5" FontSize="65" Height="90" Width="335" HorizontalContentAlignment="Center"/>
+                <Label Content="Lesson" Foreground="#fcf5e5" FontSize="65" Height="90" Width="360" HorizontalContentAlignment="Center"/>
+                <Label Content="Grade" Foreground="#fcf5e5" FontSize="65" Height="90" Width="335" HorizontalContentAlignment="Center"/>
+                <Label Content="Work Type" Foreground="#fcf5e5" FontSize="65" Height="90" Width="275" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView Name="LVGrades" Height="522">
+            <ListView Name="LVGrades" Height="520">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">

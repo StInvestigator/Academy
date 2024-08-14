@@ -26,9 +26,8 @@ namespace Academy
         public MainWindow()
         {
             InitializeComponent();
-            NavigatorObject.pageSwitcher = this;
-            //NavigatorObject.Switch(new Authorization());
 
+            NavigatorObject.pageSwitcher = this;
             NavigatorObject.Switch(new Presentation.Pages.Authorization());
         }
 

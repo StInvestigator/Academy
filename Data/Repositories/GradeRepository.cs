@@ -4,13 +4,10 @@ using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    public class GradeRepository : IGradeRepository
+    public class GradeRepository : IRepository<Grade>
     {
         List<GradeModel> _grades;
         public GradeRepository()

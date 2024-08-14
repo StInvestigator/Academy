@@ -2,15 +2,11 @@
 using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    public class GroupRepository : IGroupRepository
+    public class GroupRepository : IRepository<Group>
     {
         List<GroupModel> _groups;
         public GroupRepository()
@@ -29,7 +25,8 @@ namespace Academy.Data.Repositories
             {
                 groups.Add(new Group(
                     item.name ?? "Group1",
-                    item.year ?? 1
+                    item.year ?? 1,
+                    item.studentsCount ?? 0
                     ));
             }
             return groups;

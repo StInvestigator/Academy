@@ -1,32 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.ComponentModel;
+
 
 namespace Academy.Domain.Entities
 {
-    public class Group
+    public class Group : INotifyPropertyChanged
     {
         string name;
         int year;
-        public Group(string name, int year) 
+        int studentsCount;
+        public string Name { get => name; set { name = value; NotifyPropertyChanged("Name"); } }
+        public int Year { get => year; set { year = value; NotifyPropertyChanged("Year"); } }
+        public int StudentsCount { get => studentsCount; set { studentsCount = value; NotifyPropertyChanged("StudentsCount"); } }
+        public Group(string name, int year, int studentsCount) 
         {
             this.name = name;
             this.year = year;
-        }
-        public string Name
-        {
-            get { return name; }
-        }
-        public int Year
-        {
-            get { return year; }    
-            set { year = value; }
+            this.studentsCount = studentsCount;
         }
         public void nextYear()
         {
-            year++;
+            Year++;
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void NotifyPropertyChanged(string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

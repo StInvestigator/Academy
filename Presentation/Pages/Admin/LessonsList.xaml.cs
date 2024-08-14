@@ -59,6 +59,8 @@ namespace Academy.Presentation.Pages.Admin
             {
                 LessonUseCase lessonUseCase = new LessonUseCase();
                 lessonUseCase.DeleteLesson((LVLessons.SelectedItem as Lesson).Name);
+
+                MainFrame.Content = new LessonsList(MainFrame);
             }
         }
     }

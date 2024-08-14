@@ -2,16 +2,11 @@
 using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
-using Academy.Presentation.Pages.Teacher;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    class LessonRepository : ILessonRepository
+    class LessonRepository : IRepository<Lesson>
     {
         List<LessonModel> _lessons;
         public LessonRepository()

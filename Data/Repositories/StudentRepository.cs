@@ -2,15 +2,11 @@
 using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : IRepository<Student>
     {
         List<StudentModel> _students;
         public StudentRepository()

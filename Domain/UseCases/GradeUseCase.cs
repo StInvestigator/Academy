@@ -3,9 +3,6 @@ using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Domain.UseCases
 {
@@ -16,7 +13,7 @@ namespace Academy.Domain.UseCases
         {
             grades = new List<Grade>();
         }
-        public void GetAllGradesFromModel(IGradeRepository gradeRepository)
+        public void GetAllGradesFromModel(IRepository<Grade> gradeRepository)
         {
             grades = gradeRepository.GetAll();
         }

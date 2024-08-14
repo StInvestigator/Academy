@@ -1,11 +1,7 @@
 ﻿using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Domain.UseCases
 {
@@ -16,7 +12,7 @@ namespace Academy.Domain.UseCases
         {
             lessons = new List<Lesson>();
         }
-        public void GetAllLessonsFromModel(ILessonRepository lessonRepository)
+        public void GetAllLessonsFromModel(IRepository<Lesson> lessonRepository)
         {
             lessons = lessonRepository.GetAll();
         }

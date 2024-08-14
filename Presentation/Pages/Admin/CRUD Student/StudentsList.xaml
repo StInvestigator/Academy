@@ -36,7 +36,7 @@
             Y1='0'  Y2='0'
             Stroke="#fcf5e5"
             StrokeThickness='2' />
-            <ListView Name="LVStudents" Width="1305">
+            <ListView Name="LVStudents" Width="1305"  Height="545">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">

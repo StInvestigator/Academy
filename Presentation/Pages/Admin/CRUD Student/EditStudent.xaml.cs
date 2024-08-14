@@ -25,9 +25,9 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
     /// </summary>
     public partial class EditStudent : UserControl
     {
-        Domain.Entities.Student student;
+        Domain.Entities.Student? student;
         Frame frame;
-        public EditStudent(Frame MainFrame, Domain.Entities.Student student = null)
+        public EditStudent(Frame MainFrame, Domain.Entities.Student? student = null)
         {
             InitializeComponent();
 

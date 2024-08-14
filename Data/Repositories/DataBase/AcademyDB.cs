@@ -6,9 +6,6 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Academy.Data.Repositories.DataBase
@@ -16,111 +13,49 @@ namespace Academy.Data.Repositories.DataBase
     public static class AcademyDB
     {
         const string connectionString = @"Data Source=DESKTOP-OF66R01\SQLEXPRESS;Initial Catalog=FinalAcademy;Integrated Security=True;Trust Server Certificate=True";
-        public static List<GradeModel> GetGrades()
+
+        static List<T> getTList<T>(string sql) where T : class
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    return connection.Query<GradeModel>(Constants.GetGrades).ToList();
+                    return connection.Query<T>(sql).ToList();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                return new List<GradeModel>();
-                
+                return new List<T>();
             }
+        }
+        public static List<GradeModel> GetGrades()
+        {
+            return getTList<GradeModel>(Constants.GetGrades);
         }
         public static List<StudentModel> GetStudents()
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    return connection.Query<StudentModel>(Constants.GetStudents).ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                return new List<StudentModel>();
-            }
+            return getTList<StudentModel>(Constants.GetStudents);
         }
         public static List<TeacherModel> GetTeachers()
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    return connection.Query<TeacherModel>(Constants.GetTeachers).ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                return new List<TeacherModel>();
-            }
+            return getTList<TeacherModel>(Constants.GetTeachers);
         }
         public static List<GroupModel> GetGroups()
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    return connection.Query<GroupModel>(Constants.GetGroups).ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                return new List<GroupModel>();
-            }
+            return getTList<GroupModel>(Constants.GetGroups);
         }
         public static List<ScheduleModel> GetSchedules()
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    return connection.Query<ScheduleModel>(Constants.GetSchedule).ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                return new List<ScheduleModel>();
-            }
+            return getTList<ScheduleModel>(Constants.GetSchedule);
         }
         public static List<TaskModel> GetTasks()
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    return connection.Query<TaskModel>(Constants.GetTasks).ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                return new List<TaskModel>();
-            }
+            return getTList<TaskModel>(Constants.GetTasks);
         }
         public static List<LessonModel> GetLessons()
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    return connection.Query<LessonModel>(Constants.GetLessons).ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                return new List<LessonModel>();
-            }
+            return getTList<LessonModel>(Constants.GetLessons);
         }
         public static int GetShceduleIdByNum(int num)
         {
@@ -137,149 +72,97 @@ namespace Academy.Data.Repositories.DataBase
                 return -1;
             }
         }
-        public static void insertGrade(DateTime date, string workType, int grade, string lesson, string studentLogin)
+
+        static void executeSQL(string sql, object[] parameters)
         {
-            object[] parameters = { new { Date = date, WorkType = workType, Grade = grade, Lesson = lesson, Student = studentLogin } };
             using (var connection = new SqlConnection(connectionString))
             {
-                connection.Execute(Constants.InsertGrade, parameters);
+                connection.Execute(sql, parameters);
             }
         }
-        public static void insertTask(string desctiption, string workType, string lesson, string studentLogin, DateTime termin)
+        public static void insertGrade(DateTime Date, string WorkType, int Grade, string Lesson, string studentLogin)
         {
-            object[] parameters = { new { Desctiption = desctiption, WorkType = workType, Lesson = lesson, Student = studentLogin, Termin = termin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.InsertTask, parameters);
-            }
+            executeSQL(Constants.InsertGrade, new[] { new { Date, WorkType, Grade, Lesson, Student = studentLogin } });
+        }
+        public static void insertTask(string Desctiption, string WorkType, string Lesson, string studentLogin, DateTime Termin)
+        {
+            executeSQL(Constants.InsertTask, new[] { new { Desctiption, WorkType, Lesson, Student = studentLogin, Termin } });
         }
         public static void markTask(string desctiption, DateTime termin, string studentLogin)
         {
-            object[] parameters = { new { Desc = desctiption, Login = studentLogin, Date = termin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.MarkTaskDone, parameters);
-            }
+            executeSQL(Constants.MarkTaskDone, new[] { new { Desc = desctiption, Login = studentLogin, Date = termin } });
         }
         public static void unmarkTask(string desctiption, DateTime termin, string studentLogin)
         {
-            object[] parameters = { new { Desc = desctiption, Login = studentLogin, Date = termin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.MarkTaskUndone, parameters);
-            }
+            executeSQL(Constants.MarkTaskUndone, new[] { new { Desc = desctiption, Login = studentLogin, Date = termin } });
         }
         public static void deleteTask(string desctiption, DateTime termin, string studentLogin)
         {
-            object[] parameters = { new { Desc = desctiption, Login = studentLogin, Date = termin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.DeleteTask, parameters);
-            }
+            executeSQL(Constants.DeleteTask, new[] { new { Desc = desctiption, Login = studentLogin, Date = termin } });
         }
-        public static void insertStudent(string name, string surname, int age, string login, string password, string groupName)
+        public static void insertStudent(string Name, string Surname, int Age, string Login, string Password, string groupName)
         {
-            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password, Group = groupName } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.InsertStudent, parameters);
-            }
+            executeSQL(Constants.InsertStudent, new[] { new { Name, Surname, Age, Login, Password, Group = groupName } });
         }
-        public static void updateStudent(string name, string surname, int age, string login, string password, string groupName, string srcLogin)
+        public static void updateStudent(string Name, string Surname, int Age, string Login, string Password, string groupName, string srcLogin)
         {
-            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password, Group = groupName, Src = srcLogin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.UpdateStudent, parameters);
-            }
+            executeSQL(Constants.UpdateStudent, new[] { new { Name, Surname, Age, Login, Password, Group = groupName, Src = srcLogin } });
         }
         public static void deleteStudent(string srcLogin)
         {
-            object[] parameters = { new {Src = srcLogin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.DeleteStudent, parameters);
-            }
+            executeSQL(Constants.DeleteStudent, new[] { new { Src = srcLogin } });
         }
-        public static void insertTeacher(string name, string surname, int age, string login, string password)
+        public static void insertTeacher(string Name, string Surname, int Age, string Login, string Password)
         {
-            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.InsertTeacher, parameters);
-            }
+            executeSQL(Constants.InsertTeacher, new[] { new { Name, Surname, Age, Login, Password } });
         }
-        public static void updateTeacher(string name, string surname, int age, string login, string password, string srcLogin)
+        public static void updateTeacher(string Name, string Surname, int Age, string Login, string Password, string srcLogin)
         {
-            object[] parameters = { new { Name = name, Surname = surname, Age = age, Login = login, Password = password, Src = srcLogin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.UpdateTeacher, parameters);
-            }
+            executeSQL(Constants.UpdateTeacher, new[] { new { Name, Surname, Age, Login, Password, Src = srcLogin } });
         }
         public static void deleteTeacher(string srcLogin)
         {
-            object[] parameters = { new { Src = srcLogin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.DeleteTeacher, parameters);
-            }
+            executeSQL(Constants.DeleteTeacher, new[] { new { Src = srcLogin } });
         }
-        public static void insertSchedule(DateTime date, string @class, string teacherLogin, string groupName, string lesson)
+        public static void insertSchedule(DateTime Date, string Class, string teacherLogin, string groupName, string Lesson)
         {
-            object[] parameters = { new { Date = date, Class = @class, Teacher = teacherLogin, Group = groupName, Lesson = lesson } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.InsertSchedule, parameters);
-            }
+            executeSQL(Constants.InsertSchedule, new[] { new { Date, Class, Teacher = teacherLogin, Group = groupName, Lesson } });
         }
-        public static void updateSchedule(DateTime date, string @class, string teacherLogin, string groupName, string lesson, int id)
+        public static void updateSchedule(DateTime Date, string Class, string teacherLogin, string groupName, string Lesson, int Id)
         {
-            object[] parameters = { new { Date = date, Class = @class, Teacher = teacherLogin, Group = groupName, Lesson = lesson, Id = id } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.UpdateSchedule, parameters);
-            }
+            executeSQL(Constants.UpdateSchedule, new[] { new { Date, Class, Teacher = teacherLogin, Group = groupName, Lesson, Id } });
         }
-        public static void deleteSchedule(int id)
+        public static void deleteSchedule(int Id)
         {
-            object[] parameters = { new { Id = id } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.DeleteSchedule, parameters);
-            }
+            executeSQL(Constants.DeleteSchedule, new[]{ new { Id } });
         }
         public static void deleteGrade(Grade gr)
         {
-            object[] parameters = { new { Date = gr.Date.ToDateTime(TimeOnly.MinValue), Type = gr.WorkType, Grade = gr.GradeNumber, Lesson = gr.Lesson,Login = gr.StudentLogin } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.DeleteGrade, parameters);
-            }
+            executeSQL(Constants.DeleteGrade, new[] { new { Date = gr.Date.ToDateTime(TimeOnly.MinValue), Type = gr.WorkType, Grade = gr.GradeNumber, Lesson = gr.Lesson, Login = gr.StudentLogin } });
         }
-        public static void insertLesson(string lesson)
+        public static void insertLesson(string Lesson)
         {
-            object[] parameters = { new { Lesson = lesson } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.InsertLesson, parameters);
-            }
+            executeSQL(Constants.InsertLesson, new[] { new { Lesson } });
         }
-        public static void updateLesson(string lesson,string oldName)
+        public static void updateLesson(string Lesson,string oldName)
         {
-            object[] parameters = { new { Lesson = lesson, Name = oldName } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.UpdateLesson, parameters);
-            }
+            executeSQL(Constants.UpdateLesson, new[] { new { Lesson, Name = oldName } });
         }
-        public static void deleteLesson(string lesson)
+        public static void deleteLesson(string Lesson)
         {
-            object[] parameters = { new { Lesson = lesson } };
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(Constants.DeleteLesson, parameters);
-            }
+            executeSQL(Constants.DeleteLesson, new[] { new { Lesson } });
+        }
+        public static void insertGroup(string Name, int Year)
+        {
+            executeSQL(Constants.InsertGroup, new[] { new { Name, Year } });
+        }
+        public static void updateGroup(string newName, int Year, string oldName)
+        {
+            executeSQL(Constants.UpdateGroup, new[] { new { newName, Year, Name = oldName } });
+        }
+        public static void deleteGroup(string Name)
+        {
+            executeSQL(Constants.DeleteGroup, new[] { new { Name } }) ;
         }
     }
 }

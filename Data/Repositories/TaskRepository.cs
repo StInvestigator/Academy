@@ -2,16 +2,11 @@
 using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
-using Academy.Presentation.Pages.Student;
-using Academy.Presentation.Pages.Teacher;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 namespace Academy.Data.Repositories
 {
-    public  class TaskRepository : ITaskRepository
+    public  class TaskRepository : IRepository<Task>
     {
         List<TaskModel> _tasks;
         public TaskRepository()

@@ -4,14 +4,10 @@ using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Academy.Data.Repositories
 {
-    public class ScheduleRepository : IScheduleRepository
+    public class ScheduleRepository : IRepository<Schedule>
     {
         List<ScheduleModel> _schedules;
         public ScheduleRepository()

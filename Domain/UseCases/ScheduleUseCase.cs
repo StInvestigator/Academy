@@ -1,13 +1,8 @@
-﻿using Academy.Data.Repositories;
-using Academy.Data.Repositories.DataBase;
+﻿using Academy.Data.Repositories.DataBase;
 using Academy.Domain.Entities;
 using Academy.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Academy.Domain.UseCases
 {
@@ -18,7 +13,7 @@ namespace Academy.Domain.UseCases
         {
             schedules = new List<Schedule>();
         }
-        public void GetAllSchedulesFromModel(IScheduleRepository scheduleRepository)
+        public void GetAllSchedulesFromModel(IRepository<Schedule> scheduleRepository)
         {
             schedules = scheduleRepository.GetAll();
         }

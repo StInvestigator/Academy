@@ -1,8 +1,4 @@
-﻿
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
-namespace Academy.Domain.Entities
+﻿namespace Academy.Domain.Entities
 {
     public class User
     {

@@ -24,8 +24,8 @@ namespace Academy.Presentation.Pages.Admin
     public partial class EditLesson : UserControl
     {
         Frame MainFrame;
-        Lesson lesson;
-        public EditLesson(Frame MainFrame,Lesson lesson = null)
+        Lesson? lesson;
+        public EditLesson(Frame MainFrame,Lesson? lesson = null)
         {
             InitializeComponent();
 

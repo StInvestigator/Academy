@@ -26,9 +26,9 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
     public partial class EditSchedule : UserControl
     {
         int id;
-        Domain.Entities.Schedule schedule;
+        Domain.Entities.Schedule? schedule;
         Frame MainFrame;
-        public EditSchedule(Frame MainFrame, Domain.Entities.Schedule schedule = null, int Id = 0)
+        public EditSchedule(Frame MainFrame, Domain.Entities.Schedule? schedule = null, int Id = 0)
         {
             InitializeComponent();
 

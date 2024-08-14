@@ -33,7 +33,6 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
             scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
             if (scheduleUseCase.schedules.Count > 0)
             {
-                scheduleUseCase.schedules = scheduleUseCase.schedules.OrderBy(x => x.TimeOnly).ToList().OrderBy(x => x.DateOnly).ToList();
                 LVSchedule.ItemsSource = scheduleUseCase.schedules;
             }
             this.MainFrame = MainFrame;
