@@ -26,7 +26,7 @@ namespace Academy.Domain.Entities
             this.type = type;
             this.lesson = lesson;
             this.termin = termin;
-            this.StudentLogin = studentLogin;
+            this.studentLogin = studentLogin;
             this.isDone = isDone;
         }
         public event PropertyChangedEventHandler? PropertyChanged;

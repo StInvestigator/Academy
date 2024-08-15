@@ -74,8 +74,8 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
                 TBClass.Text = schedule.Class;
                 CBGroup.Text = schedule.GroupName;
                 CBLesson.Text = schedule.Lesson;
-                DPdate.Text = schedule.DateOnly.ToString();
-                TPtime.Text = schedule.TimeOnly.ToString();
+                DPdate.Text = schedule.Date.ToString();
+                TPtime.Text = TimeOnly.FromDateTime(schedule.Date).ToString();
                 TPtime.BorderBrush = new SolidColorBrush(Colors.White);
                 CBLogin.BorderBrush = new SolidColorBrush(Colors.White);
                 CBGroup.BorderBrush = new SolidColorBrush(Colors.White);

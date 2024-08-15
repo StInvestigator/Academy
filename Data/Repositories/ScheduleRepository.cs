@@ -25,8 +25,7 @@ namespace Academy.Data.Repositories
             foreach (var item in _schedules)
             {
                 schedules.Add(new Schedule(
-                    item.dateOnly ?? DateOnly.FromDateTime(DateTime.Now),
-                    item.timeOnly ?? TimeOnly.FromDateTime(DateTime.Now),
+                    item.Date ?? DateTime.Now,
                     item.TeacherName ?? "TeacherName",
                     item.TeacherSurname ?? "TeacherSurname",
                     item.GroupName ?? "Group1",

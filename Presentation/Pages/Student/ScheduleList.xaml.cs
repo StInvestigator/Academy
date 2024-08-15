@@ -33,7 +33,7 @@ namespace Academy.Presentation.Pages.Student
             scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
             if (scheduleUseCase.schedules.Count > 0)
             {
-                scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.DateOnly >= DateOnly.FromDateTime(DateTime.Now));
+                scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.Date >= DateTime.Now);
                 LVSchedule.ItemsSource = scheduleUseCase.schedules;
             }
         }

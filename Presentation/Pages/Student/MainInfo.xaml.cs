@@ -44,7 +44,7 @@ namespace Academy.Presentation.Pages.Student
             scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
             if (scheduleUseCase.schedules.Count > 0)
             {
-                scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.DateOnly == DateOnly.FromDateTime(DateTime.Now.AddDays(1))).ToList();
+                scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.Date == DateTime.Now.AddDays(1)).ToList();
                 scheduleUseCase.schedules = scheduleUseCase.schedules.GetRange(0, scheduleUseCase.schedules.Count > 4 ? 4 : scheduleUseCase.schedules.Count);
                 LVSchedule.ItemsSource = scheduleUseCase.schedules;
             }
