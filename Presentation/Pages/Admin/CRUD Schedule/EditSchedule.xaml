@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Academy.Presentation.Pages.Admin.CRUD_Schedule"
              mc:Ignorable="d" 
-             d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014">
+             d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="113*"/>
@@ -22,15 +22,18 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Teacher`s Login" HorizontalAlignment="Right" Foreground="#fcf5e5"  Grid.Row="0" Margin="0,40,0,136" Grid.RowSpan="2"/>
-        <TextBox Grid.Row="0" Grid.Column="1" FontSize="65" Height="90" 
-VerticalAlignment="Bottom" Margin="50,0,0,136" TextChanged="TextBox_LoginChanged" Name="TBLogin" Foreground="#fcf5e5" BorderBrush="Red" Grid.RowSpan="2"/>
+        <ComboBox IsTextSearchEnabled="false" IsEditable="True" PreviewKeyDown="CBLogin_KeyDown"
+                  Grid.Row="0" Grid.Column="1" FontSize="65" Height="90" 
+                  VerticalAlignment="Bottom" Margin="50,0,0,136" SelectionChanged="CBLogin_SelectionChanged" PreviewTextInput="CBLogin_PreviewTextInput" Name="CBLogin" Foreground="#fcf5e5" BorderBrush="Red" Grid.RowSpan="2"/>
 
         <Label Content="Lesson" HorizontalAlignment="Right" Foreground="#fcf5e5"  Grid.Row="1" Margin="0,40,0,136" Grid.RowSpan="2"/>
         <ComboBox Grid.Row="1" Grid.Column="1" FontSize="65" Height="90" 
         VerticalAlignment="Bottom" Margin="50,0,0,136" SelectionChanged="CBLesson_SelectionChanged" Name="CBLesson" Foreground="#fcf5e5" BorderBrush="Red" Grid.RowSpan="2"/>
 
         <Label Content="Group" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0,40,0,136" Grid.RowSpan="2"/>
-        <ComboBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="CBGroup" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" SelectionChanged="CBGroup_SelectionChanged"/>
+        <ComboBox IsTextSearchEnabled="false" IsEditable="True" PreviewKeyDown="CBGroup_KeyDown"
+                  Grid.Row="2" Grid.Column="1" FontSize="65" Name="CBGroup" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" 
+                  SelectionChanged="CBGroup_SelectionChanged" PreviewTextInput="CBGroup_PreviewTextInput"/>
 
         <Label Content="Class" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="1" Grid.Column="2" Margin="0,40,0,136" Grid.RowSpan="2"/>
         <TextBox  Grid.Row="2" Grid.Column="2" FontSize="65" Name="TBClass" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TBClass_TextChanged" Margin="63,40,63,0" VerticalAlignment="Top" Height="94"/>

@@ -107,12 +107,25 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                TBName.Text = ""; TBSurname.Text = ""; TBLogin.Text = ""; TBPassword.Text = ""; CBAge.Text = "";
-                CBAge.BorderBrush = new SolidColorBrush(Colors.Red);
             }
             else
             {
                 MessageBox.Show("Not all fields are fillen!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CBAge_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                int num = Convert.ToInt32(CBAge.Text + e.Text);
+                if (num > 100) throw new Exception();
+            }
+            catch
+            {
+                Keyboard.ClearFocus();
+                e.Text.Remove(e.Text.Length - 1);
+                CBAge.BorderBrush = new SolidColorBrush(Colors.Red);
             }
         }
     }

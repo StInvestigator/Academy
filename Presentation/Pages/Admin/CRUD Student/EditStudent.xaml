@@ -33,10 +33,15 @@
         <TextBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="TBLogin" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TextBox_LoginChanged"/>
 
         <Label Content="Age" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="2" Grid.Column="2" Margin="0,40,0,136" Grid.RowSpan="2" Width="88"/>
-        <ComboBox  Grid.Row="3" Grid.Column="2" FontSize="65" Name="CBAge" Foreground="#fcf5e5" BorderBrush="Red" SelectionChanged="CBAge_SelectionChanged" Margin="63,40,63,0" VerticalAlignment="Top" Height="94"/>
+        <ComboBox IsTextSearchEnabled="false" IsEditable="True" 
+                  Grid.Row="3" Grid.Column="2" FontSize="65" Name="CBAge" Foreground="#fcf5e5" BorderBrush="Red" Margin="63,40,63,0" VerticalAlignment="Top" Height="94"
+                  SelectionChanged="CBAge_SelectionChanged" PreviewTextInput="CBAge_PreviewTextInput"/>
 
         <Label Content="Group" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="0" Grid.Column="2" Margin="0,40,0,136" Grid.RowSpan="2" Width="142"/>
-        <ComboBox  Grid.Row="1" Grid.Column="2" FontSize="65" Name="CBGroup" Foreground="#fcf5e5" BorderBrush="Red" SelectionChanged="CBGroup_SelectionChanged" Margin="63,40,63,0" VerticalAlignment="Top" Height="94"/>
+        <ComboBox IsTextSearchEnabled="false" IsEditable="True" 
+            Grid.Row="1" Grid.Column="2" FontSize="65" Foreground="#fcf5e5" BorderBrush="Red" Margin="63,40,63,0" Height="94"
+                  Name="CBGroup"  VerticalAlignment="Top"
+                  SelectionChanged="CBGroup_SelectionChanged" PreviewTextInput="CBGroup_PreviewTextInput" PreviewKeyDown="CBGroup_PreviewKeyDown"/>
 
         <Label Content="Password" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="3" Margin="0,40,0,196" Grid.RowSpan="2" Width="203"/>
         <TextBox  Grid.Row="3" Grid.Column="1" FontSize="65" Name="TBPassword" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TBPassword_TextChanged"/>

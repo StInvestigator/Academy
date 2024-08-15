@@ -7,14 +7,5 @@ namespace Academy.Domain.Entities
     {
         public Teacher(string login, string password, string name, string surname, int age) : base(name, surname, age, login, password)
         { }
-        public void markTheStudent(Student student)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void setGrade(Student student, Grade grade)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

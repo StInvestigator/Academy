@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,7 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
     {
         Domain.Entities.Student? student;
         Frame frame;
+        GroupUseCase groupUseCase;
         public EditStudent(Frame MainFrame, Domain.Entities.Student? student = null)
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
             }
 
             GroupRepository groupRepository = new GroupRepository();
-            GroupUseCase groupUseCase = new GroupUseCase();
+            groupUseCase = new GroupUseCase();
             groupUseCase.GetAllGroupsFromModel(groupRepository);
 
             foreach (var item in groupUseCase.groups)
@@ -108,7 +110,6 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
             {
                 try
                 {
-
                     StudentUseCase studentUseCase = new StudentUseCase();
                     if (student == null)
                     {
@@ -128,6 +129,61 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
             else
             {
                 MessageBox.Show("Not all fields are fillen!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CBGroup_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            string text = (CBGroup.Text + e.Text).ToLower();
+            CBGroup.Items.Clear();
+            foreach (var item in groupUseCase.groups)
+            {
+                if (item.Name.ToLower().Contains(text))
+                {
+                    CBGroup.Items.Add(item.Name);
+                }
+            }
+            CBGroup.IsDropDownOpen = true;
+            CBGroup.BorderBrush = new SolidColorBrush(Colors.Red);
+        }
+
+        private void CBAge_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                CBAge.BorderBrush = new SolidColorBrush(Colors.Red);
+                int num = Convert.ToInt32(CBAge.Text + e.Text);
+                CBAge.BorderBrush = new SolidColorBrush(Colors.White);
+                if (num > 100)
+                {
+                    CBAge.Text = "100";
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                Keyboard.ClearFocus();
+            }
+        }
+
+        private void CBGroup_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+                if (CBGroup.Text.Length != 0)
+                {
+                    string text = CBGroup.Text.Remove(CBGroup.Text.Length - 1).ToLower();
+                    CBGroup.Items.Clear();
+                    foreach (var item in groupUseCase.groups)
+                    {
+                        if (item.Name.ToLower().Contains(text))
+                        {
+                            CBGroup.Items.Add(item.Name);
+                        }
+                    }
+                    CBGroup.IsDropDownOpen = true;
+                    CBGroup.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
             }
         }
     }

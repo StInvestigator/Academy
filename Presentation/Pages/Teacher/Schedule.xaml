@@ -31,7 +31,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Height="100" Width="210" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                                 <Label Height="100" Width="230" Content="{Binding TimeOnly}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
-                                <Label Height="100" Width="230" Content="{Binding DateOnly}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <TextBlock Height="100" Width="230" Text="{Binding DateOnly,StringFormat={}{0:dd.MM.yyyy}}" Foreground="#fcf5e5" FontSize="50" TextAlignment="Center"/>
                                 <Label Height="100" Width="230" Content="{Binding Class}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                                 <Label Height="100" Width="374" Content="{Binding GroupName}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                             </StackPanel>

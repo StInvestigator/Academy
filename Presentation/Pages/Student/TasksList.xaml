@@ -40,7 +40,7 @@
                                 <Label Height="100" Width="207" Content="{Binding Type}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                                 <Label Height="100" Width="220" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                                 <TextBox Height="100" Width="592" Text="{Binding Description}" Foreground="#fcf5e5" FontSize="50" Margin="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
-                                <Label Height="100" Width="256" Content="{Binding Termin}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <TextBlock Height="100" Width="256" Text="{Binding Termin,StringFormat={}{0:dd.MM.yyyy}}" Foreground="#fcf5e5" FontSize="50" TextAlignment="Center"/>
                             </StackPanel>
                             <Line X1='0' X2='1284'
                                  Y1='0'  Y2='0'

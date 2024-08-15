@@ -22,9 +22,20 @@ namespace Academy.Presentation.Pages.Teacher
     /// </summary>
     public partial class AddGrade : UserControl
     {
+
+        StudentUseCase studentUseCase;
         public AddGrade()
         {
             InitializeComponent();
+
+            StudentRepository studentRepository = new StudentRepository();
+            studentUseCase = new StudentUseCase();
+            studentUseCase.GetAllStudentsFromModel(studentRepository);
+
+            foreach (var item in studentUseCase.students)
+            {
+                CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
+            }
 
             LessonRepository lessonRepository = new LessonRepository();
             LessonUseCase lessonUseCase = new LessonUseCase();
@@ -36,11 +47,6 @@ namespace Academy.Presentation.Pages.Teacher
             }
         }
 
-        private void TextBox_LoginChanged(object sender, TextChangedEventArgs e)
-        {
-            Validation(TBLogin);
-        }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -48,21 +54,17 @@ namespace Academy.Presentation.Pages.Teacher
             GradeUseCase gradeUseCase = new GradeUseCase();
             gradeUseCase.GetAllGradesFromModel(gradeRepository);
 
-            if (CBGrade.Text != "" && CBLesson.Text != "" && TBLogin.Text.Trim() != "" && CBWorkType.Text != "")
+            if (CBGrade.Text != "" && CBLesson.Text != "" && CBLogin.Text != "" && CBWorkType.Text != "")
             {
                 try
                 {
-                    gradeUseCase.AddGrade(DateTime.Now, CBWorkType.Text, Convert.ToInt32(CBGrade.Text), CBLesson.Text, TBLogin.Text);
+                    gradeUseCase.AddGrade(DateTime.Now, CBWorkType.Text, Convert.ToInt32(CBGrade.Text), CBLesson.Text, CBLogin.Text.Split("(")[1].Remove(CBLogin.Text.Split("(")[1].Length-1));
                     MessageBox.Show("Success!", "Evaluation done", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch
                 {
                     MessageBox.Show("Wrong data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                CBGrade.Text = ""; CBLesson.Text = ""; TBLogin.Text = ""; CBWorkType.Text = "";
-                CBWorkType.BorderBrush = new SolidColorBrush(Colors.Red);
-                CBGrade.BorderBrush = new SolidColorBrush(Colors.Red);
-                CBLesson.BorderBrush = new SolidColorBrush(Colors.Red);
             }
             else
             {
@@ -95,6 +97,47 @@ namespace Academy.Presentation.Pages.Teacher
         private void CBLesson_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CBLesson.BorderBrush = new SolidColorBrush(Colors.White);
+        }
+
+        private void CBLogin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CBLogin.BorderBrush = new SolidColorBrush(Colors.White);
+        }
+
+        private void CBLogin_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            string text = (CBLogin.Text + e.Text).ToLower();
+            CBLogin.Items.Clear();
+            foreach (var item in studentUseCase.students)
+            {
+                if ($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})".ToLower().Contains(text))
+                {
+                    CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
+                }
+            }
+            CBLogin.IsDropDownOpen = true;
+            CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
+        }
+
+        private void CBLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+                if (CBLogin.Text.Length != 0)
+                {
+                    string text = CBLogin.Text.Remove(CBLogin.Text.Length - 1).ToLower();
+                    CBLogin.Items.Clear();
+                    foreach (var item in studentUseCase.students)
+                    {
+                        if ($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})".ToLower().Contains(text))
+                        {
+                            CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
+                        }
+                    }
+                    CBLogin.IsDropDownOpen = true;
+                    CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+            }
         }
     }
 }

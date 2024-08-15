@@ -23,8 +23,10 @@
         <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#fcf5e5" Width="211" Height="146" Grid.RowSpan="2" Grid.Column="1" Margin="157,0,0,0"/>
 
         <Label Content="Student Login" HorizontalAlignment="Right" Foreground="#fcf5e5"  Grid.Row="1" Margin="0 50 0 0"/>
-        <TextBox Grid.Row="1" Grid.Column="1" FontSize="65" Height="90" 
-             VerticalAlignment="Bottom" Margin="50 0 0 0" TextChanged="TextBox_LoginChanged" Name="TBLogin" Foreground="#fcf5e5" BorderBrush="Red"/>
+        <ComboBox IsTextSearchEnabled="false" IsEditable="True" PreviewKeyDown="CBLogin_KeyDown" 
+            Grid.Row="1" Grid.Column="1" FontSize="65" Height="90" 
+            VerticalAlignment="Bottom" Margin="50 0 0 0" Name="CBLogin" Foreground="#fcf5e5" BorderBrush="Red"
+            SelectionChanged="CBLogin_SelectionChanged" PreviewTextInput="CBLogin_PreviewTextInput"/>
 
         <Label Content="Lesson" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 50 0 0"/>
         <ComboBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="CBLesson" Margin="50,50,326,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" Grid.ColumnSpan="2" BorderBrush="Red" SelectionChanged="CBLesson_SelectionChanged"/>
@@ -39,8 +41,6 @@
                 Content="LB" />
             <ComboBoxItem
                 Content="EX" />
-            <ComboBoxItem
-                Content="FI" />
         </ComboBox>
 
         <Label Content="Grade" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="3" Margin="0 50 0 0"/>
