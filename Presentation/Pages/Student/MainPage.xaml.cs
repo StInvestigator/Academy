@@ -1,7 +1,5 @@
-﻿
-using Academy.Domain.Entities;
+﻿using Academy.Domain.Entities;
 using Academy.Domain.Navigation;
-using Academy.Domain.UseCases;
 using System;
 using System.Collections.Generic;
 using System.Linq;

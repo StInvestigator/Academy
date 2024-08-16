@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.UseCases;
-using Academy.Presentation.Pages.Admin.CRUD_Student;
+﻿using Academy.Presentation.Pages.Admin.CRUD_Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,15 +90,15 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
                 try
                 {
 
-                    TeacherUseCase teacherUseCase = new TeacherUseCase();
-                    if (teacher == null)
-                    {
-                        teacherUseCase.AddTeacher(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text);
-                    }
-                    else
-                    {
-                        teacherUseCase.UpdateTeacher(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text, teacher.Login);
-                    }
+                    //TeacherUseCase teacherUseCase = new TeacherUseCase();
+                    //if (teacher == null)
+                    //{
+                    //    teacherUseCase.AddTeacher(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text);
+                    //}
+                    //else
+                    //{
+                    //    teacherUseCase.UpdateTeacher(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text, teacher.Login);
+                    //}
                     frame.Content = new TeachersList(frame);
                 }
                 catch (Exception ex)

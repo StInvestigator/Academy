@@ -10,26 +10,16 @@ namespace Academy.Domain.Entities
     public class Schedule : INotifyPropertyChanged
     {
         DateTime date;
-        string teacherName;
-        string teacherSurname;
-        string groupName;
+        Teacher teacher;
+        Group group;
         string @class;
-        string lesson;
+        Lesson lesson;
         public DateTime Date { get => date; set { date = value; NotifyPropertyChanged("Date"); } }
-        public string TeacherName { get => teacherName; set { teacherName = value; NotifyPropertyChanged("TeacherName"); } }
-        public string TeacherSurname { get => teacherSurname; set { teacherSurname = value; NotifyPropertyChanged("TeacherSurname"); } }
-        public string GroupName { get => groupName; set { groupName = value; NotifyPropertyChanged("GroupName"); } }
+        public Teacher Teacher { get => teacher; set { teacher = value; NotifyPropertyChanged("Teacher"); } }
+        public Group Group { get => group; set { group = value; NotifyPropertyChanged("Group"); } }
         public string Class { get => @class; set { @class = value; NotifyPropertyChanged("Class"); } }
-        public string Lesson { get => lesson; set { lesson = value; NotifyPropertyChanged("Lesson"); } }
-        public Schedule(DateTime dateOnly, string teacherName, string teacherSurname, string groupName, string @class, string lesson)
-        {
-            this.date = dateOnly;
-            this.teacherName = teacherName;
-            this.teacherSurname = teacherSurname;
-            this.groupName = groupName;
-            this.@class = @class;
-            this.lesson = lesson;
-        }
+        public Lesson Lesson { get => lesson; set { lesson = value; NotifyPropertyChanged("Lesson"); } }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName = "")
         {

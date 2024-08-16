@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.Entities;
-using Academy.Domain.UseCases;
+﻿using Academy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,14 +28,14 @@ namespace Academy.Presentation.Pages.Admin
 
             this.MainFrame = MainFrame;
 
-            LessonRepository lessonRepository = new LessonRepository();
-            LessonUseCase lessonUseCase = new LessonUseCase();
-            lessonUseCase.GetAllLessonsFromModel(lessonRepository);
+            //LessonRepository lessonRepository = new LessonRepository();
+            //LessonUseCase lessonUseCase = new LessonUseCase();
+            //lessonUseCase.GetAllLessonsFromModel(lessonRepository);
 
-            if(lessonUseCase.lessons.Count > 0 )
-            {
-                LVLessons.ItemsSource = lessonUseCase.lessons;
-            }
+            //if(lessonUseCase.lessons.Count > 0 )
+            //{
+            //    LVLessons.ItemsSource = lessonUseCase.lessons;
+            //}
         }
 
         private void BAddClick(object sender, RoutedEventArgs e)
@@ -57,8 +55,8 @@ namespace Academy.Presentation.Pages.Admin
         {
             if (LVLessons.SelectedIndex != -1)
             {
-                LessonUseCase lessonUseCase = new LessonUseCase();
-                lessonUseCase.DeleteLesson((LVLessons.SelectedItem as Lesson).Name);
+                //LessonUseCase lessonUseCase = new LessonUseCase();
+                //lessonUseCase.DeleteLesson((LVLessons.SelectedItem as Lesson).Name);
 
                 MainFrame.Content = new LessonsList(MainFrame);
             }

@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.UseCases;
-using Academy.Presentation.Pages.Admin.CRUD_Student;
+﻿using Academy.Presentation.Pages.Admin.CRUD_Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +28,10 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
 
             this.MainFrame = MainFrame;
 
-            GroupUseCase groupUseCase = new GroupUseCase();
-            GroupRepository groupRepository = new GroupRepository();
-            groupUseCase.GetAllGroupsFromModel(groupRepository);
-            LVTeachers.ItemsSource = groupUseCase.groups.OrderBy(x => x.Name).ToList();
+            //GroupUseCase groupUseCase = new GroupUseCase();
+            //GroupRepository groupRepository = new GroupRepository();
+            //groupUseCase.GetAllGroupsFromModel(groupRepository);
+            //LVTeachers.ItemsSource = groupUseCase.groups.OrderBy(x => x.Name).ToList();
         }
         private void BAddClick(object sender, RoutedEventArgs e)
         {
@@ -52,8 +50,8 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
         {
             if (LVTeachers.SelectedIndex != -1)
             {
-                GroupUseCase groupUseCase = new GroupUseCase();
-                groupUseCase.DeleteGroup((LVTeachers.SelectedItem as Domain.Entities.Group).Name);
+                //GroupUseCase groupUseCase = new GroupUseCase();
+                //groupUseCase.DeleteGroup((LVTeachers.SelectedItem as Domain.Entities.Group).Name);
                 MainFrame.Content = new GroupsList(MainFrame);
             }
         }

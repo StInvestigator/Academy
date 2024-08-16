@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.UseCases;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,22 +26,22 @@ namespace Academy.Presentation.Pages.Admin
             InitializeComponent();
             this.MainFrame = MainFrame;
 
-            TaskRepository taskRepository = new TaskRepository();
-            TaskUseCase taskUseCase = new TaskUseCase();
-            taskUseCase.GetAllTasksFromModel(taskRepository);
+            //TaskRepository taskRepository = new TaskRepository();
+            //TaskUseCase taskUseCase = new TaskUseCase();
+            //taskUseCase.GetAllTasksFromModel(taskRepository);
 
-            if (taskUseCase.tasks.Count > 0)
-            {
-                LVTasks.ItemsSource = taskUseCase.tasks.OrderBy(x => x.termin).ToList();
-            }
+            //if (taskUseCase.tasks.Count > 0)
+            //{
+            //    LVTasks.ItemsSource = taskUseCase.tasks.OrderBy(x => x.termin).ToList();
+            //}
         }
 
         private void BDeleteClick(object sender, RoutedEventArgs e)
         {
             if (LVTasks.SelectedIndex != -1)
             {
-                TaskUseCase taskUseCase = new TaskUseCase();
-                taskUseCase.DeleteTask(LVTasks.SelectedItem as Domain.Entities.Task);
+                //TaskUseCase taskUseCase = new TaskUseCase();
+                //taskUseCase.DeleteTask(LVTasks.SelectedItem as Domain.Entities.Task);
 
                 MainFrame.Content = new TasksList(MainFrame);
             }

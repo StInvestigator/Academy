@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.UseCases;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,14 +26,14 @@ namespace Academy.Presentation.Pages.Student
             this.student = student;
             InitializeComponent();
 
-            ScheduleRepository scheduleRepository = new ScheduleRepository();
-            ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-            scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
-            if (scheduleUseCase.schedules.Count > 0)
-            {
-                scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.Date >= DateTime.Now);
-                LVSchedule.ItemsSource = scheduleUseCase.schedules;
-            }
+            //ScheduleRepository scheduleRepository = new ScheduleRepository();
+            //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
+            //scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
+            //if (scheduleUseCase.schedules.Count > 0)
+            //{
+            //    scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.Date >= DateTime.Now);
+            //    LVSchedule.ItemsSource = scheduleUseCase.schedules;
+            //}
         }
     }
 }

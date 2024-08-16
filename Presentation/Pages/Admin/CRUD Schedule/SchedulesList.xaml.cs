@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.UseCases;
-using Academy.Presentation.Pages.Student;
+﻿using Academy.Presentation.Pages.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +26,13 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         {
             InitializeComponent();
 
-            ScheduleRepository scheduleRepository = new ScheduleRepository();
-            ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-            scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
-            if (scheduleUseCase.schedules.Count > 0)
-            {
-                LVSchedule.ItemsSource = scheduleUseCase.schedules;
-            }
+            //ScheduleRepository scheduleRepository = new ScheduleRepository();
+            //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
+            //scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
+            //if (scheduleUseCase.schedules.Count > 0)
+            //{
+            //    LVSchedule.ItemsSource = scheduleUseCase.schedules;
+            //}
             this.MainFrame = MainFrame;
         }
 
@@ -55,8 +53,8 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         {
             if (LVSchedule.SelectedIndex != -1)
             {
-                ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-                scheduleUseCase.DeleteSchedule(LVSchedule.SelectedIndex);
+                //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
+                //scheduleUseCase.DeleteSchedule(LVSchedule.SelectedIndex);
                 MainFrame.Content = new SchedulesList(MainFrame);
             }
         }

@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.UseCases;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,25 +28,25 @@ namespace Academy.Presentation.Pages.Student
             InitializeComponent();
             this.MainFrame = MainFrame;
 
-            TaskRepository taskRepository = new TaskRepository();
-            TaskUseCase taskUseCase = new TaskUseCase();
-            taskUseCase.GetAllTasksFromModel(taskRepository);
+            //TaskRepository taskRepository = new TaskRepository();
+            //TaskUseCase taskUseCase = new TaskUseCase();
+            //taskUseCase.GetAllTasksFromModel(taskRepository);
 
-            if (taskUseCase.tasks.Count > 0)
-            {
-                taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == false)
-                    .OrderBy(x => x.termin).ToList();
-                LVTasks.ItemsSource = taskUseCase.tasks;
-            }
+            //if (taskUseCase.tasks.Count > 0)
+            //{
+            //    taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == false)
+            //        .OrderBy(x => x.termin).ToList();
+            //    LVTasks.ItemsSource = taskUseCase.tasks;
+            //}
         }
 
         private void BDoneClick(object sender, RoutedEventArgs e)
         {
             if (LVTasks.SelectedIndex != -1)
             {
-                TaskUseCase taskUseCase = new TaskUseCase();
-                taskUseCase.MarkAsDone(LVTasks.SelectedItem as Domain.Entities.Task);
-                MainFrame.Content = new TasksList(student,MainFrame);
+                //TaskUseCase taskUseCase = new TaskUseCase();
+                //taskUseCase.MarkAsDone(LVTasks.SelectedItem as Domain.Entities.Task);
+                //MainFrame.Content = new TasksList(student,MainFrame);
             }
 
         }

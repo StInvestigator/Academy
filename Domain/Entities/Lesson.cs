@@ -6,12 +6,10 @@ namespace Academy.Domain.Entities
 {
     public class Lesson : INotifyPropertyChanged
     {
+        int Id { get; set; }
         public string name;
         public string Name { get { return name; } set { name = value; NotifyPropertyChanged("Name"); } }
-        public Lesson(string name)
-        {
-            this.name = name;
-        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName = "")
         {

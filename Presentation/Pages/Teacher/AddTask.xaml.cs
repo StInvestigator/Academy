@@ -1,6 +1,5 @@
-﻿using Academy.Data.Repositories;
+﻿
 using Academy.Domain.Entities;
-using Academy.Domain.UseCases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,33 +23,33 @@ namespace Academy.Presentation.Pages.Teacher
     /// </summary>
     public partial class AddTask : UserControl
     {
-        StudentUseCase studentUseCase;
-        GroupUseCase groupUseCase;
+        //StudentUseCase studentUseCase;
+        //GroupUseCase groupUseCase;
         public AddTask()
         {
             InitializeComponent();
 
-            LessonRepository lessonRepository = new LessonRepository();
-            LessonUseCase lessonUseCase = new LessonUseCase();
-            lessonUseCase.GetAllLessonsFromModel(lessonRepository);
+            //LessonRepository lessonRepository = new LessonRepository();
+            //LessonUseCase lessonUseCase = new LessonUseCase();
+            //lessonUseCase.GetAllLessonsFromModel(lessonRepository);
 
-            foreach (var item in lessonUseCase.lessons)
-            {
-                CBLesson.Items.Add(item.name);
-            }
+            //foreach (var item in lessonUseCase.lessons)
+            //{
+            //    CBLesson.Items.Add(item.name);
+            //}
 
-            StudentRepository studentRepository = new StudentRepository();
-            studentUseCase = new StudentUseCase();
-            studentUseCase.GetAllStudentsFromModel(studentRepository);
+            //StudentRepository studentRepository = new StudentRepository();
+            //studentUseCase = new StudentUseCase();
+            //studentUseCase.GetAllStudentsFromModel(studentRepository);
 
-            GroupRepository groupRepository = new GroupRepository();
-            groupUseCase = new GroupUseCase();
-            groupUseCase.GetAllGroupsFromModel(groupRepository);
+            //GroupRepository groupRepository = new GroupRepository();
+            //groupUseCase = new GroupUseCase();
+            //groupUseCase.GetAllGroupsFromModel(groupRepository);
 
-            foreach (var item in groupUseCase.groups)
-            {
-                CBLogin.Items.Add(item.Name);
-            }
+            //foreach (var item in groupUseCase.groups)
+            //{
+            //    CBLogin.Items.Add(item.Name);
+            //}
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -75,19 +74,19 @@ namespace Academy.Presentation.Pages.Teacher
             {
                 LGL.Content = "Student";
 
-                foreach (var item in studentUseCase.students)
-                {
-                    CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
-                }
+                //foreach (var item in studentUseCase.students)
+                //{
+                //    CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
+                //}
             }
             else
             {
                 LGL.Content = "Group Name";
 
-                foreach (var item in groupUseCase.groups)
-                {
-                    CBLogin.Items.Add(item.Name);
-                }
+                //foreach (var item in groupUseCase.groups)
+                //{
+                //    CBLogin.Items.Add(item.Name);
+                //}
             }
         }
         void Validation(TextBox TB)
@@ -120,9 +119,9 @@ namespace Academy.Presentation.Pages.Teacher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TaskRepository taskRepository = new TaskRepository();
-            TaskUseCase taskUseCase = new TaskUseCase();
-            taskUseCase.GetAllTasksFromModel(taskRepository);
+            //TaskRepository taskRepository = new TaskRepository();
+            //TaskUseCase taskUseCase = new TaskUseCase();
+            //taskUseCase.GetAllTasksFromModel(taskRepository);
 
             if (TBDesc.Text != "" && CBLesson.Text != "" && CBLogin.Text != "" && CBWorkType.Text != "" && DPdate.Text != "")
             {
@@ -130,17 +129,17 @@ namespace Academy.Presentation.Pages.Teacher
                 {
                     if (TBGroupStudent.IsChecked == true)
                     {
-                        taskUseCase.AddTask(TBDesc.Text, CBWorkType.Text, CBLesson.Text, CBLogin.Text.Split("(")[1].Remove(CBLogin.Text.Split("(")[1].Length - 1), DPdate.SelectedDate ?? DateTime.Now);
+                        //taskUseCase.AddTask(TBDesc.Text, CBWorkType.Text, CBLesson.Text, CBLogin.Text.Split("(")[1].Remove(CBLogin.Text.Split("(")[1].Length - 1), DPdate.SelectedDate ?? DateTime.Now);
                     }
                     else
                     {
-                        var students = studentUseCase.students.Where(x => x.GroupName == CBLogin.Text);
-                        if (students.Count() == 0) { throw new Exception(); }
+                        //var students = studentUseCase.students.Where(x => x.GroupName == CBLogin.Text);
+                        //if (students.Count() == 0) { throw new Exception(); }
 
-                        foreach (var item in students)
-                        {
-                            taskUseCase.AddTask(TBDesc.Text, CBWorkType.Text, CBLesson.Text, item.Login, DPdate.SelectedDate ?? DateTime.Now);
-                        }
+                        //foreach (var item in students)
+                        //{
+                        //    taskUseCase.AddTask(TBDesc.Text, CBWorkType.Text, CBLesson.Text, item.Login, DPdate.SelectedDate ?? DateTime.Now);
+                        //}
                     }
                     MessageBox.Show("Success!", "Task was added", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -165,23 +164,23 @@ namespace Academy.Presentation.Pages.Teacher
                     CBLogin.Items.Clear();
                     if (TBGroupStudent.IsChecked == true)
                     {
-                        foreach (var item in studentUseCase.students)
-                        {
-                            if ($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})".ToLower().Contains(text))
-                            {
-                                CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})");
-                            }
-                        }
+                        //foreach (var item in studentUseCase.students)
+                        //{
+                        //    if ($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})".ToLower().Contains(text))
+                        //    {
+                        //        CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})");
+                        //    }
+                        //}
                     }
                     else
                     {
-                        foreach (var item in groupUseCase.groups)
-                        {
-                            if (item.Name.ToLower().Contains(text))
-                            {
-                                CBLogin.Items.Add(item.Name);
-                            }
-                        }
+                        //foreach (var item in groupUseCase.groups)
+                        //{
+                        //    if (item.Name.ToLower().Contains(text))
+                        //    {
+                        //        CBLogin.Items.Add(item.Name);
+                        //    }
+                        //}
                     }
                     CBLogin.IsDropDownOpen = true;
                     CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -201,25 +200,24 @@ namespace Academy.Presentation.Pages.Teacher
 
             if (TBGroupStudent.IsChecked == true)
             {
-                foreach (var item in studentUseCase.students)
-                {
-                    if ($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})".ToLower().Contains(text))
-                    {
-                        CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})");
-                    }
-                }
+                //foreach (var item in studentUseCase.students)
+                //{
+                //    if ($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})".ToLower().Contains(text))
+                //    {
+                //        CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name}  ({item.Login})");
+                //    }
+                //}
             }
 
             else
             {
-
-                foreach (var item in groupUseCase.groups)
-                {
-                    if (item.Name.ToLower().Contains(text))
-                    {
-                        CBLogin.Items.Add(item.Name);
-                    }
-                }
+                //foreach (var item in groupUseCase.groups)
+                //{
+                //    if (item.Name.ToLower().Contains(text))
+                //    {
+                //        CBLogin.Items.Add(item.Name);
+                //    }
+                //}
             }
             CBLogin.IsDropDownOpen = true;
             CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);

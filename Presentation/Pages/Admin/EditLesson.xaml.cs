@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.Entities;
-using Academy.Domain.UseCases;
+﻿using Academy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,22 +52,22 @@ namespace Academy.Presentation.Pages.Admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LessonRepository lessonRepository = new LessonRepository();
-            LessonUseCase lessonUseCase = new LessonUseCase();
-            lessonUseCase.GetAllLessonsFromModel(lessonRepository);
+            //LessonRepository lessonRepository = new LessonRepository();
+            //LessonUseCase lessonUseCase = new LessonUseCase();
+            //lessonUseCase.GetAllLessonsFromModel(lessonRepository);
 
             if (TBLesson.Text != "")
             {
                 try
                 {
-                    if (lesson==null)
-                    {
-                        lessonUseCase.AddLesson(TBLesson.Text);
-                    }
-                    else
-                    {
-                        lessonUseCase.UpdateLesson(TBLesson.Text, lesson.name);
-                    }
+                    //if (lesson==null)
+                    //{
+                    //    lessonUseCase.AddLesson(TBLesson.Text);
+                    //}
+                    //else
+                    //{
+                    //    lessonUseCase.UpdateLesson(TBLesson.Text, lesson.name);
+                    //}
                 }
                 catch
                 {

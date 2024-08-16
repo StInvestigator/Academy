@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.Entities;
-using Academy.Domain.UseCases;
+﻿using Academy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices.ActiveDirectory;
@@ -28,7 +26,7 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
     {
         Domain.Entities.Student? student;
         Frame frame;
-        GroupUseCase groupUseCase;
+        //GroupUseCase groupUseCase;
         public EditStudent(Frame MainFrame, Domain.Entities.Student? student = null)
         {
             InitializeComponent();
@@ -40,14 +38,14 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
                 CBAge.Items.Add(i.ToString());
             }
 
-            GroupRepository groupRepository = new GroupRepository();
-            groupUseCase = new GroupUseCase();
-            groupUseCase.GetAllGroupsFromModel(groupRepository);
+            //GroupRepository groupRepository = new GroupRepository();
+            //groupUseCase = new GroupUseCase();
+            //groupUseCase.GetAllGroupsFromModel(groupRepository);
 
-            foreach (var item in groupUseCase.groups)
-            {
-                CBGroup.Items.Add(item.Name);
-            }
+            //foreach (var item in groupUseCase.groups)
+            //{
+            //    CBGroup.Items.Add(item.Name);
+            //}
 
             this.student = student;
 
@@ -110,15 +108,15 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
             {
                 try
                 {
-                    StudentUseCase studentUseCase = new StudentUseCase();
-                    if (student == null)
-                    {
-                        studentUseCase.AddStudent(TBName.Text, TBSurname.Text,Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text, CBGroup.Text);
-                    }
-                    else
-                    {
-                        studentUseCase.UpdateStudent(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text, CBGroup.Text,student.Login);
-                    }
+                    //StudentUseCase studentUseCase = new StudentUseCase();
+                    //if (student == null)
+                    //{
+                    //    studentUseCase.AddStudent(TBName.Text, TBSurname.Text,Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text, CBGroup.Text);
+                    //}
+                    //else
+                    //{
+                    //    studentUseCase.UpdateStudent(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text, CBGroup.Text,student.Login);
+                    //}
                     frame.Content = new StudentsList(frame);
                 }
                 catch (Exception ex)
@@ -136,13 +134,13 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
         {
             string text = (CBGroup.Text + e.Text).ToLower();
             CBGroup.Items.Clear();
-            foreach (var item in groupUseCase.groups)
-            {
-                if (item.Name.ToLower().Contains(text))
-                {
-                    CBGroup.Items.Add(item.Name);
-                }
-            }
+            //foreach (var item in groupUseCase.groups)
+            //{
+            //    if (item.Name.ToLower().Contains(text))
+            //    {
+            //        CBGroup.Items.Add(item.Name);
+            //    }
+            //}
             CBGroup.IsDropDownOpen = true;
             CBGroup.BorderBrush = new SolidColorBrush(Colors.Red);
         }
@@ -174,13 +172,13 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
                 {
                     string text = CBGroup.Text.Remove(CBGroup.Text.Length - 1).ToLower();
                     CBGroup.Items.Clear();
-                    foreach (var item in groupUseCase.groups)
-                    {
-                        if (item.Name.ToLower().Contains(text))
-                        {
-                            CBGroup.Items.Add(item.Name);
-                        }
-                    }
+                    //foreach (var item in groupUseCase.groups)
+                    //{
+                    //    if (item.Name.ToLower().Contains(text))
+                    //    {
+                    //        CBGroup.Items.Add(item.Name);
+                    //    }
+                    //}
                     CBGroup.IsDropDownOpen = true;
                     CBGroup.BorderBrush = new SolidColorBrush(Colors.Red);
                 }

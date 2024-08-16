@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.UseCases;
-using Academy.Presentation.Pages.Admin.CRUD_Student;
+﻿using Academy.Presentation.Pages.Admin.CRUD_Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +28,10 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
 
             this.MainFrame = MainFrame;
 
-            TeacherUseCase teacherUseCase = new TeacherUseCase();
-            TeacherRepository teacherRepository = new TeacherRepository();
-            teacherUseCase.GetAllTeachersFromModel(teacherRepository);
-            LVTeachers.ItemsSource = teacherUseCase.teachers.OrderBy(x => x.Age).ToList();
+            //TeacherUseCase teacherUseCase = new TeacherUseCase();
+            //TeacherRepository teacherRepository = new TeacherRepository();
+            //teacherUseCase.GetAllTeachersFromModel(teacherRepository);
+            //LVTeachers.ItemsSource = teacherUseCase.teachers.OrderBy(x => x.Age).ToList();
         }
         private void BAddClick(object sender, RoutedEventArgs e)
         {
@@ -52,8 +50,8 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
         {
             if (LVTeachers.SelectedIndex != -1)
             {
-                TeacherUseCase teacherUseCase = new TeacherUseCase();
-                teacherUseCase.DeleteTeacher((LVTeachers.SelectedItem as Domain.Entities.Teacher).Login);
+                //TeacherUseCase teacherUseCase = new TeacherUseCase();
+                //teacherUseCase.DeleteTeacher((LVTeachers.SelectedItem as Domain.Entities.Teacher).Login);
                 MainFrame.Content = new TeachersList(MainFrame);
             }
         }

@@ -1,7 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Data.Repositories.DataBase;
-using Academy.Domain.UseCases;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,15 +26,15 @@ namespace Academy.Presentation.Pages.Student
            this.student = student;
            InitializeComponent();
 
-            GradeRepository gradeRepository = new GradeRepository();
-            GradeUseCase gradeUseCase = new GradeUseCase();
-            gradeUseCase.GetAllGradesFromModel(gradeRepository);
+            //GradeRepository gradeRepository = new GradeRepository();
+            //GradeUseCase gradeUseCase = new GradeUseCase();
+            //gradeUseCase.GetAllGradesFromModel(gradeRepository);
 
-            if (gradeUseCase.grades.Count > 0)
-            {
-                gradeUseCase.grades = gradeUseCase.grades.FindAll(x => x.StudentLogin == student.Login).OrderByDescending(x => x.Date).ToList();
-                LVGrades.ItemsSource = gradeUseCase.grades;
-            }
+            //if (gradeUseCase.grades.Count > 0)
+            //{
+            //    gradeUseCase.grades = gradeUseCase.grades.FindAll(x => x.StudentLogin == student.Login).OrderByDescending(x => x.Date).ToList();
+            //    LVGrades.ItemsSource = gradeUseCase.grades;
+            //}
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Academy.Data.Repositories;
-using Academy.Domain.Entities;
-using Academy.Domain.UseCases;
+﻿using Academy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,22 +59,22 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GroupRepository groupRepository = new GroupRepository();
-            GroupUseCase groupUseCase = new GroupUseCase();
-            groupUseCase.GetAllGroupsFromModel(groupRepository);
+            //GroupRepository groupRepository = new GroupRepository();
+            //GroupUseCase groupUseCase = new GroupUseCase();
+            //groupUseCase.GetAllGroupsFromModel(groupRepository);
 
             if (TBGroup.Text != "")
             {
                 try
                 {
-                    if (group == null)
-                    {
-                        groupUseCase.AddGroup(TBGroup.Text, Convert.ToInt32(CBYear.Text));
-                    }
-                    else
-                    {
-                        groupUseCase.UpdateGroup(TBGroup.Text, Convert.ToInt32(CBYear.Text), group.Name);
-                    }
+                    //if (group == null)
+                    //{
+                    //    groupUseCase.AddGroup(TBGroup.Text, Convert.ToInt32(CBYear.Text));
+                    //}
+                    //else
+                    //{
+                    //    groupUseCase.UpdateGroup(TBGroup.Text, Convert.ToInt32(CBYear.Text), group.Name);
+                    //}
                 }
                 catch
                 {
