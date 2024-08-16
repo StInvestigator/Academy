@@ -6,8 +6,8 @@ namespace Academy.Domain.Entities
 {
     public class Student : INotifyPropertyChanged
     {
-        int Id { get; set; }
-        string groupName;
+        public int Id { get; set; }
+        Group group;
         string name;
         string surname;
         int age;
@@ -37,10 +37,10 @@ namespace Academy.Domain.Entities
         }
         public string Password { get => password; set => password = value; }
 
-        public string GroupName
+        public Group Group
         {
-            get { return groupName; }
-            set { groupName = value; NotifyPropertyChanged("GroupName"); } 
+            get { return group; }
+            set { group = value; NotifyPropertyChanged("Group"); } 
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

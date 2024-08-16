@@ -28,7 +28,7 @@ namespace Academy.Presentation.Pages.Student
             this.student = student;
             InitializeComponent();
             MainFrame.Content = new MainInfo(student);
-            LGroup.Content = student.GroupName;
+            LGroup.Content = student.Group.Name;
             LStudentName.Content = student.Surname + " " + student.Name;
         }
 

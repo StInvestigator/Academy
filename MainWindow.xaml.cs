@@ -1,4 +1,5 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
 using Academy.Domain.Navigation;
 using Academy.Presentation.Pages;
 using System;
@@ -26,6 +27,19 @@ namespace Academy
         public MainWindow()
         {
             InitializeComponent();
+
+            try
+            {
+
+            AcademyContext academyContext = new AcademyContext();
+            academyContext.Database.EnsureCreated();
+
+            MessageBox.Show(academyContext.Groups.Count().ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             NavigatorObject.pageSwitcher = this;
             NavigatorObject.Switch(new Presentation.Pages.Authorization());

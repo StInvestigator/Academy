@@ -7,7 +7,7 @@ namespace Academy.Domain.Entities
 {
     public class Grade : INotifyPropertyChanged
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         DateTime date;
         string workType;
         int gradeNumber;

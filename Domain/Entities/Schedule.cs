@@ -9,6 +9,7 @@ namespace Academy.Domain.Entities
 {
     public class Schedule : INotifyPropertyChanged
     {
+        public int Id { get; set; }
         DateTime date;
         Teacher teacher;
         Group group;

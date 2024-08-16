@@ -9,17 +9,17 @@ namespace Academy.Domain.Entities
 {
     public class Task : INotifyPropertyChanged
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         public string description;
         public string type;
-        public string lesson;
-        public DateOnly termin;
-        public string studentLogin;
+        public Lesson lesson;
+        public DateTime date;
+        public Student student;
         public string Description { get => description; set { description = value; NotifyPropertyChanged("Description"); } }
         public string Type { get => type; set { type = value; NotifyPropertyChanged("Type"); } }
-        public string Lesson { get => lesson; set { lesson = value; NotifyPropertyChanged("Lesson"); } }
-        public DateOnly Termin { get => termin; set { termin = value; NotifyPropertyChanged("Termin"); } }
-        public string StudentLogin { get => studentLogin; set { studentLogin = value; NotifyPropertyChanged("StudentLogin"); } }
+        public Lesson Lesson { get => lesson; set { lesson = value; NotifyPropertyChanged("Lesson"); } }
+        public DateTime Date { get => date; set { date = value; NotifyPropertyChanged("Date"); } }
+        public Student Student { get => student; set { student = value; NotifyPropertyChanged("Student"); } }
         public bool isDone { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;

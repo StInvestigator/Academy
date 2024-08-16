@@ -12,11 +12,9 @@ namespace Academy.Presentation.Pages
     /// </summary>
     public partial class Authorization : UserControl
     {
-        User user;
         public Authorization()
         {
             InitializeComponent();
-            user = new User();
         }
 
         private void TextBox_LoginChanged(object sender, TextChangedEventArgs e)
@@ -41,9 +39,9 @@ namespace Academy.Presentation.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            user.Login = TBLogin.Text.Trim();
-            user.Password = TBPassword.Password.Trim();
-            if (user.Login == Constants.AdminLogin && user.Password == Constants.AdminPassword)
+            string login = TBLogin.Text.Trim();
+            string password = TBPassword.Password.Trim();
+            if (login == Constants.AdminLogin && password == Constants.AdminPassword)
             {
                 NavigatorObject.Switch(new Admin.MainPage());
                 return;
@@ -52,9 +50,9 @@ namespace Academy.Presentation.Pages
             //StudentUseCase studentUseCase = new StudentUseCase();
             //StudentRepository studentRepository = new StudentRepository();
             //studentUseCase.GetAllStudentsFromModel(studentRepository);
-            //if (studentUseCase.students.Contains(studentUseCase.students.Find(x => x.Login == user.Login && x.Password == user.Password)))
+            //if (studentUseCase.students.Contains(studentUseCase.students.Find(x => x.Login == login && x.Password == password)))
             //{
-            //    NavigatorObject.Switch(new Student.MainPage(studentUseCase.students.Find(x => x.Login == user.Login && x.Password == user.Password)));
+            //    NavigatorObject.Switch(new Student.MainPage(studentUseCase.students.Find(x => x.Login == login && x.Password == password)));
             //    return;
             //}
 
@@ -62,9 +60,9 @@ namespace Academy.Presentation.Pages
             //TeacherRepository teacherRepository = new TeacherRepository();
             //teacherUseCase.GetAllTeachersFromModel(teacherRepository);
 
-            //if (teacherUseCase.teachers.Contains(teacherUseCase.teachers.Find(x => x.Login == user.Login && x.Password == user.Password)))
+            //if (teacherUseCase.teachers.Contains(teacherUseCase.teachers.Find(x => x.Login == login && x.Password == password)))
             //{
-            //    NavigatorObject.Switch(new Teacher.MainPage(teacherUseCase.teachers.Find(x => x.Login == user.Login && x.Password == user.Password)));
+            //    NavigatorObject.Switch(new Teacher.MainPage(teacherUseCase.teachers.Find(x => x.Login == login && x.Password == password)));
             //}
         }
 

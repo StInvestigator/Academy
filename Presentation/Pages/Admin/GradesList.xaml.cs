@@ -43,11 +43,15 @@ namespace Academy.Presentation.Pages.Admin
                 Date = DateTime.Now,
                 WorkType = "HT",
                 GradeNumber = 10,
-                Lesson = "Math",
+                Lesson = new Lesson{ Name = "Math" },
                 Student = new Domain.Entities.Student
                 {
                     Age = 14,
-                    GroupName = "B205",
+                    Group = new Group
+                    {
+                        Name = "B205",
+                        Year = 1
+                    },
                     Login = "ultraLogin",
                     Password = "12312",
                     Name = "Name",

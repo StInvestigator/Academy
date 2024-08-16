@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.ComponentModel;
 
 
@@ -6,7 +7,7 @@ namespace Academy.Domain.Entities
 {
     public class Group : INotifyPropertyChanged
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         string name;
         int year;
         public string Name { get => name; set { name = value; NotifyPropertyChanged("Name"); } }

@@ -56,7 +56,7 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
                 TBLogin.Text = student.Login;
                 TBPassword.Text = student.Password;
                 CBAge.Text = student.Age.ToString();
-                CBGroup.Text = student.GroupName;
+                CBGroup.Text = student.Group.Name;
             }
         }
         void Validation(TextBox TB)

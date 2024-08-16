@@ -6,7 +6,7 @@ namespace Academy.Domain.Entities
 {
     public class Teacher : INotifyPropertyChanged
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         string name;
         string surname;
         int age;
