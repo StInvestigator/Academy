@@ -1,4 +1,5 @@
-﻿using Academy.Presentation.Pages.Admin.CRUD_Student;
+﻿using Academy.DataBase;
+using Academy.Presentation.Pages.Admin.CRUD_Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
     /// </summary>
     public partial class GroupsList : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         Frame MainFrame;
         public GroupsList(Frame MainFrame)
         {
@@ -28,10 +30,12 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
 
             this.MainFrame = MainFrame;
 
-            //GroupUseCase groupUseCase = new GroupUseCase();
-            //GroupRepository groupRepository = new GroupRepository();
-            //groupUseCase.GetAllGroupsFromModel(groupRepository);
-            //LVTeachers.ItemsSource = groupUseCase.groups.OrderBy(x => x.Name).ToList();
+            var groups = academyContext.Groups.OrderBy(x => x.Name).ToList();
+            foreach (var item in groups)
+            {
+                item.setStudentsCount();
+            }
+            LVTeachers.ItemsSource = groups;
         }
         private void BAddClick(object sender, RoutedEventArgs e)
         {
@@ -50,8 +54,9 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
         {
             if (LVTeachers.SelectedIndex != -1)
             {
-                //GroupUseCase groupUseCase = new GroupUseCase();
-                //groupUseCase.DeleteGroup((LVTeachers.SelectedItem as Domain.Entities.Group).Name);
+                academyContext.Groups.Remove(LVTeachers.SelectedItem as Domain.Entities.Group);
+                academyContext.SaveChanges();
+
                 MainFrame.Content = new GroupsList(MainFrame);
             }
         }

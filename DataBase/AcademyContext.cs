@@ -13,12 +13,12 @@ namespace Academy.DataBase
     public class AcademyContext : DbContext
     {
         public DbSet<Grade> Grades { get; set; } = null!;
-        public DbSet<Group> Groups { get; set; } = null!;
         public DbSet<Lesson> Lessons { get; set; } = null!;
         public DbSet<Schedule> Schedules { get; set; } = null!;
         public DbSet<Student> Students { get; set; } = null!;
         public DbSet<Domain.Entities.Task> Tasks { get; set; } = null!;
         public DbSet<Teacher> Teachers { get; set; } = null!;
+        public DbSet<Group> Groups { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

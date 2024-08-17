@@ -1,4 +1,5 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
     /// </summary>
     public partial class EditGroup : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         Frame MainFrame;
         Domain.Entities.Group? group;
         public EditGroup(Frame MainFrame, Domain.Entities.Group? group = null)
@@ -57,35 +59,51 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Group
             }
         }
 
+        private bool isNameExists(int id = -1)
+        {
+            if (academyContext.Groups.FirstOrDefault(x => x.Name == TBGroup.Text && x.Id != id) != null)
+            {
+                TBGroup.BorderBrush = new SolidColorBrush(Colors.Red);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBGroup, "This login is already exists");
+                return true;
+            }
+            return false;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //GroupRepository groupRepository = new GroupRepository();
-            //GroupUseCase groupUseCase = new GroupUseCase();
-            //groupUseCase.GetAllGroupsFromModel(groupRepository);
-
-            if (TBGroup.Text != "")
-            {
-                try
-                {
-                    //if (group == null)
-                    //{
-                    //    groupUseCase.AddGroup(TBGroup.Text, Convert.ToInt32(CBYear.Text));
-                    //}
-                    //else
-                    //{
-                    //    groupUseCase.UpdateGroup(TBGroup.Text, Convert.ToInt32(CBYear.Text), group.Name);
-                    //}
-                }
-                catch
-                {
-                    MessageBox.Show("Wrong data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                MainFrame.Content = new GroupsList(MainFrame);
-            }
-            else
+            if (TBGroup.Text == "")
             {
                 MessageBox.Show("Not all fields are fillen!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+            try
+            {
+                if (group == null)
+                {
+                    if (isNameExists()) return;
+
+                    academyContext.Groups.Add(new Domain.Entities.Group { 
+                        Name = TBGroup.Text, 
+                        Year = Convert.ToInt32(CBYear.Text) 
+                    });
+                }
+                else
+                {
+                    if (isNameExists(group.Id)) return;
+
+                    group.Name = TBGroup.Text;
+                    group.Year = Convert.ToInt32(CBYear.Text);
+
+                    academyContext.Groups.Update(group);
+                }
+                academyContext.SaveChanges();
+            }
+            catch
+            {
+                MessageBox.Show("Wrong data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            MainFrame.Content = new GroupsList(MainFrame);
         }
 
         private void CBYear_SelectionChanged(object sender, SelectionChangedEventArgs e)

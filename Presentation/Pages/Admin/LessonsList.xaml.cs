@@ -1,4 +1,5 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Academy.Presentation.Pages.Admin
     /// </summary>
     public partial class LessonsList : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         Frame MainFrame;
         public LessonsList(Frame MainFrame)
         {
@@ -28,14 +30,7 @@ namespace Academy.Presentation.Pages.Admin
 
             this.MainFrame = MainFrame;
 
-            //LessonRepository lessonRepository = new LessonRepository();
-            //LessonUseCase lessonUseCase = new LessonUseCase();
-            //lessonUseCase.GetAllLessonsFromModel(lessonRepository);
-
-            //if(lessonUseCase.lessons.Count > 0 )
-            //{
-            //    LVLessons.ItemsSource = lessonUseCase.lessons;
-            //}
+            LVLessons.ItemsSource = academyContext.Lessons.ToList();
         }
 
         private void BAddClick(object sender, RoutedEventArgs e)
@@ -47,7 +42,7 @@ namespace Academy.Presentation.Pages.Admin
         {
             if (LVLessons.SelectedIndex != -1)
             {
-                MainFrame.Content = new EditLesson(MainFrame,LVLessons.SelectedItem as Lesson);
+                MainFrame.Content = new EditLesson(MainFrame, LVLessons.SelectedItem as Lesson);
             }
         }
 
@@ -55,8 +50,8 @@ namespace Academy.Presentation.Pages.Admin
         {
             if (LVLessons.SelectedIndex != -1)
             {
-                //LessonUseCase lessonUseCase = new LessonUseCase();
-                //lessonUseCase.DeleteLesson((LVLessons.SelectedItem as Lesson).Name);
+                academyContext.Lessons.Remove(LVLessons.SelectedItem as Lesson);
+                academyContext.SaveChanges();
 
                 MainFrame.Content = new LessonsList(MainFrame);
             }

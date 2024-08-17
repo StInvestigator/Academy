@@ -23,7 +23,8 @@
         <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#fcf5e5" Width="211" Height="146" Grid.RowSpan="2" Grid.Column="1" Margin="157,0,0,0"/>
         
         <Label Content="Group Name" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 65 10 0"/>
-        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="70" Name="TBGroup" VerticalAlignment="Bottom" Height="100" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TBGroupName_SelectionChanged" Margin="20 0 0 0"/>
+        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="70" Name="TBGroup" VerticalAlignment="Bottom" Height="100" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TBGroupName_SelectionChanged" Margin="20 0 0 0" materialDesign:HintAssist.HelperText=""
+                 materialDesign:HintAssist.HelperTextFontSize="35"/>
 
         <Label Content="Education Year" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="3" Margin="0 65 10 0"/>
         <ComboBox Grid.Row="3" Grid.Column="1" FontSize="70" Name="CBYear" VerticalAlignment="Bottom" Height="100" Foreground="#fcf5e5" BorderBrush="Red"  Margin="20 0 0 0" SelectionChanged="CBYear_SelectionChanged"/>

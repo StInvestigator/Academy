@@ -1,4 +1,5 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
 using Academy.Presentation.Pages.Admin.CRUD_Student;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
 {
@@ -24,60 +26,43 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
     /// </summary>
     public partial class EditSchedule : UserControl
     {
-        int id;
+        AcademyContext academyContext = new AcademyContext();
         Domain.Entities.Schedule? schedule;
         Frame MainFrame;
-        //GroupUseCase groupUseCase;
-        //TeacherUseCase teacherUseCase;
-        public EditSchedule(Frame MainFrame, Domain.Entities.Schedule? schedule = null, int Id = 0)
+        public EditSchedule(Frame MainFrame, Domain.Entities.Schedule? schedule = null)
         {
             InitializeComponent();
 
             this.MainFrame = MainFrame;
             this.schedule = schedule;
-            id = Id;
 
-            //LessonRepository lessonRepository = new LessonRepository();
-            //LessonUseCase lessonUseCase = new LessonUseCase();
-            //lessonUseCase.GetAllLessonsFromModel(lessonRepository);
+            foreach (var item in academyContext.Lessons)
+            {
+                CBLesson.Items.Add(item.Name);
+            }
 
-            //foreach (var item in lessonUseCase.lessons)
-            //{
-            //    CBLesson.Items.Add(item.name);
-            //}
+            foreach (var item in academyContext.Groups)
+            {
+                CBGroup.Items.Add(item.Name);
+            }
 
-            //GroupRepository groupRepository = new GroupRepository();
-            //groupUseCase = new GroupUseCase();
-            //groupUseCase.GetAllGroupsFromModel(groupRepository);
+            foreach (var teacher in academyContext.Teachers)
+            {
+                CBLogin.Items.Add($"{teacher.Login} ({teacher.Surname})");
+            }
 
-            //foreach (var item in groupUseCase.groups)
-            //{
-            //    CBGroup.Items.Add(item.Name);
-            //}
-
-            //TeacherRepository teacherRepository = new TeacherRepository();
-            //teacherUseCase = new TeacherUseCase();
-            //teacherUseCase.GetAllTeachersFromModel(teacherRepository);
-
-            //foreach (var teacher in teacherUseCase.teachers)
-            //{
-            //    CBLogin.Items.Add($"{teacher.Login} ({teacher.Surname})");
-            //}
-
-            //if (schedule != null)
-            //{
-
-            //    var teacher = teacherUseCase.teachers.Find(x => x.Name == schedule.TeacherName && x.Surname == schedule.TeacherSurname);
-            //    CBLogin.Text = $"{teacher?.Login} ({teacher?.Surname})";
-            //    TBClass.Text = schedule.Class;
-            //    CBGroup.Text = schedule.GroupName;
-            //    CBLesson.Text = schedule.Lesson;
-            //    DPdate.Text = schedule.Date.ToString();
-            //    TPtime.Text = TimeOnly.FromDateTime(schedule.Date).ToString();
-            //    TPtime.BorderBrush = new SolidColorBrush(Colors.White);
-            //    CBLogin.BorderBrush = new SolidColorBrush(Colors.White);
-            //    CBGroup.BorderBrush = new SolidColorBrush(Colors.White);
-            //}
+            if (schedule != null)
+            {
+                CBLogin.Text = $"{schedule.Teacher.Login} ({schedule.Teacher.Surname})";
+                TBClass.Text = schedule.Class;
+                CBGroup.Text = schedule.Group.Name;
+                CBLesson.Text = schedule.Lesson.Name;
+                DPdate.Text = schedule.Date.ToString();
+                TPtime.Text = TimeOnly.FromDateTime(schedule.Date).ToString();
+                TPtime.BorderBrush = new SolidColorBrush(Colors.White);
+                CBLogin.BorderBrush = new SolidColorBrush(Colors.White);
+                CBGroup.BorderBrush = new SolidColorBrush(Colors.White);
+            }
         }
 
         void Validation(TextBox TB)
@@ -136,33 +121,42 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
             }
         }
 
+        Schedule fillTheSchedule(Schedule schedule)
+        {
+            var teacherLogin = CBLogin.Text.Split(" ")[0];
+
+            schedule.Date = DateOnly.FromDateTime(DPdate.SelectedDate ?? DateTime.Now).ToDateTime(TimeOnly.FromDateTime(TPtime.SelectedTime ?? DateTime.Now));
+            schedule.Class = TBClass.Text;
+            schedule.Teacher = academyContext.Teachers.First(x => x.Login == teacherLogin);
+            schedule.Group = academyContext.Groups.First(x => x.Name == CBGroup.Text);
+            schedule.Lesson = academyContext.Lessons.First(x => x.Name == CBLesson.Text);
+
+            return schedule;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (TBClass.Text != "" && CBLogin.Text != "" && CBGroup.Text != "" && CBLesson.Text != "" && DPdate.Text != "" && TPtime.Text != "")
-            {
-                try
-                {
-                    //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-                    //if (schedule == null)
-                    //{
-                    //    scheduleUseCase.AddSchedule(DateOnly.FromDateTime(DPdate.SelectedDate??DateTime.Now).ToDateTime(TimeOnly.FromDateTime(TPtime.SelectedTime??DateTime.Now)), 
-                    //        TBClass.Text, CBLogin.Text.Split(" ")[0], CBGroup.Text, CBLesson.Text);
-                    //}
-                    //else
-                    //{
-                    //    scheduleUseCase.UpdateSchedule(DateOnly.FromDateTime(DPdate.SelectedDate ?? DateTime.Now).ToDateTime(TimeOnly.FromDateTime(TPtime.SelectedTime ?? DateTime.Now)),
-                    //        TBClass.Text, CBLogin.Text.Split(" ")[0], CBGroup.Text, CBLesson.Text, id);
-                    //}
-                    MainFrame.Content = new SchedulesList(MainFrame);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
+            if (TBClass.Text == "" || CBLogin.Text == "" || CBGroup.Text == "" || CBLesson.Text == "" || DPdate.Text == "" || TPtime.Text == "")
             {
                 MessageBox.Show("Not all fields are fillen!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
+                if (schedule == null)
+                {
+                    academyContext.Schedules.Add(fillTheSchedule(new Schedule()));
+                }
+                else
+                {
+                    academyContext.Schedules.Update(fillTheSchedule(schedule));
+                }
+                academyContext.SaveChanges();
+                MainFrame.Content = new SchedulesList(MainFrame);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -170,13 +164,13 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         {
             string text = (CBGroup.Text + e.Text).ToLower();
             CBGroup.Items.Clear();
-            //foreach (var item in groupUseCase.groups)
-            //{
-            //    if (item.Name.ToLower().Contains(text))
-            //    {
-            //        CBGroup.Items.Add(item.Name);
-            //    }
-            //}
+            foreach (var item in academyContext.Groups)
+            {
+                if (item.Name.ToLower().Contains(text))
+                {
+                    CBGroup.Items.Add(item.Name);
+                }
+            }
             CBGroup.IsDropDownOpen = true;
             CBGroup.BorderBrush = new SolidColorBrush(Colors.Red);
         }
@@ -190,13 +184,13 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         {
             string text = (CBLogin.Text + e.Text).ToLower();
             CBLogin.Items.Clear();
-            //foreach (var item in teacherUseCase.teachers)
-            //{
-            //    if ($"{item.Login} ({item.Surname})".ToLower().Contains(text))
-            //    {
-            //        CBLogin.Items.Add($"{item.Login} ({item.Surname})");
-            //    }
-            //}
+            foreach (var item in academyContext.Teachers)
+            {
+                if ($"{item.Login} ({item.Surname})".ToLower().Contains(text))
+                {
+                    CBLogin.Items.Add($"{item.Login} ({item.Surname})");
+                }
+            }
             CBLogin.IsDropDownOpen = true;
             CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
         }
@@ -209,13 +203,13 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
                 {
                     string text = CBLogin.Text.Remove(CBLogin.Text.Length - 1).ToLower();
                     CBLogin.Items.Clear();
-                    //foreach (var item in teacherUseCase.teachers)
-                    //{
-                    //    if ($"{item.Login} ({item.Surname})".ToLower().Contains(text))
-                    //    {
-                    //        CBLogin.Items.Add($"{item.Login} ({item.Surname})");
-                    //    }
-                    //}
+                    foreach (var item in academyContext.Teachers)
+                    {
+                        if ($"{item.Login} ({item.Surname})".ToLower().Contains(text))
+                        {
+                            CBLogin.Items.Add($"{item.Login} ({item.Surname})");
+                        }
+                    }
                     CBLogin.IsDropDownOpen = true;
                     CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
                 }
@@ -226,13 +220,13 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         {
             string text = CBGroup.Text.ToLower();
             CBGroup.Items.Clear();
-            //foreach (var item in groupUseCase.groups)
-            //{
-            //    if (item.Name.ToLower().Contains(text))
-            //    {
-            //        CBGroup.Items.Add(item.Name);
-            //    }
-            //}
+            foreach (var item in academyContext.Groups)
+            {
+                if (item.Name.ToLower().Contains(text))
+                {
+                    CBGroup.Items.Add(item.Name);
+                }
+            }
         }
     }
 }

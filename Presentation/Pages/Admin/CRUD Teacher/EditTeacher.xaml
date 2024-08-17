@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Academy.Presentation.Pages.Admin.CRUD_Teacher"
              mc:Ignorable="d" 
              d:DesignHeight="740" d:DesignWidth="1305" FontSize="65" FontFamily="Gabriola Bold" Background="#101014">
@@ -29,7 +30,8 @@ VerticalAlignment="Bottom" Margin="50,0,0,136" TextChanged="TextBox_NameChanged"
         VerticalAlignment="Bottom" Margin="50,0,0,136" TextChanged="TextBox_SurnameChanged" Name="TBSurname" Foreground="#fcf5e5" BorderBrush="Red" Grid.RowSpan="2"/>
 
         <Label Content="Login" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0,40,0,136" Grid.RowSpan="2" Width="129"/>
-        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="TBLogin" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TextBox_LoginChanged"/>
+        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="TBLogin" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TextBox_LoginChanged" materialDesign:HintAssist.HelperText=""
+                 materialDesign:HintAssist.HelperTextFontSize="35"/>
 
         <Label Content="Age" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="1" Grid.Column="2" Margin="0,40,0,136" Grid.RowSpan="2" Width="88"/>
         <ComboBox IsTextSearchEnabled="false" IsEditable="True" 

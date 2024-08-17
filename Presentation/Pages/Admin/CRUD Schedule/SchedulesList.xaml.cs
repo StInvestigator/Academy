@@ -1,4 +1,7 @@
-﻿using Academy.Presentation.Pages.Student;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
+using Academy.Presentation.Pages.Student;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +24,18 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
     /// </summary>
     public partial class SchedulesList : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         Frame MainFrame;
         public SchedulesList(Frame MainFrame)
         {
             InitializeComponent();
 
-            //ScheduleRepository scheduleRepository = new ScheduleRepository();
-            //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-            //scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
-            //if (scheduleUseCase.schedules.Count > 0)
-            //{
-            //    LVSchedule.ItemsSource = scheduleUseCase.schedules;
-            //}
+            LVSchedule.ItemsSource = academyContext.Schedules
+                .Include(x=>x.Lesson)
+                .Include(x=>x.Group)
+                .Include(x=>x.Teacher)
+                .ToList();
+
             this.MainFrame = MainFrame;
         }
 
@@ -45,7 +48,7 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         {
             if (LVSchedule.SelectedIndex != -1)
             {
-                MainFrame.Content = new EditSchedule(MainFrame,LVSchedule.SelectedItem as Domain.Entities.Schedule, LVSchedule.SelectedIndex);
+                MainFrame.Content = new EditSchedule(MainFrame,LVSchedule.SelectedItem as Domain.Entities.Schedule);
             }
         }
 
@@ -53,8 +56,9 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Schedule
         {
             if (LVSchedule.SelectedIndex != -1)
             {
-                //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-                //scheduleUseCase.DeleteSchedule(LVSchedule.SelectedIndex);
+                academyContext.Schedules.Remove(LVSchedule.SelectedItem as Schedule);
+                academyContext.SaveChanges();
+
                 MainFrame.Content = new SchedulesList(MainFrame);
             }
         }

@@ -23,8 +23,8 @@ namespace Academy.Presentation.Pages.Admin
     /// </summary>
     public partial class GradesList : UserControl
     {
-        Frame MainFrame;
         AcademyContext academyContext = new AcademyContext();
+        Frame MainFrame;
         public GradesList(Frame MainFrame)
         {
             InitializeComponent();

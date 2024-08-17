@@ -30,7 +30,8 @@
            VerticalAlignment="Bottom" Margin="50,0,0,136" TextChanged="TextBox_SurnameChanged" Name="TBSurname" Foreground="#fcf5e5" BorderBrush="Red" Grid.RowSpan="2"/>
 
         <Label Content="Login" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0,40,0,136" Grid.RowSpan="2" Width="129"/>
-        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="TBLogin" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TextBox_LoginChanged"/>
+        <TextBox  Grid.Row="2" Grid.Column="1" FontSize="65" Name="TBLogin" Margin="50,40,0,0" VerticalAlignment="Top" Height="94" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TextBox_LoginChanged" materialDesign:HintAssist.HelperText=""
+                 materialDesign:HintAssist.HelperTextFontSize="35"/>
 
         <Label Content="Age" HorizontalAlignment="Center" Foreground="#fcf5e5" Grid.Row="2" Grid.Column="2" Margin="0,40,0,136" Grid.RowSpan="2" Width="88"/>
         <ComboBox IsTextSearchEnabled="false" IsEditable="True" 

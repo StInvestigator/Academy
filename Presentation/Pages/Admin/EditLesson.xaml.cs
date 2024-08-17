@@ -1,4 +1,5 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,10 @@ namespace Academy.Presentation.Pages.Admin
     /// </summary>
     public partial class EditLesson : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         Frame MainFrame;
         Lesson? lesson;
-        public EditLesson(Frame MainFrame,Lesson? lesson = null)
+        public EditLesson(Frame MainFrame, Lesson? lesson = null)
         {
             InitializeComponent();
 
@@ -39,7 +41,7 @@ namespace Academy.Presentation.Pages.Admin
 
         private void TBLesson_SelectionChanged(object sender, TextChangedEventArgs e)
         {
-            if (TBLesson.Text.Length == 0 || TBLesson.Text.Trim() == "")
+            if (TBLesson.Text.Trim() == "")
             {
                 TBLesson.Text = string.Empty;
                 TBLesson.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -52,28 +54,26 @@ namespace Academy.Presentation.Pages.Admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //LessonRepository lessonRepository = new LessonRepository();
-            //LessonUseCase lessonUseCase = new LessonUseCase();
-            //lessonUseCase.GetAllLessonsFromModel(lessonRepository);
-
             if (TBLesson.Text != "")
             {
                 try
                 {
-                    //if (lesson==null)
-                    //{
-                    //    lessonUseCase.AddLesson(TBLesson.Text);
-                    //}
-                    //else
-                    //{
-                    //    lessonUseCase.UpdateLesson(TBLesson.Text, lesson.name);
-                    //}
+                    if (lesson == null)
+                    {
+                        academyContext.Lessons.Add(new Lesson { Name = TBLesson.Text });
+                    }
+                    else
+                    {
+                        lesson.Name = TBLesson.Text;
+                        academyContext.Lessons.Update(lesson);
+                    }
+                    academyContext.SaveChanges();
+                    MainFrame.Content = new LessonsList(MainFrame);
                 }
                 catch
                 {
                     MessageBox.Show("Wrong data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                MainFrame.Content = new LessonsList(MainFrame);
             }
             else
             {

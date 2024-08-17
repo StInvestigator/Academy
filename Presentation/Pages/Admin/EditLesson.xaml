@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#fcf5e5" Width="211" Height="146" Grid.RowSpan="2" Grid.Column="1" Margin="157,0,0,0"/>
         
-        <Label Content="Lesson Name" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 50 0 0"/>
+        <Label Content="Lesson Name" HorizontalAlignment="Right" Foreground="#fcf5e5" Grid.Row="2" Margin="0 40 10 0"/>
         <TextBox  Grid.Row="2" Grid.Column="1" FontSize="70" Name="TBLesson" VerticalAlignment="Bottom" Height="100" Foreground="#fcf5e5" BorderBrush="Red" TextChanged="TBLesson_SelectionChanged" Margin="20 0 0 0"/>
         
         <Button Grid.Column="1" Grid.Row="4" Content="Confirm" Background="#fcf5e5" Foreground="Black" FontSize="56" Click="Button_Click" Height="80" Margin="50 0 70 30"/>

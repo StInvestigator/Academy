@@ -1,5 +1,7 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
 using Academy.Presentation.Pages.Teacher;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +24,17 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
     /// </summary>
     public partial class StudentsList : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         Frame MainFrame;
         public StudentsList(Frame MainFrame)
         {
             this.MainFrame = MainFrame;
             InitializeComponent();
 
-            //StudentUseCase studentUseCase = new StudentUseCase();
-            //StudentRepository studentRepository = new StudentRepository();
-            //studentUseCase.GetAllStudentsFromModel(studentRepository);
-            //LVStudents.ItemsSource = studentUseCase.students.OrderBy(x => x.GroupName).ToList();
+            LVStudents.ItemsSource = academyContext.Students
+                .Include(x => x.Group)
+                .OrderBy(x => x.Surname)
+                .OrderBy(x => x.Group.Name).ToList();
         }
 
         private void BAddClick(object sender, RoutedEventArgs e)
@@ -51,8 +54,9 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Student
         {
             if (LVStudents.SelectedIndex != -1)
             {
-                //StudentUseCase studentUseCase = new StudentUseCase();
-                //studentUseCase.DeleteStudent((LVStudents.SelectedItem as Domain.Entities.Student).Login);
+                academyContext.Students.Remove(LVStudents.SelectedItem as Domain.Entities.Student);
+                academyContext.SaveChanges();
+
                 MainFrame.Content = new StudentsList(MainFrame);
             }
         }

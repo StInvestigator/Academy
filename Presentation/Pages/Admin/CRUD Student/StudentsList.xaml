@@ -44,7 +44,7 @@
                                 <Label Height="100" Width="316" Content="{Binding Name}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                                 <Label Height="100" Width="326" Content="{Binding Surname}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                                 <Label Height="100" Width="326" Content="{Binding Age}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
-                                <Label Height="100" Width="316" Content="{Binding GroupName}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="316" Content="{Binding Group.Name}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                             </StackPanel>
                             <Line X1='0' X2='1284'
                                  Y1='0'  Y2='0'

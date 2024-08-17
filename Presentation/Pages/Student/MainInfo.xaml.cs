@@ -39,7 +39,7 @@ namespace Academy.Presentation.Pages.Student
             var schedules = academyContext.Schedules
                 .Include(x => x.Lesson)
                 .Include(x => x.Group)
-                .Where(x => x.Group.Name == student.Group.Name && x.Date == DateTime.Now.AddDays(1))
+                .Where(x => x.Group.Name == student.Group.Name && x.Date.Date == DateTime.Now.AddDays(1).Date)
                 .OrderBy(x => x.Date).ToList();
 
             LVSchedule.ItemsSource = schedules.GetRange(0, schedules.Count > 4 ? 4 : schedules.Count);

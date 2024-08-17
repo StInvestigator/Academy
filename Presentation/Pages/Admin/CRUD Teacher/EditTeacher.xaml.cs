@@ -1,4 +1,6 @@
-﻿using Academy.Presentation.Pages.Admin.CRUD_Student;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
+using Academy.Presentation.Pages.Admin.CRUD_Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,10 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
     /// </summary>
     public partial class EditTeacher : UserControl
     {
-        Domain.Entities.Teacher teacher;
+        AcademyContext academyContext = new AcademyContext();
+        Domain.Entities.Teacher? teacher;
         Frame frame;
-        public EditTeacher(Frame MainFrame, Domain.Entities.Teacher teacher = null)
+        public EditTeacher(Frame MainFrame, Domain.Entities.Teacher? teacher = null)
         {
             InitializeComponent();
 
@@ -43,11 +46,14 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
                 TBLogin.Text = teacher.Login;
                 TBPassword.Text = teacher.Password;
                 CBAge.Text = teacher.Age.ToString();
+
+                CBAge.BorderBrush = new SolidColorBrush(Colors.White);
+
             }
         }
         void Validation(TextBox TB)
         {
-            if (TB.Text.Length == 0 || TB.Text.Trim() == "")
+            if (TB.Text.Trim() == "")
             {
                 TB.Text = string.Empty;
                 TB.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -83,32 +89,59 @@ namespace Academy.Presentation.Pages.Admin.CRUD_Teacher
             Validation(TBPassword);
         }
 
+        private bool isLoginExists(int id = -1)
+        {
+            if (academyContext.Students.FirstOrDefault(x => x.Login == TBLogin.Text) != null ||
+                    academyContext.Teachers.FirstOrDefault(x => x.Login == TBLogin.Text && x.Id != id) != null)
+            {
+                TBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBLogin, "This login is already exists");
+                return true;
+            }
+            return false;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (TBName.Text != "" && TBSurname.Text != "" && TBLogin.Text != "" && TBPassword.Text != "" && CBAge.Text != "")
-            {
-                try
-                {
-
-                    //TeacherUseCase teacherUseCase = new TeacherUseCase();
-                    //if (teacher == null)
-                    //{
-                    //    teacherUseCase.AddTeacher(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text);
-                    //}
-                    //else
-                    //{
-                    //    teacherUseCase.UpdateTeacher(TBName.Text, TBSurname.Text, Convert.ToInt32(CBAge.Text), TBLogin.Text, TBPassword.Text, teacher.Login);
-                    //}
-                    frame.Content = new TeachersList(frame);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
+            if (TBName.Text == "" || TBSurname.Text == "" || TBLogin.Text == "" || TBPassword.Text == "" || CBAge.Text == "")
             {
                 MessageBox.Show("Not all fields are fillen!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                if (teacher == null)
+                {
+                    if (isLoginExists()) return;
+
+                    academyContext.Teachers.Add(new Domain.Entities.Teacher
+                    {
+                        Name = TBName.Text,
+                        Surname = TBSurname.Text,
+                        Age = Convert.ToInt32(CBAge.Text),
+                        Login = TBLogin.Text,
+                        Password = TBPassword.Text
+                    });
+                }
+                else
+                {
+                    if (isLoginExists(teacher.Id)) return;
+
+                    teacher.Name = TBName.Text;
+                    teacher.Surname = TBSurname.Text;
+                    teacher.Age = Convert.ToInt32(CBAge.Text);
+                    teacher.Login = TBLogin.Text;
+                    teacher.Password = TBPassword.Text;
+
+                    academyContext.Teachers.Update(teacher);
+                }
+                academyContext.SaveChanges();
+                frame.Content = new TeachersList(frame);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
