@@ -1,6 +1,7 @@
 ﻿using Academy.Core.Constants;
 using Academy.DataBase;
 using Academy.Domain.Navigation;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,7 +45,10 @@ namespace Academy.Presentation.Pages
                 return;
             }
 
-            var student = academyContext.Students.FirstOrDefault(x => x.Login == login && x.Password == password);
+            var student = academyContext.Students
+                .Include(x=>x.Group)
+                .FirstOrDefault(x => x.Login == login && x.Password == password)
+                ;
             if (student!=null)
             {
                 NavigatorObject.Switch(new Student.MainPage(student));

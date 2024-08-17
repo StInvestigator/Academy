@@ -20,7 +20,7 @@ namespace Academy.Presentation.Pages.Teacher
                 .Include(x=>x.Teacher)
                 .Include(x=>x.Group)
                 .Include(x=>x.Lesson)
-                .Where(x => x.Teacher.Login == teacher.Login && x.Date >= DateTime.Now)
+                .Where(x => x.Teacher.Id == teacher.Id && x.Date >= DateTime.Now)
                 .OrderBy(x => x.Date).ToList();
         }
     }

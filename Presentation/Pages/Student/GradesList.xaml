@@ -22,7 +22,7 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <Label Height="110" Width="275" Content="{Binding WorkType}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
-                                <Label Height="110" Width="360" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
+                                <Label Height="110" Width="360" Content="{Binding Lesson.Name}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
                                 <Label Height="110" Width="335" Content="{Binding GradeNumber}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="70" VerticalContentAlignment="Center"/>
                                 <TextBlock Height="110" Width="335" Text="{Binding Date,StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Center" Foreground="#fcf5e5" FontSize="70" />
                             </StackPanel>

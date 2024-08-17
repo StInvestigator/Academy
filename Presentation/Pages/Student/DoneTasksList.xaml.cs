@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Academy.DataBase;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,7 @@ namespace Academy.Presentation.Pages.Student
     /// </summary>
     public partial class DoneTasksList : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         Domain.Entities.Student student;
         Frame MainFrame;
         public DoneTasksList(Domain.Entities.Student student, Frame MainFrame)
@@ -28,25 +31,19 @@ namespace Academy.Presentation.Pages.Student
             InitializeComponent();
             this.MainFrame = MainFrame;
 
-            //TaskRepository taskRepository = new TaskRepository();
-            //TaskUseCase taskUseCase = new TaskUseCase();
-            //taskUseCase.GetAllTasksFromModel(taskRepository);
-
-            //if (taskUseCase.tasks.Count > 0)
-            //{
-            //    taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == true)
-            //        .OrderByDescending(x => x.termin).ToList();
-            //    LVTasks.ItemsSource = taskUseCase.tasks;
-            //}
+            LVTasks.ItemsSource = academyContext.Tasks
+                .Where(x => x.Student.Id == student.Id && x.isDone == true)
+                .Include(x => x.Lesson)
+                .OrderBy(x => x.Date).ToList();
         }
 
         private void BDoneClick(object sender, RoutedEventArgs e)
         {
             if (LVTasks.SelectedIndex != -1)
             {
-                //TaskUseCase taskUseCase = new TaskUseCase();
-                //taskUseCase.MarkAsUndone(LVTasks.SelectedItem as Domain.Entities.Task);
-                //MainFrame.Content = new DoneTasksList(student, MainFrame);
+                academyContext.Tasks.First(x => x.Id == (LVTasks.SelectedItem as Domain.Entities.Task).Id).isDone = false;
+                academyContext.SaveChanges();
+                MainFrame.Content = new DoneTasksList(student, MainFrame);
             }
 
         }

@@ -37,10 +37,10 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Label Height="100" Width="207" Content="{Binding Type}" HorizontalContentAlignment="Center" Foreground="LightGreen" FontSize="50" VerticalContentAlignment="Center"/>
-                                <Label Height="100" Width="220" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="LightGreen" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="207" Content="{Binding WorkType}" HorizontalContentAlignment="Center" Foreground="LightGreen" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="220" Content="{Binding Lesson.Name}" HorizontalContentAlignment="Center" Foreground="LightGreen" FontSize="50" VerticalContentAlignment="Center"/>
                                 <TextBox Height="100" Width="592" Text="{Binding Description}" Foreground="LightGreen" FontSize="50" Margin="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
-                                <TextBlock Height="100" Width="256" Text="{Binding Termin,StringFormat={}{0:dd.MM.yyyy}}" Foreground="LightGreen" FontSize="50" TextAlignment="Center"/>
+                                <TextBlock Height="100" Width="256" Text="{Binding Date,StringFormat={}{0:dd.MM.yyyy}}" Foreground="LightGreen" FontSize="50" TextAlignment="Center"/>
                             </StackPanel>
                             <Line X1='0' X2='1284'
                              Y1='0'  Y2='0'

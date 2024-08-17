@@ -30,12 +30,12 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Label Height="100" Width="190" Content="{Binding Lesson}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="190" Content="{Binding Lesson.Name}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                                 <TextBlock Height="100" Width="160" Text="{Binding Date,StringFormat={}{0:HH:mm}}" Foreground="#fcf5e5" FontSize="50" TextAlignment="Center"/>
                                 <TextBlock Height="100" Width="200" Text="{Binding Date,StringFormat={}{0:dd.MM.yyyy}}" Foreground="#fcf5e5" FontSize="50" TextAlignment="Center"/>
                                 <Label Height="100" Width="143" Content="{Binding Class}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
-                                <Label Height="100" Width="300" Content="{Binding TeacherName}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
-                                <Label Height="100" Width="289" Content="{Binding TeacherSurname}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="300" Content="{Binding Teacher.Name}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
+                                <Label Height="100" Width="289" Content="{Binding Teacher.Surname}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="50" VerticalContentAlignment="Center"/>
                             </StackPanel>
                             <Line X1='0' X2='1284'
                                  Y1='0'  Y2='0'

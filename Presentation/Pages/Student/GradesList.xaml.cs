@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Academy.DataBase;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,21 +22,17 @@ namespace Academy.Presentation.Pages.Student
     /// </summary>
     public partial class GradesList : UserControl
     {
-        Domain.Entities.Student student;
+        AcademyContext academyContext = new AcademyContext();
         public GradesList(Domain.Entities.Student student)
         {
-           this.student = student;
            InitializeComponent();
 
-            //GradeRepository gradeRepository = new GradeRepository();
-            //GradeUseCase gradeUseCase = new GradeUseCase();
-            //gradeUseCase.GetAllGradesFromModel(gradeRepository);
+            LVGrades.ItemsSource = academyContext.Grades
+                .Include(x => x.Student)
+                .Include(x => x.Lesson)
+                .Where(x => x.Student.Login == student.Login)
+                .OrderByDescending(x => x.Date).ToList();
 
-            //if (gradeUseCase.grades.Count > 0)
-            //{
-            //    gradeUseCase.grades = gradeUseCase.grades.FindAll(x => x.StudentLogin == student.Login).OrderByDescending(x => x.Date).ToList();
-            //    LVGrades.ItemsSource = gradeUseCase.grades;
-            //}
         }
     }
 }

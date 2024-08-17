@@ -95,14 +95,12 @@ namespace Academy.Presentation.Pages.Teacher
 
         void addTask(string login)
         {
-            var lesson = academyContext.Lessons.First(x => x.Name == CBLesson.Text);
-            var student = academyContext.Students.First(x => x.Login == login);
             academyContext.Tasks.Add(new Domain.Entities.Task
             {
                 Description = TBDesc.Text,
                 WorkType = CBWorkType.Text,
-                Lesson = lesson,
-                Student = student,
+                Lesson = academyContext.Lessons.First(x => x.Name == CBLesson.Text),
+                Student = academyContext.Students.First(x => x.Login == login),
                 Date = DPdate.SelectedDate ?? DateTime.Now
             });
             academyContext.SaveChanges();

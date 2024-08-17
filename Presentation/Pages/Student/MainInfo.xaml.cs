@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Academy.DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace Academy.Presentation.Pages.Student
 {
@@ -21,42 +23,34 @@ namespace Academy.Presentation.Pages.Student
     /// </summary>
     public partial class MainInfo : UserControl
     {
-        Domain.Entities.Student student;
+        AcademyContext academyContext = new AcademyContext();
         public MainInfo(Domain.Entities.Student student)
         {
-            this.student = student;
             InitializeComponent();
 
-            //GradeRepository gradeRepository = new GradeRepository();
-            //GradeUseCase gradeUseCase = new GradeUseCase();
-            //gradeUseCase.GetAllGradesFromModel(gradeRepository);
-            //if (gradeUseCase.grades.Count > 0)
-            //{
-            //    gradeUseCase.grades = gradeUseCase.grades.FindAll(x => x.StudentLogin == student.Login).OrderByDescending(x => x.Date).ToList();
-            //    gradeUseCase.grades = gradeUseCase.grades.GetRange(0, gradeUseCase.grades.Count > 4 ? 4 : gradeUseCase.grades.Count);
-            //    LVGrades.ItemsSource = gradeUseCase.grades;
-            //}
+            var grades = academyContext.Grades
+                .Include(x => x.Lesson)
+                .Include(x => x.Student)
+                .Where(x => x.Student.Login == student.Login)
+                .OrderByDescending(x => x.Date).ToList();
 
-            //ScheduleRepository scheduleRepository = new ScheduleRepository();
-            //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-            //scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
-            //if (scheduleUseCase.schedules.Count > 0)
-            //{
-            //    scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.Date == DateTime.Now.AddDays(1)).ToList();
-            //    scheduleUseCase.schedules = scheduleUseCase.schedules.GetRange(0, scheduleUseCase.schedules.Count > 4 ? 4 : scheduleUseCase.schedules.Count);
-            //    LVSchedule.ItemsSource = scheduleUseCase.schedules;
-            //}
+            LVGrades.ItemsSource = grades.GetRange(0, grades.Count > 4 ? 4 : grades.Count);
 
-            //TaskRepository taskRepository = new TaskRepository();
-            //TaskUseCase taskUseCase = new TaskUseCase();
-            //taskUseCase.GetAllTasksFromModel(taskRepository);
-            //if(taskUseCase.tasks.Count > 0)
-            //{
-            //    taskUseCase.tasks = taskUseCase.tasks.FindAll(x => x.StudentLogin == student.Login && x.isDone == false)
-            //        .OrderBy(x => x.termin).ToList();
-            //    taskUseCase.tasks = taskUseCase.tasks.GetRange(0, taskUseCase.tasks.Count > 4 ? 4 : taskUseCase.tasks.Count);
-            //    LVTasks.ItemsSource = taskUseCase.tasks;
-            //}
+            var schedules = academyContext.Schedules
+                .Include(x => x.Lesson)
+                .Include(x => x.Group)
+                .Where(x => x.Group.Name == student.Group.Name && x.Date == DateTime.Now.AddDays(1))
+                .OrderBy(x => x.Date).ToList();
+
+            LVSchedule.ItemsSource = schedules.GetRange(0, schedules.Count > 4 ? 4 : schedules.Count);
+
+            var tasks = academyContext.Tasks
+                .Include(x => x.Lesson)
+                .Include(x => x.Student)
+                .Where(x => x.Student.Login == student.Login && x.isDone == false)
+                .OrderBy(x => x.Date).ToList();
+
+            LVTasks.ItemsSource = tasks.GetRange(0, tasks.Count > 4 ? 4 : tasks.Count);
         }
     }
 }

@@ -41,15 +41,13 @@ namespace Academy.Presentation.Pages.Teacher
                 try
                 {
                     var login = CBLogin.Text.Split("(")[1].Remove(CBLogin.Text.Split("(")[1].Length - 1);
-
-                    var lesson = academyContext.Lessons.First(x => x.Name == CBLesson.Text);
-                    var student = academyContext.Students.First(x => x.Login == login);
+                    
                     academyContext.Grades.Add(new Domain.Entities.Grade{
                         Date = DateTime.Now, 
                         WorkType = CBWorkType.Text, 
                         GradeNumber = Convert.ToInt32(CBGrade.Text),
-                        Lesson = lesson,
-                        Student = student
+                        Lesson = academyContext.Lessons.First(x => x.Name == CBLesson.Text),
+                        Student = academyContext.Students.First(x => x.Login == login)
                     });
                     academyContext.SaveChanges();
 

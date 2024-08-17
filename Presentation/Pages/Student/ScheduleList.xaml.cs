@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Academy.DataBase;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +22,17 @@ namespace Academy.Presentation.Pages.Student
     /// </summary>
     public partial class ScheduleList : UserControl
     {
-        Domain.Entities.Student student;
+        AcademyContext academyContext = new AcademyContext();
         public ScheduleList(Domain.Entities.Student student)
         {
-            this.student = student;
             InitializeComponent();
 
-            //ScheduleRepository scheduleRepository = new ScheduleRepository();
-            //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-            //scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
-            //if (scheduleUseCase.schedules.Count > 0)
-            //{
-            //    scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.GroupName == student.GroupName && x.Date >= DateTime.Now);
-            //    LVSchedule.ItemsSource = scheduleUseCase.schedules;
-            //}
+            LVSchedule.ItemsSource = academyContext.Schedules
+                .Include(x=>x.Group)
+                .Include(x => x.Lesson)
+                .Include(x => x.Teacher)
+                .Where(x => x.Group.Name == student.Group.Name && x.Date >= DateTime.Now)
+                .ToList();
         }
     }
 }
