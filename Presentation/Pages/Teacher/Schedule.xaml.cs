@@ -1,18 +1,8 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Academy.Presentation.Pages.Teacher
 {
@@ -21,21 +11,17 @@ namespace Academy.Presentation.Pages.Teacher
     /// </summary>
     public partial class Schedule : UserControl
     {
-        Domain.Entities.Teacher teacher;
+        AcademyContext academyContext = new AcademyContext();
         public Schedule(Domain.Entities.Teacher teacher)
         {
-            this.teacher = teacher;
             InitializeComponent();
 
-            //ScheduleRepository scheduleRepository = new ScheduleRepository();
-            //ScheduleUseCase scheduleUseCase = new ScheduleUseCase();
-            //scheduleUseCase.GetAllSchedulesFromModel(scheduleRepository);
-            //if (scheduleUseCase.schedules.Count > 0)
-            //{
-            //    scheduleUseCase.schedules = scheduleUseCase.schedules.FindAll(x => x.TeacherName+x.TeacherSurname == teacher.Name+teacher.Surname && x.Date >= DateTime.Now)
-            //        .OrderBy(x => x.Date).ToList();
-            //    LVSchedule.ItemsSource = scheduleUseCase.schedules;
-            //}
+            LVSchedule.ItemsSource = academyContext.Schedules
+                .Include(x=>x.Teacher)
+                .Include(x=>x.Group)
+                .Include(x=>x.Lesson)
+                .Where(x => x.Teacher.Login == teacher.Login && x.Date >= DateTime.Now)
+                .OrderBy(x => x.Date).ToList();
         }
     }
 }

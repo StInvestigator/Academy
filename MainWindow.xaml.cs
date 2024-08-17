@@ -30,11 +30,8 @@ namespace Academy
 
             try
             {
-
-            AcademyContext academyContext = new AcademyContext();
-            academyContext.Database.EnsureCreated();
-
-            MessageBox.Show(academyContext.Groups.Count().ToString());
+                AcademyContext academyContext = new AcademyContext();
+                academyContext.Database.EnsureCreated();
             }
             catch (Exception ex)
             {

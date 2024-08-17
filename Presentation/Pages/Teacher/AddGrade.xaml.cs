@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Academy.DataBase;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Academy.Presentation.Pages.Teacher
 {
@@ -21,42 +15,44 @@ namespace Academy.Presentation.Pages.Teacher
     public partial class AddGrade : UserControl
     {
 
-        //StudentUseCase studentUseCase;
+        AcademyContext academyContext = new AcademyContext();
         public AddGrade()
         {
             InitializeComponent();
 
-            //StudentRepository studentRepository = new StudentRepository();
-            //studentUseCase = new StudentUseCase();
-            //studentUseCase.GetAllStudentsFromModel(studentRepository);
+            var students = academyContext.Students.Include(x => x.Group);
 
-            //foreach (var item in studentUseCase.students)
-            //{
-            //    CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
-            //}
+            foreach (var item in students)
+            {
+                CBLogin.Items.Add($"{item.Group.Name}: {item.Surname} {item.Name} ({item.Login})");
+            }
 
-            //LessonRepository lessonRepository = new LessonRepository();
-            //LessonUseCase lessonUseCase = new LessonUseCase();
-            //lessonUseCase.GetAllLessonsFromModel(lessonRepository);
-
-            //foreach (var item in lessonUseCase.lessons)
-            //{
-            //    CBLesson.Items.Add(item.name);  
-            //}
+            foreach (var item in academyContext.Lessons)
+            {
+                CBLesson.Items.Add(item.Name);
+            }
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //GradeRepository gradeRepository = new GradeRepository();
-            //GradeUseCase gradeUseCase = new GradeUseCase();
-            //gradeUseCase.GetAllGradesFromModel(gradeRepository);
-
             if (CBGrade.Text != "" && CBLesson.Text != "" && CBLogin.Text != "" && CBWorkType.Text != "")
             {
                 try
                 {
-                    //gradeUseCase.AddGrade(DateTime.Now, CBWorkType.Text, Convert.ToInt32(CBGrade.Text), CBLesson.Text, CBLogin.Text.Split("(")[1].Remove(CBLogin.Text.Split("(")[1].Length-1));
+                    var login = CBLogin.Text.Split("(")[1].Remove(CBLogin.Text.Split("(")[1].Length - 1);
+
+                    var lesson = academyContext.Lessons.First(x => x.Name == CBLesson.Text);
+                    var student = academyContext.Students.First(x => x.Login == login);
+                    academyContext.Grades.Add(new Domain.Entities.Grade{
+                        Date = DateTime.Now, 
+                        WorkType = CBWorkType.Text, 
+                        GradeNumber = Convert.ToInt32(CBGrade.Text),
+                        Lesson = lesson,
+                        Student = student
+                    });
+                    academyContext.SaveChanges();
+
                     MessageBox.Show("Success!", "Evaluation done", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch
@@ -106,13 +102,15 @@ namespace Academy.Presentation.Pages.Teacher
         {
             string text = (CBLogin.Text + e.Text).ToLower();
             CBLogin.Items.Clear();
-            //foreach (var item in studentUseCase.students)
-            //{
-            //    if ($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})".ToLower().Contains(text))
-            //    {
-            //        CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
-            //    }
-            //}
+            var students = academyContext.Students.Include(x => x.Group);
+
+            foreach (var item in students)
+            {
+                if ($"{item.Group.Name}: {item.Surname} {item.Name} ({item.Login})".ToLower().Contains(text))
+                {
+                    CBLogin.Items.Add($"{item.Group.Name}: {item.Surname} {item.Name} ({item.Login})");
+                }
+            }
             CBLogin.IsDropDownOpen = true;
             CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
         }
@@ -125,13 +123,14 @@ namespace Academy.Presentation.Pages.Teacher
                 {
                     string text = CBLogin.Text.Remove(CBLogin.Text.Length - 1).ToLower();
                     CBLogin.Items.Clear();
-                    //foreach (var item in studentUseCase.students)
-                    //{
-                    //    if ($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})".ToLower().Contains(text))
-                    //    {
-                    //        CBLogin.Items.Add($"{item.GroupName}: {item.Surname} {item.Name} ({item.Login})");
-                    //    }
-                    //}
+                    var students = academyContext.Students.Include(x => x.Group);
+                    foreach (var item in students)
+                    {
+                        if ($"{item.Group.Name}: {item.Surname} {item.Name} ({item.Login})".ToLower().Contains(text))
+                        {
+                            CBLogin.Items.Add($"{item.Group.Name}: {item.Surname} {item.Name} ({item.Login})");
+                        }
+                    }
                     CBLogin.IsDropDownOpen = true;
                     CBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
                 }

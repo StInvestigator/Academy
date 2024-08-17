@@ -7,7 +7,7 @@ namespace Academy.Domain.Entities
     public class Lesson : INotifyPropertyChanged
     {
         public int Id { get; set; }
-        public string name;
+        string name;
         public string Name { get { return name; } set { name = value; NotifyPropertyChanged("Name"); } }
 
         public event PropertyChangedEventHandler? PropertyChanged;

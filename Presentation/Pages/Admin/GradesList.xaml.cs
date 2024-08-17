@@ -1,4 +1,6 @@
-﻿using Academy.Domain.Entities;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,52 +24,24 @@ namespace Academy.Presentation.Pages.Admin
     public partial class GradesList : UserControl
     {
         Frame MainFrame;
+        AcademyContext academyContext = new AcademyContext();
         public GradesList(Frame MainFrame)
         {
             InitializeComponent();
 
             this.MainFrame = MainFrame;
 
-            //GradeRepository gradeRepository = new GradeRepository();
-            //GradeUseCase gradeUseCase = new GradeUseCase();
-            //gradeUseCase.GetAllGradesFromModel(gradeRepository);
-
-            //if (gradeUseCase.grades.Count > 0)
-            //{
-            //    LVGrades.ItemsSource = gradeUseCase.grades.OrderByDescending(x => x.Date).ToList();
-            //}
-
-            //
-            LVGrades.ItemsSource = new List<Grade>() { new Grade
-            {
-                Date = DateTime.Now,
-                WorkType = "HT",
-                GradeNumber = 10,
-                Lesson = new Lesson{ Name = "Math" },
-                Student = new Domain.Entities.Student
-                {
-                    Age = 14,
-                    Group = new Group
-                    {
-                        Name = "B205",
-                        Year = 1
-                    },
-                    Login = "ultraLogin",
-                    Password = "12312",
-                    Name = "Name",
-                    Surname = "Surname",
-                }
-            }
-            };
-            //
+            LVGrades.ItemsSource = academyContext.Grades
+                .Include(x=>x.Lesson)
+                .Include(x=>x.Student).ToList();
         }
 
         private void BDeleteClick(object sender, RoutedEventArgs e)
         {
             if (LVGrades.SelectedIndex != -1)
             {
-                //GradeUseCase gradeUseCase = new GradeUseCase();
-                //gradeUseCase.DeleteGrade(LVGrades.SelectedItem as Domain.Entities.Grade);
+                academyContext.Grades.Remove(LVGrades.SelectedItem as Grade);
+                academyContext.SaveChanges();
 
                 MainFrame.Content = new GradesList(MainFrame);
             }

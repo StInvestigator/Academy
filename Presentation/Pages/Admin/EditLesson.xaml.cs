@@ -32,7 +32,7 @@ namespace Academy.Presentation.Pages.Admin
 
             if(lesson != null )
             {
-                TBLesson.Text = lesson.name;
+                TBLesson.Text = lesson.Name;
             }
 
         }

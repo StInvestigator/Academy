@@ -1,6 +1,7 @@
 ﻿using Academy.Core.Constants;
-using Academy.Domain.Entities;
+using Academy.DataBase;
 using Academy.Domain.Navigation;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,6 +13,7 @@ namespace Academy.Presentation.Pages
     /// </summary>
     public partial class Authorization : UserControl
     {
+        AcademyContext academyContext = new AcademyContext();
         public Authorization()
         {
             InitializeComponent();
@@ -19,21 +21,16 @@ namespace Academy.Presentation.Pages
 
         private void TextBox_LoginChanged(object sender, TextChangedEventArgs e)
         {
-            Validation(TBLogin);
-        }
-
-        void Validation(TextBox TB)
-        {
-            if (TB.Text.Length == 0 || TB.Text.Trim() == "")
+            if (TBLogin.Text.Trim() == "")
             {
-                TB.Text = string.Empty;
-                TB.BorderBrush = new SolidColorBrush(Colors.Red);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TB, "Field is required");
+                TBLogin.Text = string.Empty;
+                TBLogin.BorderBrush = new SolidColorBrush(Colors.Red);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBLogin, "Field is required");
             }
             else
             {
-                TB.BorderBrush = new SolidColorBrush(Colors.White);
-                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TB, "");
+                TBLogin.BorderBrush = new SolidColorBrush(Colors.White);
+                MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBLogin, "");
             }
         }
 
@@ -47,23 +44,21 @@ namespace Academy.Presentation.Pages
                 return;
             }
 
-            //StudentUseCase studentUseCase = new StudentUseCase();
-            //StudentRepository studentRepository = new StudentRepository();
-            //studentUseCase.GetAllStudentsFromModel(studentRepository);
-            //if (studentUseCase.students.Contains(studentUseCase.students.Find(x => x.Login == login && x.Password == password)))
-            //{
-            //    NavigatorObject.Switch(new Student.MainPage(studentUseCase.students.Find(x => x.Login == login && x.Password == password)));
-            //    return;
-            //}
+            var student = academyContext.Students.FirstOrDefault(x => x.Login == login && x.Password == password);
+            if (student!=null)
+            {
+                NavigatorObject.Switch(new Student.MainPage(student));
+                return;
+            }
 
-            //TeacherUseCase teacherUseCase = new TeacherUseCase();
-            //TeacherRepository teacherRepository = new TeacherRepository();
-            //teacherUseCase.GetAllTeachersFromModel(teacherRepository);
+            var teacher = academyContext.Teachers.FirstOrDefault(x => x.Login == login && x.Password == password);
+            if (teacher != null)
+            {
+                NavigatorObject.Switch(new Teacher.MainPage(teacher));
+                return;
+            }
 
-            //if (teacherUseCase.teachers.Contains(teacherUseCase.teachers.Find(x => x.Login == login && x.Password == password)))
-            //{
-            //    NavigatorObject.Switch(new Teacher.MainPage(teacherUseCase.teachers.Find(x => x.Login == login && x.Password == password)));
-            //}
+            MaterialDesignThemes.Wpf.HintAssist.SetHelperText(TBPassword, "Wrong login or password");
         }
 
         private void TextBox_PasswordChanged(object sender, RoutedEventArgs e)
