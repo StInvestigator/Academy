@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Academy.Presentation.Pages.Admin.LessonsList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Academy.Presentation.Pages.Admin"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="740" d:DesignWidth="1305" FontSize="70" FontFamily="Gabriola Bold" Background="#101014">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Lessons list" Margin="530 0 0 0" Foreground="#fcf5e5"/>
+                <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BAddClick" Margin="250 0 0 0">
+                    <materialDesign:PackIcon Kind="BookPlus" Width="40" Height="40" Foreground="#fcf5e5"/>
+                </Button>
+                <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BEditClick" Margin="10 0 0 0">
+                    <materialDesign:PackIcon Kind="BookEdit" Width="40" Height="40" Foreground="#fcf5e5"/>
+                </Button>
+                <Button Height="70" Width="70" Background="#101014" Foreground="#fcf5e5" FontSize="50" Click="BDeleteClick" Margin="10 0 0 0">
+                    <materialDesign:PackIcon Kind="BookMinus" Width="40" Height="40" Foreground="#fcf5e5"/>
+                </Button>
+            </StackPanel>
+            <Line X1='0' X2='1305'
+    Y1='0'  Y2='0'  
+    Stroke="#fcf5e5"
+    StrokeThickness='2' />
+            <ListView Name="LVLessons" Width="1305"  Height="610">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Label Height="100" Width="1284" Content="{Binding Name}" HorizontalContentAlignment="Center" Foreground="#fcf5e5" FontSize="65" VerticalContentAlignment="Center"/>
+                            <Line X1='0' X2='1284'
+                          Y1='0'  Y2='0'
+                          Stroke="#fcf5e5"
+                          StrokeThickness='2' />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

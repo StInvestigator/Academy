@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Academy.Presentation.Pages.Student.MainPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Academy.Presentation.Pages.Student"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1600" Background="#101014" FontSize="110" FontFamily="Gabriola Bold">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="309*"/>
+            <RowDefinition Height="61*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="653*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2" Background="#fcf5e5"/>
+        <materialDesign:PackIcon Kind="SchoolOutline" Foreground="#101014" Width="150" Height="150" HorizontalAlignment="Center"/>
+        <Label HorizontalAlignment="Center" Name="LStudentName" Foreground="#101014"  Grid.Column="1"/>
+        <Label HorizontalAlignment="Right" Name="LGroup" Foreground="#101014"  Grid.Column="1" Margin="0 0 20 0"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2"  Background="#fcf5e5">
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BHomeClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Home</TextBlock>
+                    <materialDesign:PackIcon Kind="Home" Width="70" Height="70" VerticalAlignment="Center" Margin="70 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BScheduleClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Schedule</TextBlock>
+                    <materialDesign:PackIcon Kind="Calendar" Width="70" Height="70" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BGradesClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Grades</TextBlock>
+                    <materialDesign:PackIcon Kind="FormatListBulleted" Width="70" Height="70" VerticalAlignment="Center" Margin="50 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Click="BTasksClick">
+                <StackPanel Orientation="Horizontal" Width="280">
+                    <TextBlock>Tasks</TextBlock>
+                    <materialDesign:PackIcon Kind="FileTree" Width="70" Height="70" VerticalAlignment="Center" Margin="85 0 0 0" Foreground="#101014"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Button Height="100" Width="300" Background="#fcf5e5" Foreground="#101014" FontSize="65" Grid.Row="2" VerticalAlignment="Bottom" Click="ExitClick">
+            <StackPanel Orientation="Horizontal" Width="280">
+                <TextBlock>Exit</TextBlock>
+                <materialDesign:PackIcon Kind="ExitRun" Width="70" Height="70" VerticalAlignment="Center" Margin="110 0 0 0" Foreground="Red"/>
+            </StackPanel>
+        </Button>
+        <Frame Grid.Row="1" Name="MainFrame" Grid.Column="1" Grid.RowSpan="2" Width="1305" Height="740" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</UserControl>

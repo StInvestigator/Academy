@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Collections.Concurrent;
 
 namespace Academy.Core.Constants
 {
-    static class Constants
+    public static class Constants
     {
-
+        public const string AdminLogin = "admin";
+        public const string AdminPassword = "nimda";
     }
 }

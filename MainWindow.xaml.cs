@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Academy.DataBase;
+using Academy.Domain.Entities;
+using Academy.Domain.Navigation;
+using Academy.Presentation.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +27,37 @@ namespace Academy
         public MainWindow()
         {
             InitializeComponent();
+
+            try
+            {
+                AcademyContext academyContext = new AcademyContext();
+                academyContext.Database.EnsureCreated();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            NavigatorObject.pageSwitcher = this;
+            NavigatorObject.Switch(new Presentation.Pages.Authorization());
+        }
+
+        public Action? CloseAction { get; set; }
+
+        public void Navigate(UserControl nextPage)
+        {
+            Content = nextPage;
+        }
+
+        public void Navigate(UserControl nextPage, object state)
+        {
+            Content = nextPage;
+            INavigator? s = nextPage as INavigator;
+
+            if (s != null)
+                s.UtilizeState(state);
+            else
+                throw new ArgumentException("NextPage is not INavigator! " + nextPage.Name.ToString());
         }
     }
 }
